@@ -6,8 +6,12 @@
   <groupId>ssm</groupId>
   <artifactId>ssm</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <build>
+    <finalName>ssm</finalName>
+  </build>
   <packaging>war</packaging>
   <url>http://maven.apache.org</url>
+
 
   <profiles>
     <profile>
