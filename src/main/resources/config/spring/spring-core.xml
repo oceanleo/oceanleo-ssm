@@ -14,6 +14,54 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <bean id="user" class="com.lhy.ssm.po.User"/>
+  <!--<import resource="classpath*:config/spring/spring-data.xml"/>-->
 
+  <context:property-placeholder location="classpath*:config/dataSources.properties"/>
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="${mysql.driver}"/>
+    <property name="url" value="${mysql.url}"/>
+    <property name="username" value="${mysql.username}"/>
+    <property name="password" value="${mysql.password}"/>
+  </bean>
+
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <!-- 引入连接池 -->
+    <property name="dataSource" ref="dataSource"/>
+    <!-- 配置类的别名 -->
+    <!--<property name="typeAliasesPackage" value="com.group_11.crm.domain,com.group_11.crm.query" />-->
+    <!-- 配置映射的mapper.xml文件 -->
+    <property name="mapperLocations" value="classpath:config/dao/*Mapper.xml"></property>
+  </bean>
+
+  <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+    <property name="mapperInterface" value="com.lhy.ssm.dao.UserDao" />
+    <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+
+
+  <!--事物管理器-->
+  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource" />
+  </bean>
+
+  <!--aop切面-->
+  <!--<aop:config>-->
+    <!--<aop:pointcut id="ssmPointcut" expression="execution(* com.lhy.ssm.service..*.*(..))"/>-->
+    <!--<aop:advisor advice-ref="txManager" pointcut-ref="ssmPointcut"/>-->
+  <!--</aop:config>-->
+
+  <!--声名式事物配置-->
+  <!--<tx:advice id="txManager" transaction-manager="transactionManager">-->
+    <!--<tx:attributes>-->
+      <!--<tx:method name="get*" propagation="SUPPORTS" read-only="true"/>-->
+      <!--<tx:method name="find*" propagation="SUPPORTS" read-only="true"/>-->
+      <!--<tx:method name="*" propagation="REQUIRED"/>-->
+    <!--</tx:attributes>-->
+  <!--</tx:advice>-->
+
+  <!--编程式事物配置-->
+  <!--<tx:annotation-driven order="0" transaction-manager="transactionManager"/>-->
+
+  <!--<aop:aspectj-autoproxy/>-->
 </beans>

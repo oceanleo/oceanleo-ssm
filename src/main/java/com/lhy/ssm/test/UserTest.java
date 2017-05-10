@@ -1,6 +1,6 @@
 package com.lhy.ssm.test;
 
-import com.lhy.ssm.po.User;
+import com.lhy.ssm.dao.UserDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
@@ -21,6 +21,7 @@ public class UserTest {
 
     @Test
     public void testUser(){
-        System.out.println(applicationContext.getBean("user"));
+        UserDao userDao = (UserDao)applicationContext.getBean("userDao");
+        System.out.println(userDao.selectById("1"));
     }
 }
