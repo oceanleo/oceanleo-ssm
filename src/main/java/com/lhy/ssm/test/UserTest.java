@@ -1,6 +1,8 @@
 package com.lhy.ssm.test;
 
+import com.lhy.ssm.controller.UserController;
 import com.lhy.ssm.dao.UserDao;
+import com.lhy.ssm.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
@@ -18,10 +20,11 @@ public class UserTest {
 
     @Resource
     private ApplicationContext applicationContext;
+    @Resource
+    private UserController userController;
 
     @Test
     public void testUser(){
-        UserDao userDao = (UserDao)applicationContext.getBean("userDao");
-        System.out.println(userDao.selectById("1"));
+        System.out.println(userController.getById("1"));
     }
 }

@@ -42,8 +42,9 @@ public class User extends Domain implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
-                ", age=" + age +
+                "age=" + age +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 }

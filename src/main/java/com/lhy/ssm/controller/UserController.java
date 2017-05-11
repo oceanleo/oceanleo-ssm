@@ -14,8 +14,7 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    public Object getById(){
-        System.out.println("UserController:   "+userService);
-        return userService.getById("1");
+    public Object getById(String id){
+        return userService.getById(id);
     }
 }

@@ -13,32 +13,32 @@
   <url>http://maven.apache.org</url>
 
 
-  <profiles>
-    <profile>
-      <id>development</id>
-      <properties>
-        <profile.id>development</profile.id>
-      </properties>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
-    <profile>
-      <id>product</id>
-      <properties>
-        <profile.id>product</profile.id>
-      </properties>
-    </profile>
-    <profile>
-      <id>test</id>
-      <properties>
-        <profile.id>test</profile.id>
-      </properties>
-    </profile>
-  </profiles>
+  <!--<profiles>-->
+    <!--<profile>-->
+      <!--<id>development</id>-->
+      <!--<properties>-->
+        <!--<profile.id>development</profile.id>-->
+      <!--</properties>-->
+      <!--<activation>-->
+        <!--<activeByDefault>true</activeByDefault>-->
+      <!--</activation>-->
+    <!--</profile>-->
+    <!--<profile>-->
+      <!--<id>product</id>-->
+      <!--<properties>-->
+        <!--<profile.id>product</profile.id>-->
+      <!--</properties>-->
+    <!--</profile>-->
+    <!--<profile>-->
+      <!--<id>test</id>-->
+      <!--<properties>-->
+        <!--<profile.id>test</profile.id>-->
+      <!--</properties>-->
+    <!--</profile>-->
+  <!--</profiles>-->
 
   <properties>
-    <spring.version>3.2.9.RELEASE</spring.version>
+    <spring.version>4.1.2.RELEASE</spring.version>
     <mybatis.version>3.2.5</mybatis.version>
   </properties>
 
@@ -52,6 +52,11 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-oxm</artifactId>
       <version>${spring.version}</version>
     </dependency>
     <dependency>

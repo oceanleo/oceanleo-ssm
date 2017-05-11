@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+             http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <context:property-placeholder location="classpath*:config/dataSources.properties"/>
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="${mysql.driver}"/>
+    <property name="url" value="${mysql.url}"/>
+    <property name="username" value="${mysql.username}"/>
+    <property name="password" value="${mysql.password}"/>
+  </bean>
+
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <!-- 引入连接池 -->
+    <property name="dataSource" ref="dataSource"/>
+    <!-- 配置类的别名 -->
+    <property name="typeAliasesPackage" value="com.lhy.ssm.po" />
+    <!-- 配置映射的mapper.xml文件 -->
+    <property name="mapperLocations" value="classpath:config/dao/*Mapper.xml"></property>
+  </bean>
+
+  <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="com.lhy.ssm.dao" />
+    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+  </bean>
+</beans>
