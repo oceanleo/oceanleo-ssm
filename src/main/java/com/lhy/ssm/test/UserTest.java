@@ -1,8 +1,6 @@
 package com.lhy.ssm.test;
 
 import com.lhy.ssm.controller.UserController;
-import com.lhy.ssm.dao.UserDao;
-import com.lhy.ssm.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;

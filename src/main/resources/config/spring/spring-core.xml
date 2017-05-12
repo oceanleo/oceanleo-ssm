@@ -9,7 +9,7 @@
             http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/tx
             http://www.springframework.org/schema/tx/spring-tx.xsd
-             http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop
             http://www.springframework.org/schema/aop/spring-aop.xsd
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
@@ -22,7 +22,7 @@
   <!--配置扫描的service,注入bean-->
   <context:component-scan base-package="com.lhy.ssm" use-default-filters="false">
     <context:include-filter expression="com.lhy..service..*ServiceImpl" type="aspectj"/>
-    <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+    <context:include-filter expression="org.springframework.stereotype.Component" type="annotation"/>
   </context:component-scan>
 
 
