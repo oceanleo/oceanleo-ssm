@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * @author haiyang.li
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:config/spring/spring-core.xml")
+@ContextConfiguration("classpath:config/spring/*.xml")
 public class UserTest {
 
     @Resource
@@ -23,6 +23,6 @@ public class UserTest {
 
     @Test
     public void testUser(){
-        System.out.println(userController.getById("1"));
+//        System.out.println(userController.getById("1"));
     }
 }
