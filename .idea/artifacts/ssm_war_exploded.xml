@@ -28,9 +28,13 @@
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.25" />
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.5.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.5.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.5.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.5.1" />
           <element id="library" level="project" name="Maven: junit:junit:4.10" />
           <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.1" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.12" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">
