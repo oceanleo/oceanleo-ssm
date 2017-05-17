@@ -24,6 +24,6 @@ public class UserController {
     public Object getById(String id,Model model){
         User user = userService.getById(id);
         model.addAttribute("user", user);
-        return "/user/user";
+        return "/user";
     }
 }
