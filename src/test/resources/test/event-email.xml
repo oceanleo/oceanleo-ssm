@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+  <bean id="emailBean" class="com.lhy.ssm.support.event.EmailBean">
+    <property name="backList">
+      <list>
+        <value>ncg2.0@163.com</value>
+        <value>niechanggang@gmail.com</value>
+        <value>373045912@qq.com</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="emailNotifier" class="com.lhy.ssm.support.event.EmailNotifier">
+    <property name="notificationAddress">
+      <value>qingwa@163.com</value>
+    </property>
+  </bean>
+</beans>
