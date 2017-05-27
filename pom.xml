@@ -38,9 +38,9 @@
   <!--</profiles>-->
 
   <properties>
-    <spring.version>4.1.2.RELEASE</spring.version>
+    <spring.version>3.2.9.RELEASE</spring.version>
     <mybatis.version>3.2.5</mybatis.version>
-    <spring.security.version>3.2.3.RELEASE</spring.security.version>
+    <spring.security.version>3.2.7.RELEASE</spring.security.version>
   </properties>
 
   <dependencies>
@@ -120,6 +120,17 @@
       <artifactId>servlet-api</artifactId>
       <version>2.5</version>
     </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.1</version>
+    </dependency>
+
 
     <!-- 数据库连接 -->
     <dependency>

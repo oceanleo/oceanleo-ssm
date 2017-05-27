@@ -12,7 +12,7 @@ import javax.annotation.Resource;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
-        "classpath:config/spring/*.xml",
+        "classpath:spring/*.xml",
         "classpath:test/*.xml"})
 public class EmailEventTest{
 

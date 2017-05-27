@@ -22,8 +22,10 @@ public class UserController {
 
     @RequestMapping("/getById")
     public Object getById(String id,Model model){
+
+        System.out.println(Thread.currentThread().getName());
         User user = userService.getById(id);
         model.addAttribute("user", user);
-        return "/user";
+        return "/login";
     }
 }
