@@ -8,11 +8,11 @@ import java.io.Serializable;
 public class User extends Domain implements Serializable {
 
     private static final long serialVersionUID = 3914969852374588468L;
-
+    //用户名
     private String username;
-
+    //密码
     private String password;
-
+    //年龄
     private Integer age;
 
     public String getUsername() {
@@ -43,8 +43,8 @@ public class User extends Domain implements Serializable {
     public String toString() {
         return "User{" +
                 "age=" + age +
-                ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

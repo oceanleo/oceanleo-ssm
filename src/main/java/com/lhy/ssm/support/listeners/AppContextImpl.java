@@ -1,5 +1,7 @@
 package com.lhy.ssm.support.listeners;
 
+import com.lhy.ssm.support.utils.StringUtils;
+
 import java.util.Properties;
 
 /**
@@ -19,8 +21,12 @@ public class AppContextImpl implements AppContext{
     }
 
     @Override
-    public String getConfigByKey(String keyName) {
-        return null;
+    public String getConfigByKey(String key) {
+        String value = properties.getProperty(key);
+        if(StringUtils.hasText(value)){
+            return value;
+        }
+        throw new AppContextException("properties value is not exist : "+key);
     }
 
     @Override
