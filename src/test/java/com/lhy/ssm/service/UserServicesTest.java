@@ -24,17 +24,17 @@ public class UserServicesTest {
 
     @Test
     public void testGetUserById(){
-        List<User> userList = userService.getAll();
-        for(Iterator iterator = userList.iterator();iterator.hasNext();){
-            User user = (User)iterator.next();
-            if(user.getAge()==24){
-                iterator.remove();
-            }else{
-                user.setAge(123);
-                user.setUsername("123");
-                user.setPassword("123");
-            }
-        }
-        userService.update(userList);
+//        List<User> userList = userService.getAll();
+//        for(Iterator iterator = userList.iterator();iterator.hasNext();){
+//            User user = (User)iterator.next();
+//            if(user.getAge()==24){
+//                iterator.remove();
+//            }else{
+//                user.setAge(123);
+//                user.setUsername("123");
+//                user.setPassword("123");
+//            }
+//        }
+//        userService.update(userList);
     }
 }

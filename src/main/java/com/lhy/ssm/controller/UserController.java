@@ -24,8 +24,8 @@ public class UserController {
     public Object getById(String id,Model model){
 
         System.out.println(Thread.currentThread().getName());
-        User user = userService.getById(id);
+        User user = userService.getById("1");
         model.addAttribute("user", user);
-        return "/login";
+        return "/user";
     }
 }

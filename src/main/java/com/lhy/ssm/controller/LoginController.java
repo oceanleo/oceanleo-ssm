@@ -11,4 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
 
+    @RequestMapping("/in")
+    public String loginIn(){
+
+
+        return "/login";
+    }
 }
