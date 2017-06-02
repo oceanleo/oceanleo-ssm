@@ -7,6 +7,8 @@
     <result column="user_name" property="username"/>
     <result column="password" property="password"/>
     <result column="age" property="age"/>
+    <result column="name" property="name"/>
+    <result column="status" property="status"/>
     <result column="date_create" property="dateCreate"/>
     <result column="date_update" property="dateUpdate"/>
     <result column="date_delete" property="dateDelete"/>
@@ -17,15 +19,15 @@
     <result column="version" property="version"/>
   </resultMap>
   <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id,user_name,password,age from user where id=#{id}
+    select id,user_name,password,age,name,status from user where id=#{id} and deleted=0
   </select>
 
   <insert id="insert" parameterType="com.lhy.ssm.po.User">
     insert into user(
-      id,user_name,password,age,date_create,date_update,date_delete,
+      id,user_name,password,age,name,status,date_create,date_update,date_delete,
       create_id,update_id,delete_id,deleted,version)
     values(
-      #{id},#{username},#{username},#{age},#{dateCreate},#{dateUpdate},#{dateDelete},
+      #{id},#{username},#{username},#{age},#{name},#{status},#{dateCreate},#{dateUpdate},#{dateDelete},
       #{createId},#{updateId},#{deleteId},#{deleted},#{version})
   </insert>
 
@@ -47,6 +49,6 @@
   </update>
 
   <select id="selectAll" resultMap="BaseResultMap">
-    select id,user_name,password,age from user
+    select id,user_name,password,age,name,status from user where deleted=0
   </select>
 </mapper>

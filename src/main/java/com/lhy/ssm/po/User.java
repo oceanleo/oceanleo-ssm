@@ -14,6 +14,26 @@ public class User extends Domain implements Serializable {
     private String password;
     //年龄
     private Integer age;
+    //姓名
+    private String name;
+    //状态
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getUsername() {
         return username;

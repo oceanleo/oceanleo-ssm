@@ -6,6 +6,7 @@ import java.util.Date;
  * @author haiyang.li
  */
 public class Domain {
+
     //主键id
     private String id;
     //创建时间
