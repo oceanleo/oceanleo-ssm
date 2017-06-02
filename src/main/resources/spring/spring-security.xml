@@ -7,8 +7,8 @@
                         http://www.springframework.org/schema/security  
                         http://www.springframework.org/schema/security/spring-security.xsd">
   <http auto-config='true'>
-    <intercept-url pattern="/adminPage.jsp" access="ROLE_ADMIN" />
-    <intercept-url pattern="/**" access="ROLE_USER" />
+    <intercept-url pattern="/adminPage.jsp" access="ROLE_ADMIN"/>
+    <intercept-url pattern="/**" access="ROLE_USER"/>
   </http>
 
   <beans:import resource="spring-mybatis.xml"/>
@@ -16,10 +16,19 @@
   <authentication-manager>
     <authentication-provider>
       <!--<user-service>-->
-        <!--<user name="admin" password="123" authorities="ROLE_USER, ROLE_ADMIN" />-->
-        <!--<user name="user" password="123" authorities="ROLE_USER" />-->
+      <!--<user name="admin" password="123" authorities="ROLE_USER, ROLE_ADMIN" />-->
+      <!--<user name="user" password="123" authorities="ROLE_USER" />-->
       <!--</user-service>-->
-      <jdbc-user-service data-source-ref="dataSource"/>
+      <jdbc-user-service data-source-ref="dataSource"
+                         users-by-username-query="
+                          select user_name as username,password,status as enabled from user where user_name =?"
+                         authorities-by-username-query="
+                          select u.user_name as username,r.role_code as name
+                          from user u
+                          inner join user_role ur on u.id = ur.user_id
+                          inner join role r on r.id = ur.role_id
+                          where u.user_name=?"/>
+
     </authentication-provider>
   </authentication-manager>
 </beans:beans> 

@@ -65,6 +65,8 @@ public class User extends Domain implements Serializable {
                 "age=" + age +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }
