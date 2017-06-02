@@ -7,6 +7,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author haiyang.li
@@ -21,7 +24,17 @@ public class UserServicesTest {
 
     @Test
     public void testGetUserById(){
-        User user = userService.getById("1");
-        System.out.println(user);
+//        List<User> userList = userService.getAll();
+//        for(Iterator iterator = userList.iterator();iterator.hasNext();){
+//            User user = (User)iterator.next();
+//            if(user.getAge()==24){
+//                iterator.remove();
+//            }else{
+//                user.setAge(123);
+//                user.setUsername("123");
+//                user.setPassword("123");
+//            }
+//        }
+//        userService.update(userList);
     }
 }

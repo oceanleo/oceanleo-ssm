@@ -6,8 +6,47 @@
     <id column="id" property="id"/>
     <result column="user_name" property="username"/>
     <result column="password" property="password"/>
+    <result column="age" property="age"/>
+    <result column="date_create" property="dateCreate"/>
+    <result column="date_update" property="dateUpdate"/>
+    <result column="date_delete" property="dateDelete"/>
+    <result column="create_id" property="createId"/>
+    <result column="update_id" property="updateId"/>
+    <result column="delete_id" property="deleteId"/>
+    <result column="deleted" property="deleted"/>
+    <result column="version" property="version"/>
   </resultMap>
   <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select * from user where id=#{id}
+    select id,user_name,password,age from user where id=#{id}
+  </select>
+
+  <insert id="insert" parameterType="com.lhy.ssm.po.User">
+    insert into user(
+      id,user_name,password,age,date_create,date_update,date_delete,
+      create_id,update_id,delete_id,deleted,version)
+    values(
+      #{id},#{username},#{username},#{age},#{dateCreate},#{dateUpdate},#{dateDelete},
+      #{createId},#{updateId},#{deleteId},#{deleted},#{version})
+  </insert>
+
+  <update id="update" parameterType="com.lhy.ssm.po.User">
+    update user
+    set user_name =
+    <foreach collection="userList" item="user" open="case id" close="end">
+      when #{user.id} then #{user.username}
+    </foreach>
+    ,password =
+    <foreach collection="userList" item="user" open="case id" close="end">
+      when #{user.id} then #{user.password}
+    </foreach>
+    where id in
+    <foreach collection="userList" item="user" open="(" close=")" separator=",">
+      #{user.id}
+    </foreach>
+    and deleted = 0
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id,user_name,password,age from user
   </select>
 </mapper>
