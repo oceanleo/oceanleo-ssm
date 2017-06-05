@@ -4,27 +4,55 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans.xsd
-                        http://www.springframework.org/schema/security  
+                        http://www.springframework.org/schema/security
                         http://www.springframework.org/schema/security/spring-security.xsd">
-  <!--<http auto-config='true'>-->
-    <!--<intercept-url pattern="/adminPage.jsp" access="ROLE_ADMIN"/>-->
-    <!--<intercept-url pattern="/**" access="ROLE_USER"/>-->
-  <!--</http>-->
-
-  <http auto-config="false" use-expressions="true">
-    <intercept-url pattern="/login.jsp" access="permitAll()" />
-    <intercept-url pattern="/adminPage.jsp" access="hasRole('ROLE_ADMIN')" />
-    <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
-    <form-login login-page="/login.jsp" default-target-url="/index.jsp"
-                authentication-failure-url="/login.jsp?error=true" />
-    <logout invalidate-session="true"
-            logout-success-url="/login.jsp"
-            logout-url="/j_spring_security_logout"/>
-  </http>
 
   <beans:import resource="spring-mybatis.xml"/>
+  <!--<http auto-config='true'>-->
+  <!--<intercept-url pattern="/adminPage.jsp" access="ROLE_ADMIN"/>-->
+  <!--<intercept-url pattern="/**" access="ROLE_USER"/>-->
+  <!--</http>-->
+  <http pattern="/login.jsp" security="none"/>
 
-  <authentication-manager>
+  <http auto-config="false" use-expressions="true">
+    <form-login login-page="/login.jsp" default-target-url="/index.jsp"
+                authentication-failure-url="/login.jsp?error=true"/>
+    <logout invalidate-session="true" logout-success-url="/login.jsp"
+            logout-url="/j_spring_security_logout"/>
+    <custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
+  </http>
+
+  <!-- 认证过滤器 -->
+  <beans:bean id="filterSecurityInterceptor"
+              class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+    <!-- 用户拥有的权限 -->
+    <beans:property name="accessDecisionManager" ref="accessDecisionManager" />
+    <!-- 用户是否拥有所请求资源的权限 -->
+    <beans:property name="authenticationManager" ref="authenticationManager" />
+    <!-- 资源与权限对应关系 -->
+    <beans:property name="securityMetadataSource" ref="securityMetadataSource" />
+  </beans:bean>
+
+  <!-- 授权管理器 -->
+  <beans:bean class="com.lhy.ssm.support.intercepter.MyAccessDecisionManager" id="accessDecisionManager"/>
+
+  <!--自定义的切入点-->
+  <beans:bean id="securityMetadataSource"
+              class="com.lhy.ssm.support.intercepter.MyFilterInvocationSecurityMetadataSource">
+    <beans:property name="builder" ref="builder"/>
+  </beans:bean>
+
+  <beans:bean id="builder" class="com.lhy.ssm.support.intercepter.JdbcRequestMapBulider">
+    <beans:property name="dataSource" ref="dataSource" />
+    <beans:property name="resourceQuery"
+                    value="select r.role_code,res.resource_string
+                            from role r
+                            inner join role_resource rs on r.id = rs.role_id
+                            inner join resource res on rs.resource_id = res.id" />
+  </beans:bean>
+
+
+  <authentication-manager alias="authenticationManager">
     <authentication-provider>
       <!--<user-service>-->
       <!--<user name="admin" password="123" authorities="ROLE_USER, ROLE_ADMIN" />-->
