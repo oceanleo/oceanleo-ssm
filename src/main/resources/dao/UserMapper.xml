@@ -9,6 +9,7 @@
     <result column="age" property="age"/>
     <result column="name" property="name"/>
     <result column="status" property="status"/>
+
     <result column="date_create" property="dateCreate"/>
     <result column="date_update" property="dateUpdate"/>
     <result column="date_delete" property="dateDelete"/>

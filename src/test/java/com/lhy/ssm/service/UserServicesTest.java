@@ -1,5 +1,8 @@
 package com.lhy.ssm.service;
 
+import com.lhy.ssm.dao.ResourceDao;
+import com.lhy.ssm.dao.RoleResourceDao;
+import com.lhy.ssm.po.RoleResource;
 import com.lhy.ssm.po.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,12 +24,24 @@ public class UserServicesTest {
 
     @Resource
     private UserService userService;
+    @Resource
+    private ResourceDao resourceDao;
+    @Resource
+    private RoleResourceDao roleResourceDao;
 
     @Test
     public void testGetUserById(){
         List<User> userList = userService.getAll();
         for(User user : userList){
             System.out.println(user);
+        }
+        List<com.lhy.ssm.po.Resource> resourceList = resourceDao.selectAll();
+        for(com.lhy.ssm.po.Resource resource : resourceList){
+            System.out.println(resource);
+        }
+        List<RoleResource> roleResourceList = roleResourceDao.selectAll();
+        for(RoleResource roleResource : roleResourceList){
+            System.out.println(roleResource);
         }
     }
 }

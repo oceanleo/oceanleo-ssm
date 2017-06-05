@@ -6,6 +6,7 @@
     <id column="id" property="id"/>
     <result column="role_name" property="roleName"/>
     <result column="role_code" property="roleCode"/>
+
     <result column="date_create" property="dateCreate"/>
     <result column="date_update" property="dateUpdate"/>
     <result column="date_delete" property="dateDelete"/>

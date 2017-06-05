@@ -6,9 +6,20 @@
                         http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/security  
                         http://www.springframework.org/schema/security/spring-security.xsd">
-  <http auto-config='true'>
-    <intercept-url pattern="/adminPage.jsp" access="ROLE_ADMIN"/>
-    <intercept-url pattern="/**" access="ROLE_USER"/>
+  <!--<http auto-config='true'>-->
+    <!--<intercept-url pattern="/adminPage.jsp" access="ROLE_ADMIN"/>-->
+    <!--<intercept-url pattern="/**" access="ROLE_USER"/>-->
+  <!--</http>-->
+
+  <http auto-config="false" use-expressions="true">
+    <intercept-url pattern="/login.jsp" access="permitAll()" />
+    <intercept-url pattern="/adminPage.jsp" access="hasRole('ROLE_ADMIN')" />
+    <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+    <form-login login-page="/login.jsp" default-target-url="/index.jsp"
+                authentication-failure-url="/login.jsp?error=true" />
+    <logout invalidate-session="true"
+            logout-success-url="/login.jsp"
+            logout-url="/j_spring_security_logout"/>
   </http>
 
   <beans:import resource="spring-mybatis.xml"/>
