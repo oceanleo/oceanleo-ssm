@@ -29,8 +29,7 @@ public class MyFilterInvocationSecurityMetadataSource implements
                 .getRequest();
 
         Collection<ConfigAttribute> attrs = NULL_CONFIG_ATTRIBUTE;
-        for (Map.Entry<RequestMatcher, Collection<ConfigAttribute>> entry : requestMap
-                .entrySet()) {
+        for (Map.Entry<RequestMatcher, Collection<ConfigAttribute>> entry : requestMap.entrySet()) {
             if (entry.getKey().matches(request)) {
                 attrs = entry.getValue();
                 break;
@@ -45,8 +44,7 @@ public class MyFilterInvocationSecurityMetadataSource implements
     @Override
     public Collection<ConfigAttribute> getAllConfigAttributes() {
         Set<ConfigAttribute> allAttributes = new HashSet<ConfigAttribute>();
-        for (Map.Entry<RequestMatcher, Collection<ConfigAttribute>> entry : requestMap
-                .entrySet()) {
+        for (Map.Entry<RequestMatcher, Collection<ConfigAttribute>> entry : requestMap.entrySet()) {
             allAttributes.addAll(entry.getValue());
         }
         System.out.println("总共有这些权限：" + allAttributes.toString());

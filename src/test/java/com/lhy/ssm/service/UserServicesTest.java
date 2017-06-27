@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.io.*;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -43,5 +44,12 @@ public class UserServicesTest {
         for(RoleResource roleResource : roleResourceList){
             System.out.println(roleResource);
         }
+    }
+
+    public static void main(String args[]) throws Exception {
+        BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream("G:/1.txt"));
+        outputStream.write("李海洋输出流测试".getBytes("UTF-8"));
+        outputStream.flush();
+        outputStream.close();
     }
 }
