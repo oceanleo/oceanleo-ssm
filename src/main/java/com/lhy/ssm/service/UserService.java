@@ -13,7 +13,7 @@ public interface UserService {
 
     void update(List<User> userList);
 
-    void insert(User user);
+    void create(User user);
 
     List<User> getAll();
 }

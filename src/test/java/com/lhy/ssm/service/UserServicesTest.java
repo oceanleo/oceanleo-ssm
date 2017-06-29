@@ -46,6 +46,14 @@ public class UserServicesTest {
         }
     }
 
+    @Test
+    public void testInsertUser(){
+        User user = new User();
+        user.setUsername("lhy");
+        user.setPassword("lhy");
+        userService.create(user);
+    }
+
     public static void main(String args[]) throws Exception {
         BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream("G:/1.txt"));
         outputStream.write("李海洋输出流测试".getBytes("UTF-8"));

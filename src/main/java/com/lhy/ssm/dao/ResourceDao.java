@@ -1,5 +1,6 @@
 package com.lhy.ssm.dao;
 
+import com.lhy.ssm.dto.ResourceDto;
 import com.lhy.ssm.po.Resource;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface ResourceDao {
     void insert(Resource resource);
 
     List<Resource> selectAll();
+
+    List<ResourceDto> selectDtoAll();
 }

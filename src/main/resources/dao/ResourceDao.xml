@@ -18,6 +18,11 @@
     <result column="version" property="version"/>
   </resultMap>
 
+  <resultMap id="BaseResultDtoMap" type="com.lhy.ssm.dto.ResourceDto">
+    <result column="resource_string" property="resourceString"/>
+    <result column="role_code" property="roleCode"/>
+  </resultMap>
+
   <insert id="insert" parameterType="com.lhy.ssm.po.Resource">
     insert into resource(
       id,resource_name,resource_type,resource_string,date_create,date_update,date_delete,
@@ -30,5 +35,13 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select id,resource_name,resource_type,resource_string
     from resource where deleted=0
+  </select>
+
+  <select id="selectDtoAll" resultMap="BaseResultDtoMap">
+    select res.resource_string,r.role_code
+    from role r
+    inner join role_resource rs on r.id = rs.role_id and rs.deleted=0
+    inner join resource res on rs.resource_id = res.id and res.deleted=0
+    where r.deleted=0
   </select>
 </mapper>

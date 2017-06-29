@@ -29,7 +29,7 @@
     <!-- 配置类的别名 -->
     <property name="typeAliasesPackage" value="com.lhy.ssm.po" />
     <!-- 配置映射的mapper.xml文件 -->
-    <property name="mapperLocations" value="classpath:dao/*Mapper.xml"/>
+    <property name="mapperLocations" value="classpath:dao/*Dao.xml"/>
   </bean>
 
   <!-- DAO接口所在包名，Spring会自动查找其下的类 -->

@@ -45,11 +45,13 @@
   <!--自定义 资源、权限封装，进行拦截-->
   <beans:bean id="builder" class="com.lhy.ssm.support.intercepter.JdbcRequestMapBulider">
     <beans:property name="dataSource" ref="dataSource"/>
-    <beans:property name="resourceQuery"
-                    value="select res.resource_string as res_string,r.role_code as name
-                            from role r
-                            inner join role_resource rs on r.id = rs.role_id
-                            inner join resource res on rs.resource_id = res.id"/>
+    <!--查询所有的角色与对应拥有的权限 xml中不应该有sql语句 已经注入dao或service查询-->
+    <!--<beans:property name="resourceQuery"-->
+                    <!--value="select res.resource_string as res_string,r.role_code as name-->
+                            <!--from role r-->
+                            <!--inner join role_resource rs on r.id = rs.role_id and rs.deleted=0-->
+                            <!--inner join resource res on rs.resource_id = res.id and res.deleted=0-->
+                            <!--where r.deleted=0"/>-->
   </beans:bean>
 
 
@@ -61,13 +63,13 @@
       <!--</user-service>-->
       <jdbc-user-service data-source-ref="dataSource"
                          users-by-username-query="
-                          select user_name as username,password,status as enabled from user where user_name =?"
+                          select user_name as username,password,status as enabled from user where deleted=0 and user_name =?"
                          authorities-by-username-query="
                           select u.user_name as username,r.role_code as name
                           from user u
-                          inner join user_role ur on u.id = ur.user_id
-                          inner join role r on r.id = ur.role_id
-                          where u.user_name=?"/>
+                          inner join user_role ur on u.id = ur.user_id and ur.deleted=0
+                          inner join role r on r.id = ur.role_id and r.deleted=0
+                          where u.deleted=0 and u.user_name=?"/>
 
     </authentication-provider>
   </authentication-manager>
