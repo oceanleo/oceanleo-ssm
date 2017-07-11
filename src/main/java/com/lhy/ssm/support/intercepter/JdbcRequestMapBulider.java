@@ -14,8 +14,9 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-
 /**
+ * @author haiyang.li on 2017/7/11.
+ *
  * 查询资源和角色，并构建RequestMap
  */
 public class JdbcRequestMapBulider extends JdbcDaoSupport{
@@ -48,8 +49,10 @@ public class JdbcRequestMapBulider extends JdbcDaoSupport{
         //配置文件中不应该写sql语句
 //        List<Resource> resourceList = this.findResources();
         for (ResourceDto resourceDto : resourceDtoList) {
+            //封装url
             RequestMatcher requestMatcher = this.getRequestMatcher(resourceDto.getResourceString());
             List<ConfigAttribute> list = new ArrayList<ConfigAttribute>();
+            //封装角色编码
             list.add(new SecurityConfig(resourceDto.getRoleCode()));
             requestMap.put(requestMatcher, list);
         }

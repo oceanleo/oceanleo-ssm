@@ -4,7 +4,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>李海洋个人开发测试平台-登录</title>
+  <title>个人开发测试平台-登录</title>
   <style>
     body{margin:0;padding:0;text-align:center;background: #3291D4 url("<c:url value="/img/earth.png"/>") center 20% no-repeat;font-family: 'Microsoft Yahei', 'Segoe UI', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', Arial, Simsun, sans-serif;font-size: 14px;}
     input{outline:none;font-family: 'Microsoft Yahei', 'Segoe UI', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', Arial, Simsun, sans-serif;}
@@ -50,23 +50,23 @@
 <body>
 <div class="login">
   <div class="login-nav">
-    <form id="loginForm">
+    <form id="loginForm" method="post" action="/j_spring_security_check">
       <div class="logo">
-        <%--<img src="<c:url value="/img/login-logo.png"/>" >--%>
-        <img src="<c:url value="/img/test.png"/>" width="380px" height="50px">
+        <img src="<c:url value="/img/login-logo.png"/>" >
+        <%--<img src="<c:url value="/img/test.png"/>" width="380px" height="50px">--%>
       </div>
       <div class="login-text">账号</div>
       <input type="hidden" id="url" value=""/>
       <input type="hidden" id="appCode" value=""/>
-      <input type="text" class="login-input" name="loginId" id="loginId" placeholder="请输入账号"/>
-
+      <input type="text" class="login-input" name="j_username" value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}"
+             id="loginId" placeholder="请输入账号"/>
       <div class="login-text">密码</div>
-      <input type="password" class="login-input" name="password" id="password" placeholder="请输入密码"/>
+      <input type="password" class="login-input" name="j_password" id="password" placeholder="请输入密码"/>
 
       <div class="login-text">动态口令</div>
       <input type="text" class="login-input" name="otp" id="otp" placeholder="请输入动态口令"/>
 
-      <input type="button" class="login-button" value="登 录"/>
+      <input type="submit" class="login-button" value="登 录"/>
     </form>
     <input type="hidden" id="phoneNo">
 

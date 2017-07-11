@@ -1,76 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
              xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:security="http://www.springframework.org/schema/security"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/security
                         http://www.springframework.org/schema/security/spring-security.xsd">
 
-  <beans:import resource="spring-mybatis.xml"/>
-  <!--<http auto-config='true'>-->
-  <!--<intercept-url pattern="/adminPage.jsp" access="ROLE_ADMIN"/>-->
-  <!--<intercept-url pattern="/**" access="ROLE_USER"/>-->
-  <!--</http>-->
-  <http pattern="/login.jsp" security="none"/>
+    <beans:import resource="spring-mybatis.xml"/>
+    <!--<http auto-config='true'>-->
+    <!--<intercept-url pattern="/adminPage.jsp" access="ROLE_ADMIN"/>-->
+    <!--<intercept-url pattern="/**" access="ROLE_USER"/>-->
+    <!--</http>-->
 
-  <http auto-config="false" use-expressions="true">
-    <form-login login-page="/login.jsp" default-target-url="/index.jsp"
-                authentication-failure-url="/login.jsp?error=true"/>
-    <logout invalidate-session="true" logout-success-url="/login.jsp"
-            logout-url="/j_spring_security_logout"/>
-    <custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
-  </http>
+    <http pattern="/login/in" security="none"/>
 
-  <!-- 认证过滤器 -->
-  <beans:bean id="filterSecurityInterceptor"
-              class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
-    <!-- 用户拥有的权限 -->
-    <beans:property name="accessDecisionManager" ref="accessDecisionManager"/>
-    <!-- 用户是否拥有所请求资源的权限 -->
-    <beans:property name="authenticationManager" ref="authenticationManager"/>
-    <!-- 资源与权限对应关系 -->
-    <beans:property name="securityMetadataSource" ref="securityMetadataSource"/>
-  </beans:bean>
+    <beans:bean id="myFilterChainInterceptor" class="com.lhy.ssm.support.intercepter.MyFilterChainInterceptor"/>
+    <!--登录成功控制器 default-target-url 失效 -->
+    <beans:bean id="myAuthenticationSuccessHandler"
+                class="com.lhy.ssm.support.intercepter.MyAuthenticationSuccessHandler"/>
+    <!--登录失败控制器 authentication-failure-url 失效-->
+    <beans:bean id="myAuthenticationFailureHandler"
+                class="com.lhy.ssm.support.intercepter.MyAuthenticationFailureHandler"/>
 
-  <!-- 授权管理器 -->
-  <beans:bean class="com.lhy.ssm.support.intercepter.MyAccessDecisionManager" id="accessDecisionManager"/>
+    <http auto-config="false" use-expressions="true">
+        <form-login login-page="/login/in"
+                    authentication-success-handler-ref="myAuthenticationSuccessHandler"
+                    authentication-failure-handler-ref="myAuthenticationFailureHandler"
+                />
+                    <!--default-target-url="/index.jsp"-->
+                    <!--authentication-failure-url="/error.jsp"-->
+        <logout invalidate-session="true" logout-success-url="/login/in" logout-url="/security_logout"/>
+        <!--<intercept-url pattern="/*" access="ROLE_USER"/>-->
+        <custom-filter ref="myFilterChainInterceptor" position="FIRST"/>
+        <custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
+        <!--<session-management>-->
+        <!--<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />-->
+        <!--</session-management>-->
+    </http>
+    <!--<http auto-config="true">-->
+    <!--<intercept-url pattern="/**" access="ROLE_USER"/>-->
+    <!--</http>-->
 
-  <!--自定义的切入点-->
-  <beans:bean id="securityMetadataSource"
-              class="com.lhy.ssm.support.intercepter.MyFilterInvocationSecurityMetadataSource">
-    <beans:property name="builder" ref="builder"/>
-  </beans:bean>
+    <!--<session-management> -->
+    <!--      <concurrency-control max-sessions="1" error-if-maximum-exceeded="false"/> -->
+    <!--    </session-management> -->
 
-  <!--自定义 资源、权限封装，进行拦截-->
-  <beans:bean id="builder" class="com.lhy.ssm.support.intercepter.JdbcRequestMapBulider">
-    <beans:property name="dataSource" ref="dataSource"/>
-    <!--查询所有的角色与对应拥有的权限 xml中不应该有sql语句 已经注入dao或service查询-->
-    <!--<beans:property name="resourceQuery"-->
-                    <!--value="select res.resource_string as res_string,r.role_code as name-->
-                            <!--from role r-->
-                            <!--inner join role_resource rs on r.id = rs.role_id and rs.deleted=0-->
-                            <!--inner join resource res on rs.resource_id = res.id and res.deleted=0-->
-                            <!--where r.deleted=0"/>-->
-  </beans:bean>
+    <!-- 认证过滤器 -->
+    <beans:bean id="filterSecurityInterceptor"
+                class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+        <!-- 用户拥有的权限 -->
+        <beans:property name="accessDecisionManager" ref="accessDecisionManager"/>
+        <!-- 用户是否拥有所请求资源的权限 -->
+        <beans:property name="authenticationManager" ref="authenticationManager"/>
+        <!-- 资源与权限对应关系 -->
+        <beans:property name="securityMetadataSource" ref="securityMetadataSource"/>
+    </beans:bean>
 
+    <!-- 授权管理器 -->
+    <beans:bean class="com.lhy.ssm.support.intercepter.MyAccessDecisionManager" id="accessDecisionManager"/>
 
-  <authentication-manager alias="authenticationManager">
-    <authentication-provider>
-      <!--<user-service>-->
-      <!--<user name="admin" password="123" authorities="ROLE_USER, ROLE_ADMIN" />-->
-      <!--<user name="user" password="123" authorities="ROLE_USER" />-->
-      <!--</user-service>-->
-      <jdbc-user-service data-source-ref="dataSource"
-                         users-by-username-query="
-                          select user_name as username,password,status as enabled from user where deleted=0 and user_name =?"
-                         authorities-by-username-query="
-                          select u.user_name as username,r.role_code as name
-                          from user u
-                          inner join user_role ur on u.id = ur.user_id and ur.deleted=0
-                          inner join role r on r.id = ur.role_id and r.deleted=0
-                          where u.deleted=0 and u.user_name=?"/>
+    <!--自定义的切入点-->
+    <beans:bean id="securityMetadataSource"
+                class="com.lhy.ssm.support.intercepter.MyFilterInvocationSecurityMetadataSource">
+        <beans:property name="builder" ref="builder"/>
+    </beans:bean>
 
-    </authentication-provider>
-  </authentication-manager>
-</beans:beans> 
+    <!--自定义 资源、权限封装，进行拦截-->
+    <beans:bean id="builder" class="com.lhy.ssm.support.intercepter.JdbcRequestMapBulider">
+        <beans:property name="dataSource" ref="dataSource"/>
+        <!--查询所有的角色与对应拥有的权限 xml中不应该有sql语句 已经注入dao或service查询-->
+        <!--<beans:property name="resourceQuery"-->
+        <!--value="select res.resource_string as res_string,r.role_code as name-->
+        <!--from role r-->
+        <!--inner join role_resource rs on r.id = rs.role_id and rs.deleted=0-->
+        <!--inner join resource res on rs.resource_id = res.id and res.deleted=0-->
+        <!--where r.deleted=0"/>-->
+    </beans:bean>
+
+    <beans:bean id="myUserDetailsService" class="com.lhy.ssm.support.intercepter.MyUserDetailsService"/>
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider user-service-ref="myUserDetailsService"/>
+        <!--<authentication-provider>-->
+            <!--&lt;!&ndash;<user-service>&ndash;&gt;-->
+            <!--&lt;!&ndash;<user name="admin" password="123" authorities="ROLE_USER, ROLE_ADMIN" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<user name="user" password="123" authorities="ROLE_USER" />&ndash;&gt;-->
+            <!--&lt;!&ndash;</user-service>&ndash;&gt;-->
+            <!--<jdbc-user-service data-source-ref="dataSource"-->
+                               <!--users-by-username-query="-->
+                          <!--select user_name as username,password,status as enabled from user where deleted=0 and user_name =?"-->
+                               <!--authorities-by-username-query="-->
+                          <!--select u.user_name as username,r.role_code as name-->
+                          <!--from user u-->
+                          <!--inner join user_role ur on u.id = ur.user_id and ur.deleted=0-->
+                          <!--inner join role r on r.id = ur.role_id and r.deleted=0-->
+                          <!--where u.deleted=0 and u.user_name=?"/>-->
+
+        <!--</authentication-provider>-->
+    </authentication-manager>
+
+    <!--配置过滤器链-->
+    <!--<beans:bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">-->
+    <!--<security:filter-chain-map path-type="ant">-->
+    <!--<security:filter-chain pattern="/**" filters="-->
+    <!--myFilterChainInterceptor,-->
+    <!--filterSecurityInterceptor"/>-->
+    <!--</security:filter-chain-map>-->
+    <!--</beans:bean>-->
+</beans:beans>
