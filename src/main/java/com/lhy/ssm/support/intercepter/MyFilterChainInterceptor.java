@@ -1,5 +1,7 @@
 package com.lhy.ssm.support.intercepter;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -23,6 +25,12 @@ public class MyFilterChainInterceptor extends GenericFilterBean {
         HttpServletRequest servletRequest = (HttpServletRequest)request;
         HttpServletResponse servletResponse = (HttpServletResponse) response;
 
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof UserDetails) {
+//            String username = ((UserDetails)principal).getUsername();
+//        } else {
+//            String username = principal.toString();
+//        }
         System.out.println("MyFilterChainInterceptor---Interceptor----");
 
         chain.doFilter(request,response);

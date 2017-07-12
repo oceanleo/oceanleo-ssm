@@ -31,6 +31,10 @@
     <listener-class>com.lhy.ssm.support.listeners.AppContextListener</listener-class>
   </listener>
 
+  <listener>
+    <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+  </listener>
+
   <!--加载spring容器配置 -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

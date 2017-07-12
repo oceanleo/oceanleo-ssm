@@ -29,15 +29,20 @@
                     authentication-success-handler-ref="myAuthenticationSuccessHandler"
                     authentication-failure-handler-ref="myAuthenticationFailureHandler"
                 />
-                    <!--default-target-url="/index.jsp"-->
-                    <!--authentication-failure-url="/error.jsp"-->
+        <!--default-target-url="/index.jsp"-->
+        <!--authentication-failure-url="/error.jsp"-->
         <logout invalidate-session="true" logout-success-url="/login/in" logout-url="/security_logout"/>
         <!--<intercept-url pattern="/*" access="ROLE_USER"/>-->
         <custom-filter ref="myFilterChainInterceptor" position="FIRST"/>
         <custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
-        <!--<session-management>-->
-        <!--<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />-->
-        <!--</session-management>-->
+
+        <!--session 过多,提示页面-->
+        <!--<session-management session-authentication-error-url="/error.jsp">-->
+        <session-management>
+            <!--session 单点登录 error-if-maximum-exceeded 是否防止第二次登录-->
+            <!--<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />-->
+            <concurrency-control max-sessions="1"/>
+        </session-management>
     </http>
     <!--<http auto-config="true">-->
     <!--<intercept-url pattern="/**" access="ROLE_USER"/>-->
@@ -79,26 +84,28 @@
         <!--where r.deleted=0"/>-->
     </beans:bean>
 
-    <beans:bean id="myUserDetailsService" class="com.lhy.ssm.support.intercepter.MyUserDetailsService"/>
+    <!--<beans:bean id="myUserDetailsService" class="com.lhy.ssm.support.intercepter.MyUserDetailsService">-->
+    <!--<beans:property name="" ref=""></beans:property>-->
+    <!--</beans:bean>-->
 
     <authentication-manager alias="authenticationManager">
-        <authentication-provider user-service-ref="myUserDetailsService"/>
-        <!--<authentication-provider>-->
-            <!--&lt;!&ndash;<user-service>&ndash;&gt;-->
-            <!--&lt;!&ndash;<user name="admin" password="123" authorities="ROLE_USER, ROLE_ADMIN" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<user name="user" password="123" authorities="ROLE_USER" />&ndash;&gt;-->
-            <!--&lt;!&ndash;</user-service>&ndash;&gt;-->
-            <!--<jdbc-user-service data-source-ref="dataSource"-->
-                               <!--users-by-username-query="-->
-                          <!--select user_name as username,password,status as enabled from user where deleted=0 and user_name =?"-->
-                               <!--authorities-by-username-query="-->
-                          <!--select u.user_name as username,r.role_code as name-->
-                          <!--from user u-->
-                          <!--inner join user_role ur on u.id = ur.user_id and ur.deleted=0-->
-                          <!--inner join role r on r.id = ur.role_id and r.deleted=0-->
-                          <!--where u.deleted=0 and u.user_name=?"/>-->
+        <!--<authentication-provider user-service-ref="myUserDetailsService"/>-->
+        <authentication-provider>
+            <!--<user-service>-->
+            <!--<user name="admin" password="123" authorities="ROLE_USER, ROLE_ADMIN" />-->
+            <!--<user name="user" password="123" authorities="ROLE_USER" />-->
+            <!--</user-service>-->
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="
+                          select user_name as username,password,status as enabled from user where deleted=0 and user_name =?"
+                               authorities-by-username-query="
+                          select u.user_name as username,r.role_code as name
+                          from user u
+                          inner join user_role ur on u.id = ur.user_id and ur.deleted=0
+                          inner join role r on r.id = ur.role_id and r.deleted=0
+                          where u.deleted=0 and u.user_name=?"/>
 
-        <!--</authentication-provider>-->
+        </authentication-provider>
     </authentication-manager>
 
     <!--配置过滤器链-->

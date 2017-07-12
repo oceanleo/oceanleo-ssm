@@ -4,6 +4,8 @@ import com.lhy.ssm.po.User;
 import com.lhy.ssm.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,15 @@ public class UserController {
 
     @RequestMapping("/getById")
     public Object getById(String id,Model model){
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails) principal).getUsername();
+            System.out.println(username);
+        } else {
+            String username = principal.toString();
+            System.out.println(username);
+        }
 
         System.out.println(Thread.currentThread().getName());
         User user = userService.getById("1");
