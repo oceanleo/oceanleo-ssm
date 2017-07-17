@@ -28,6 +28,10 @@ public class UserInfo implements UserDetails {
         return null;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String getUsername() {
         return this.username;

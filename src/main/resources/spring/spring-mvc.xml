@@ -3,9 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+             http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
             http://www.springframework.org/schema/mvc
             http://www.springframework.org/schema/mvc/spring-mvc.xsd
             http://www.springframework.org/schema/context
@@ -15,6 +21,27 @@
   <context:component-scan base-package="com.lhy.**.controller" use-default-filters="false">
     <context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
   </context:component-scan>
+
+  <!--<aop:config>-->
+      <!--<aop:pointcut id="controllerPointcut" expression="execution(public com.lhy.ssm.controller.*Controller.**(..))"/>-->
+      <!--<aop:advisor advice-ref="controllerTxManager" pointcut-ref="controllerPointcut"></aop:advisor>-->
+  <!--</aop:config>-->
+
+  <!--<tx:advice id="controllerTxManager" transaction-manager="controllerManager">-->
+      <!--<tx:attributes>-->
+          <!--<tx:method name="*" />-->
+      <!--</tx:attributes>-->
+  <!--</tx:advice>-->
+
+  <bean id="controllerManager" class="com.lhy.ssm.support.ControllerResultSupport"/>
+
+    <aop:config>
+        <aop:pointcut expression="execution(* com.lhy.ssm.controller.*Controller.*(..))"
+                      id="resultPointcut" />
+        <aop:aspect ref="controllerManager">
+            <aop:around method="setResult" pointcut-ref="resultPointcut"/>
+        </aop:aspect>
+    </aop:config>
 
   <!-- 开启MVC的注解支持 -->
   <mvc:annotation-driven/>
