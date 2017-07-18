@@ -1,19 +1,11 @@
 //dom 加载完成后触发
 window.onload = function () {
-    /**
-     * 项目入口文件
-     */
     Ext.onReady(function () {
-
         //获取当前应用缩写名
         //var app = _getApp();
-
         Ext.application({
-
             extend: 'Ext.app.Application',
-
             name: 'app',
-
             launch: function () {
                 var me = this;
                 me.callParent();
@@ -23,16 +15,16 @@ window.onload = function () {
                 });
                 //加载js 依赖
                 //_loadDependencies(
-                    //_getScriptDomain(),
-                    //依赖加载完成
-                    //function () {
-                        Ext.setGlyphFontFamily('FontAwesome');
-                        //Ext['appContext'] = Ext.create('app.AppContext');
-                        //Ext['windowFrame'] = Ext.create('app.OpenViewContext');
-                        Ext.mainFrame = Ext.create(_getViewEntry(), {
-                            renderTo: Ext.getBody()
-                        });
-                    //});
+                //_getScriptDomain(),
+                //依赖加载完成
+                //function () {
+                Ext.setGlyphFontFamily('FontAwesome');
+                //Ext['appContext'] = Ext.create('app.AppContext');
+                //Ext['windowFrame'] = Ext.create('app.OpenViewContext');
+                Ext.mainFrame = Ext.create(_getViewEntry(), {
+                    renderTo: Ext.getBody()
+                });
+                //});
             }
         });
 
@@ -55,7 +47,7 @@ window.onload = function () {
 
         function _loadDependencies(scriptRootPath, callback) {
             var appDependencies = [];
-            if(window.Context.dependencies){
+            if (window.Context.dependencies) {
                 appDependencies = window.Context.dependencies;
             }
             var defaultDependencies = [
@@ -83,23 +75,23 @@ window.onload = function () {
                 //"/funi/core/Overrides.js"
             ];
             var excludeDependencies = [];
-            var extDependencies=[];
-            Ext.each(appDependencies,function(dd){
+            var extDependencies = [];
+            Ext.each(appDependencies, function (dd) {
 
-                if(dd.indexOf("!")==0){
-                    excludeDependencies.push(dd.substring(1,dd.length));
-                }else{
+                if (dd.indexOf("!") == 0) {
+                    excludeDependencies.push(dd.substring(1, dd.length));
+                } else {
                     defaultDependencies.push(dd);
                 }
             });
-            Ext.each(defaultDependencies,function(r){
-                var add=true;
-                Ext.each(excludeDependencies,function(dd){
-                    if(r==dd){
-                        add=false;
+            Ext.each(defaultDependencies, function (r) {
+                var add = true;
+                Ext.each(excludeDependencies, function (dd) {
+                    if (r == dd) {
+                        add = false;
                     }
                 });
-                if(add){
+                if (add) {
                     extDependencies.push(r);
                 }
 

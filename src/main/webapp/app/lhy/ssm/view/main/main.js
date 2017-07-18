@@ -4,65 +4,52 @@ Ext.define('app.lhy.ssm.view.main.main', {
     initComponent: function () {
         var me = this;
         Ext.applyIf(this, {
-            name: 'bordercontainer',
-            layout: 'border',
-            items: [
-                {
-                    region: "north",
-                    itemId: 'maintop',
-                    height: 40,
-                    margin: '0 0 0 0',
-                    padding: '0px',
-                    collapsible: false,
-                    xtype: 'toolbar',
-                    border: false,
-                    items: []
-                },
-                {
-                    itemId: 'mainbottom',
-                    xtype: 'toolbar',
-                    region: 'south',
-                    listeners: {},
-                    items: [{
-                        xtype:'button',
-                        text:'底部'
-                    }]
-                },
-                {
-                    region: "west",
-                    border: true,
-                    padding: '0px',
-                    split: true,
-                    margin: '0',
-                    collapsible: true,
-                    collapsed: false,
-                    xtype: 'treepanel',
-                    title: '功能菜单',
-                    width: 200,
-                    height:100,
-                    store: this.__createMenuStore(),
-                    listeners: {
-                        //scope: this,
-                        //itemclick: function (source, record, item, index, e, eOpts) {
-                        //    me.__openIframeView(record.data.text, record.data.url);
-                        //}
-                    }
-                }, {
-                    itemId: 'centerBox',
-                    region: "center",
-                    layout: 'fit',
-                    border: true,
-                    margin: '0 0 0 0',
-                    collapsible: false,
-                    xtype: 'tabpanel',
-                    items: [
-                        //{
-                        //    xtype: "index"
-                        //}
-                    ]
+            items: [{
+                region: "north",
+                itemId: 'maintop',
+                height: 40,
+                margin: '0 0 0 0',
+                padding: '0px',
+                collapsible: false,
+                xtype: 'toolbar',
+                border: false,
+                items: []
+            }, {
+                itemId: 'mainbottom',
+                xtype: 'toolbar',
+                region: 'south',
+                height: 40,
+                listeners: {},
+                items: []
+            }, {
+                region: "west",
+                border: true,
+                padding: '0px',
+                split: true,
+                margin: '0',
+                collapsible: true,
+                collapsed: false,
+                xtype: 'treepanel',
+                title: '功能菜单',
+                width: 200,
+                height: 100,
+                store: this.__createMenuStore(),
+                listeners: {
+                    //scope: this,
+                    //itemclick: function (source, record, item, index, e, eOpts) {
+                    //    me.__openIframeView(record.data.text, record.data.url);
+                    //}
                 }
-
-            ]
+            }, {
+                itemId: 'centerBox',
+                region: "center",
+                layout: 'fit',
+                border: true,
+                margin: '0 0 0 0',
+                collapsible: false,
+                xtype: 'tabpanel',
+                items: []
+            }]
         });
         this.callParent(arguments);
     },
