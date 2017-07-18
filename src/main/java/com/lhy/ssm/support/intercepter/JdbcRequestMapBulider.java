@@ -15,9 +15,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
- * @author haiyang.li on 2017/7/11.
- *
  * 查询资源和角色，并构建RequestMap
+ *
+ * @author haiyang.li on 2017/7/11.
  */
 public class JdbcRequestMapBulider extends JdbcDaoSupport{
 

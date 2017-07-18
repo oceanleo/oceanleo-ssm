@@ -156,3 +156,16 @@ body{
     color: #433E3C;
     font-weight: 500;
 }
+
+.logo{
+    background-repeat: no-repeat;
+    background-position: 15px 5px;
+    width: 565px;  height: 51px;
+    /*background-image: url(../imgs/logo.gif);*/
+}
+.contract-link
+{
+    cursor:pointer;
+    color:#0000FF;
+    text-decoration:underline;
+}

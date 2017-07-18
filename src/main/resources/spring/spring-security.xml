@@ -15,6 +15,12 @@
     <!--</http>-->
 
     <http pattern="/login/in" security="none"/>
+    <http pattern="/**/*.js" security="none"/>
+    <http pattern="/**/*.png" security="none"/>
+    <http pattern="/**/*.css" security="none"/>
+    <http pattern="/**/*.gif" security="none"/>
+    <http pattern="/**/*.html" security="none"/>
+    <http pattern="/**/*.jsp" security="none"/>
 
     <beans:bean id="myFilterChainInterceptor" class="com.lhy.ssm.support.intercepter.MyFilterChainInterceptor"/>
     <!--登录成功控制器 default-target-url 失效 -->

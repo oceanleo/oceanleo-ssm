@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author haiyang.li
  */
 @Controller
-@RequestMapping("/main")
+@RequestMapping("/")
 public class MainController {
 
-
+    @RequestMapping("/main")
+    public String main(){
+        return "/main";
+    }
 }

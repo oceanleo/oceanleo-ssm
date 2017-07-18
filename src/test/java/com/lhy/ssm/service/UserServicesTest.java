@@ -32,32 +32,32 @@ public class UserServicesTest {
 
     @Test
     public void testGetUserById(){
-        List<User> userList = userService.getAll();
-        for(User user : userList){
-            System.out.println(user);
-        }
-        List<com.lhy.ssm.po.Resource> resourceList = resourceDao.selectAll();
-        for(com.lhy.ssm.po.Resource resource : resourceList){
-            System.out.println(resource);
-        }
-        List<RoleResource> roleResourceList = roleResourceDao.selectAll();
-        for(RoleResource roleResource : roleResourceList){
-            System.out.println(roleResource);
-        }
+//        List<User> userList = userService.getAll();
+//        for(User user : userList){
+//            System.out.println(user);
+//        }
+//        List<com.lhy.ssm.po.Resource> resourceList = resourceDao.selectAll();
+//        for(com.lhy.ssm.po.Resource resource : resourceList){
+//            System.out.println(resource);
+//        }
+//        List<RoleResource> roleResourceList = roleResourceDao.selectAll();
+//        for(RoleResource roleResource : roleResourceList){
+//            System.out.println(roleResource);
+//        }
     }
 
     @Test
     public void testInsertUser(){
-        User user = new User();
-        user.setUsername("lhy");
-        user.setPassword("lhy");
-        userService.create(user);
+//        User user = new User();
+//        user.setUsername("lhy");
+//        user.setPassword("lhy");
+//        userService.create(user);
     }
 
     public static void main(String args[]) throws Exception {
-        BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream("G:/1.txt"));
-        outputStream.write("李海洋输出流测试".getBytes("UTF-8"));
-        outputStream.flush();
-        outputStream.close();
+//        BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream("G:/1.txt"));
+//        outputStream.write("李海洋输出流测试".getBytes("UTF-8"));
+//        outputStream.flush();
+//        outputStream.close();
     }
 }
