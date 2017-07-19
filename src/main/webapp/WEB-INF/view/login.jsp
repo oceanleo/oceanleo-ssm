@@ -52,8 +52,8 @@
   <div class="login-nav">
     <form id="loginForm" method="post" action="/j_spring_security_check">
       <div class="logo">
-        <img src="<c:url value="/img/login-logo.png"/>" >
-        <%--<img src="<c:url value="/img/test.png"/>" width="380px" height="50px">--%>
+        <%--<img src="<c:url value="/img/login-logo.png"/>" >--%>
+        <img src="<c:url value="/img/test.png"/>" width="380px" height="50px">
       </div>
       <div class="login-text">账号</div>
       <input type="hidden" id="url" value=""/>

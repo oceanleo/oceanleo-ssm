@@ -1,6 +1,6 @@
 Ext.define('app.lhy.ssm.common.request', {
     singleton: true,
-    request: function (params, url) {//对账定制
+    request: function (params, url) {
         if (!url || typeof(url) == 'undefined'){
             return;
         }
