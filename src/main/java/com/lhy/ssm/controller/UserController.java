@@ -23,7 +23,7 @@ public class UserController {
 
     @RequestMapping("/getById")
     @ResponseBody
-    public User getById(String id,Model model){
+    public Object getById(String id,Model model){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             String username = ((UserDetails) principal).getUsername();
