@@ -23,18 +23,17 @@ public class UserController {
 
     @RequestMapping("/getById")
     @ResponseBody
-    public Object getById(String id,Model model){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails) principal).getUsername();
-            System.out.println(username);
-        } else {
-            String username = principal.toString();
-            System.out.println(username);
-        }
-        System.out.println(Thread.currentThread().getName());
+    public Object getById(String id){
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof UserDetails) {
+//            String username = ((UserDetails) principal).getUsername();
+//            System.out.println(username);
+//        } else {
+//            String username = principal.toString();
+//            System.out.println(username);
+//        }
+//        System.out.println(Thread.currentThread().getName());
         User user = userService.getById(id);
-        model.addAttribute("user", user);
         return user;
     }
 }

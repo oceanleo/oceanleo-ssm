@@ -1,4 +1,4 @@
-package com.lhy.ssm.support.intercepter;
+package com.lhy.ssm.support.intercept;
 
 /**
  * @author haiyang.li

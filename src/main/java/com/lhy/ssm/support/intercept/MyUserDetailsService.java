@@ -1,4 +1,4 @@
-package com.lhy.ssm.support.intercepter;
+package com.lhy.ssm.support.intercept;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

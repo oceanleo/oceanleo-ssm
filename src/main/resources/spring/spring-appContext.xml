@@ -8,10 +8,10 @@
               http://www.springframework.org/schema/util
               http://www.springframework.org/schema/util/spring-util.xsd">
 
-   <bean id="appContext" class="com.lhy.ssm.support.listeners.AppContextImpl" init-method="init"
-         destroy-method="destroy">
-       <property name="properties" >
-          <util:properties location="classpath:app.properties"/>
-       </property>
-   </bean>
+  <bean id="appContext" class="com.lhy.ssm.support.listeners.AppContextImpl" init-method="init"
+        destroy-method="destroy">
+    <property name="properties">
+      <util:properties location="classpath:app.properties"/>
+    </property>
+  </bean>
 </beans>

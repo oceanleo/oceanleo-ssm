@@ -1,4 +1,4 @@
-package com.lhy.ssm.support.intercepter;
+package com.lhy.ssm.support.intercept;
 
 import com.lhy.ssm.dao.ResourceDao;
 import com.lhy.ssm.dto.ResourceDto;

@@ -1,4 +1,4 @@
-package com.lhy.ssm.support.intercepter;
+package com.lhy.ssm.support.intercept;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
