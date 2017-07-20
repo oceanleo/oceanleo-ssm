@@ -44,4 +44,13 @@
     inner join resource res on rs.resource_id = res.id and res.deleted=0
     where r.deleted=0
   </select>
+
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select distinct r.id,r.resource_name,r.resource_type,r.resource_string from resource r
+    inner join role_resource rr on r.id = rr.resource_id and rr.deleted=0
+    inner join role ro on ro.id = rr. role_id and ro.deleted=0
+    inner join user_role ur on ro.id = ur.role_id and ur.deleted=0
+    inner join user u on u.id = ur.user_id and u.deleted=0
+    where r.deleted=0 and u.user_name = #{username}
+  </select>
 </mapper>

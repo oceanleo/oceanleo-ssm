@@ -12,4 +12,9 @@ import java.util.List;
 public interface RoleDao {
 
     void insert(Role role);
+
+    /**
+     * 获取用户名所拥有的角色
+     */
+    List<Role> selectByUsername(String username);
 }

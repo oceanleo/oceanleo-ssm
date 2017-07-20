@@ -31,6 +31,7 @@
     <listener-class>com.lhy.ssm.support.listeners.AppContextListener</listener-class>
   </listener>
 
+  <!-- 获取Spring Security session的生命周期,这个监听器会在 session 创建和销毁的时候通知 Spring Security -->
   <listener>
     <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
   </listener>

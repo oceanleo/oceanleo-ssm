@@ -6,7 +6,6 @@
     <id column="id" property="id"/>
     <result column="role_name" property="roleName"/>
     <result column="role_code" property="roleCode"/>
-
     <result column="date_create" property="dateCreate"/>
     <result column="date_update" property="dateUpdate"/>
     <result column="date_delete" property="dateDelete"/>
@@ -26,4 +25,10 @@
       #{createId},#{updateId},#{deleteId},#{deleted},#{version})
   </insert>
 
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select r.id,r.role_name,r.role_code from role r
+    inner join user_role ur on r.id = ur.role_id
+    inner join user u on u.id = ur.user_id
+    where r.deleted=0 and ur.deleted=0 and u.deleted=0 and u.user_name = #{username}
+  </select>
 </mapper>

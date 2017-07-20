@@ -1,8 +1,21 @@
 package com.lhy.ssm.support.intercept;
 
+import com.lhy.ssm.dao.ResourceDao;
+import com.lhy.ssm.dao.RoleDao;
+import com.lhy.ssm.dao.UserDao;
+import com.lhy.ssm.po.Role;
+import com.lhy.ssm.support.utils.AssertUtils;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import javax.annotation.Resource;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 自定义用户登录判断
@@ -11,12 +24,35 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  */
 public class MyUserDetailsService implements UserDetailsService {
 
+    @Resource
+    private UserDao userDao;
+    @Resource
+    private ResourceDao resourceDao;
+    @Resource
+    private RoleDao roleDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("My---UserDetails---Service---");
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUsername(username+"---MyUserDetailsService");
-        return userInfo;
+        AssertUtils.hasText(username,"用户名不能为空");
+        //获取用户
+        com.lhy.ssm.po.User user = userDao.selectByUsername(username);
+        AssertUtils.isNotNull(user,"用户不存在！");
+        // 密码
+        String password = user.getPassword();
+        // 帐户是否可用
+        boolean enabled = "1".equals(user.getStatus());
+        boolean accountNonExpired = true;
+        boolean credentialsNonExpired = true;
+        boolean accountNonLocked = true;
+
+        Set<GrantedAuthority> authSet = new HashSet<GrantedAuthority>();
+        List<Role> roleList = roleDao.selectByUsername(username);
+        for(Role role : roleList){
+            GrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleCode());
+            authSet.add(authority);
+        }
+
+        User userDetail = new User(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authSet);;
+        return userDetail;
     }
 }

@@ -7,18 +7,11 @@ package com.lhy.ssm.support;
  */
 public class BizException extends IllegalStateException {
 
-    public BizException() {
-    }
+    public BizException() {}
 
-    public BizException(String s) {
-        super(s);
-    }
+    public BizException(String s) {super(s);}
 
-    public BizException(String message, Throwable cause) {
-        super(message, cause);
-    }
+    public BizException(String message, Throwable cause) {super(message, cause);}
 
-    public BizException(Throwable cause) {
-        super(cause);
-    }
+    public BizException(Throwable cause) {super(cause);}
 }

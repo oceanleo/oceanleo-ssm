@@ -24,10 +24,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
             return;
         }
         //所请求的资源拥有的权限(一个资源对多个权限)
-        Iterator<ConfigAttribute> iterator = configAttributes.iterator();
-        while (iterator.hasNext()) {
-            ConfigAttribute configAttribute = iterator.next();
-            //访问所请求资源所需要的权限
+        for(ConfigAttribute configAttribute : configAttributes){
             String needPermission = configAttribute.getAttribute();
             System.out.println("访问" + object.toString() + "需要的权限是：" + needPermission);
             //用户所拥有的权限authentication
@@ -38,6 +35,20 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
                 }
             }
         }
+//        Iterator<ConfigAttribute> iterator = configAttributes.iterator();
+//        while (iterator.hasNext()) {
+//            ConfigAttribute configAttribute = iterator.next();
+//            //访问所请求资源所需要的权限
+//            String needPermission = configAttribute.getAttribute();
+//            System.out.println("访问" + object.toString() + "需要的权限是：" + needPermission);
+//            //用户所拥有的权限authentication
+//            Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+//            for (GrantedAuthority ga : authorities) {
+//                if (needPermission.equals(ga.getAuthority())) {
+//                    return;
+//                }
+//            }
+//        }
         //没有权限
         throw new AccessDeniedException(" 没有权限访问！ ");
     }

@@ -9,7 +9,6 @@
     <result column="age" property="age"/>
     <result column="name" property="name"/>
     <result column="status" property="status"/>
-
     <result column="date_create" property="dateCreate"/>
     <result column="date_update" property="dateUpdate"/>
     <result column="date_delete" property="dateDelete"/>
@@ -51,5 +50,9 @@
 
   <select id="selectAll" resultMap="BaseResultMap">
     select id,user_name,password,age,name,status from user where deleted=0
+  </select>
+
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id,user_name,password,age,name,status from user where deleted=0 and user_name = #{username}
   </select>
 </mapper>

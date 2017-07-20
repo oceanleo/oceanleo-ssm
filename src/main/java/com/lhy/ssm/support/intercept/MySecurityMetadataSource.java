@@ -2,6 +2,7 @@ package com.lhy.ssm.support.intercept;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.util.RequestMatcher;
@@ -9,25 +10,20 @@ import org.springframework.security.web.util.RequestMatcher;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
-public class MyFilterInvocationSecurityMetadataSource implements
-        FilterInvocationSecurityMetadataSource, InitializingBean {
+public class MySecurityMetadataSource implements FilterInvocationSecurityMetadataSource, InitializingBean {
 
     private final static List<ConfigAttribute> NULL_CONFIG_ATTRIBUTE = null;
     // 资源权限集合
     private Map<RequestMatcher, Collection<ConfigAttribute>> requestMap;
-
     //查找数据库权限和资源关系
-    private JdbcRequestMapBulider builder;
+    private RequestMapBuilder requestMapBuilder;
 
     /*
-     * 更具访问资源的地址查找所需要的权限
+     * 根据访问资源的地址查找所需要的权限
      */
     @Override
-    public Collection<ConfigAttribute> getAttributes(Object object)
-            throws IllegalArgumentException {
-        final HttpServletRequest request = ((FilterInvocation) object)
-                .getRequest();
-
+    public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
+        final HttpServletRequest request = ((FilterInvocation) object).getRequest();
         Collection<ConfigAttribute> attrs = NULL_CONFIG_ATTRIBUTE;
         for (Map.Entry<RequestMatcher, Collection<ConfigAttribute>> entry : requestMap.entrySet()) {
             if (entry.getKey().matches(request)) {
@@ -58,7 +54,7 @@ public class MyFilterInvocationSecurityMetadataSource implements
 
     //绑定requestMap
     protected Map<RequestMatcher, Collection<ConfigAttribute>> bindRequestMap() {
-        return builder.buildRequestMap();
+        return requestMapBuilder.buildRequestMap();
     }
 
     @Override
@@ -70,14 +66,11 @@ public class MyFilterInvocationSecurityMetadataSource implements
         this.requestMap = this.bindRequestMap();
     }
 
-    //get方法
-    public JdbcRequestMapBulider getBuilder() {
-        return builder;
+    public RequestMapBuilder getRequestMapBuilder() {
+        return requestMapBuilder;
     }
 
-    //set方法
-    public void setBuilder(JdbcRequestMapBulider builder) {
-        this.builder = builder;
+    public void setRequestMapBuilder(RequestMapBuilder requestMapBuilder) {
+        this.requestMapBuilder = requestMapBuilder;
     }
-
 }
