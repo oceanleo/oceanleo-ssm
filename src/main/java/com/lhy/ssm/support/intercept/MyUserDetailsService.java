@@ -27,8 +27,6 @@ public class MyUserDetailsService implements UserDetailsService {
     @Resource
     private UserDao userDao;
     @Resource
-    private ResourceDao resourceDao;
-    @Resource
     private RoleDao roleDao;
 
     @Override
@@ -41,18 +39,15 @@ public class MyUserDetailsService implements UserDetailsService {
         String password = user.getPassword();
         // 帐户是否可用
         boolean enabled = "1".equals(user.getStatus());
-        boolean accountNonExpired = true;
-        boolean credentialsNonExpired = true;
-        boolean accountNonLocked = true;
 
-        Set<GrantedAuthority> authSet = new HashSet<GrantedAuthority>();
+        Set<GrantedAuthority> grantedAuthoritySet = new HashSet<GrantedAuthority>();
         List<Role> roleList = roleDao.selectByUsername(username);
         for(Role role : roleList){
             GrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleCode());
-            authSet.add(authority);
+            grantedAuthoritySet.add(authority);
         }
 
-        User userDetail = new User(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authSet);;
+        User userDetail = new User(username, password, enabled, true, true, true, grantedAuthoritySet);
         return userDetail;
     }
 }

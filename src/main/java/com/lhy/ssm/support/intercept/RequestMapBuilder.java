@@ -9,10 +9,7 @@ import org.springframework.security.web.util.AntPathRequestMatcher;
 import org.springframework.security.web.util.RequestMatcher;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * 查询资源和角色，并构建RequestMap
@@ -25,18 +22,23 @@ public class RequestMapBuilder extends JdbcDaoSupport{
     private ResourceDao resourceDao;
 
     //拼接RequestMap
-    public LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> buildRequestMap() {
-        LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>>();
+    public Map<RequestMatcher, Collection<ConfigAttribute>> buildRequestMap() {
+        Map<RequestMatcher, Collection<ConfigAttribute>> resourceMap = new LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>>();
         List<ResourceDto> resourceDtoList = resourceDao.selectDtoAll();
         for (ResourceDto resourceDto : resourceDtoList) {
-            //封装url
+            Collection<ConfigAttribute> configAttributes;
+            ConfigAttribute configAttribute = new SecurityConfig(resourceDto.getRoleCode());
             RequestMatcher requestMatcher = this.getRequestMatcher(resourceDto.getResourceString());
-            List<ConfigAttribute> list = new ArrayList<ConfigAttribute>();
-            //封装角色编码
-            list.add(new SecurityConfig(resourceDto.getRoleCode()));
-            requestMap.put(requestMatcher, list);
+            if(resourceMap.containsKey(requestMatcher)){
+                configAttributes = resourceMap.get(requestMatcher);
+                configAttributes.add(configAttribute);
+            }else{
+                configAttributes = new ArrayList<ConfigAttribute>() ;
+                configAttributes.add(configAttribute);
+                resourceMap.put(requestMatcher, configAttributes);
+            }
         }
-        return requestMap;
+        return resourceMap;
     }
     //通过一个字符串地址构建一个AntPathRequestMatcher对象
     protected RequestMatcher getRequestMatcher(String url) {
