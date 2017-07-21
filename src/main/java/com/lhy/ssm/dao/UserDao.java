@@ -18,7 +18,7 @@ public interface UserDao {
     /**
      * 修改用户信息
      */
-    void update(@Param("userList") List<User> userList);
+    void updateList(@Param("userList") List<User> userList);
 
     /**
      * 添加用户

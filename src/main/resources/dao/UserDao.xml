@@ -9,6 +9,7 @@
     <result column="age" property="age"/>
     <result column="name" property="name"/>
     <result column="status" property="status"/>
+    <result column="is_enabled" property="isEnabled"/>
     <result column="date_create" property="dateCreate"/>
     <result column="date_update" property="dateUpdate"/>
     <result column="date_delete" property="dateDelete"/>
@@ -19,19 +20,19 @@
     <result column="version" property="version"/>
   </resultMap>
   <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id,user_name,password,age,name,status from user where id=#{id} and deleted=0
+    select id,user_name,password,age,name,status,is_enabled from user where id=#{id} and deleted=0
   </select>
 
   <insert id="insert" parameterType="com.lhy.ssm.po.User">
     insert into user(
-      id,user_name,password,age,name,status,date_create,date_update,date_delete,
+      id,user_name,password,age,name,status,is_enabled,date_create,date_update,date_delete,
       create_id,update_id,delete_id,deleted,version)
     values(
-      #{id},#{username},#{username},#{age},#{name},#{status},#{dateCreate},#{dateUpdate},#{dateDelete},
+      #{id},#{username},#{username},#{age},#{name},#{status},#{isEnabled},#{dateCreate},#{dateUpdate},#{dateDelete},
       #{createId},#{updateId},#{deleteId},#{deleted},#{version})
   </insert>
 
-  <update id="update" parameterType="com.lhy.ssm.po.User">
+  <update id="updateList" parameterType="com.lhy.ssm.po.User">
     update user
     set user_name =
     <foreach collection="userList" item="user" open="case id" close="end">
@@ -49,10 +50,10 @@
   </update>
 
   <select id="selectAll" resultMap="BaseResultMap">
-    select id,user_name,password,age,name,status from user where deleted=0
+    select id,user_name,password,age,name,status,is_enabled from user where deleted=0
   </select>
 
   <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id,user_name,password,age,name,status from user where deleted=0 and user_name = #{username}
+    select id,user_name,password,age,name,status,is_enabled from user where deleted=0 and user_name = #{username}
   </select>
 </mapper>

@@ -1,13 +1,12 @@
 package com.lhy.ssm.support.intercept;
 
-import com.lhy.ssm.dao.ResourceDao;
 import com.lhy.ssm.dao.RoleDao;
 import com.lhy.ssm.dao.UserDao;
 import com.lhy.ssm.po.Role;
+import com.lhy.ssm.po.User;
 import com.lhy.ssm.support.utils.AssertUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,21 +32,21 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AssertUtils.hasText(username,"用户名不能为空");
         //获取用户
-        com.lhy.ssm.po.User user = userDao.selectByUsername(username);
+        User user = userDao.selectByUsername(username);
         AssertUtils.isNotNull(user,"用户不存在！");
         // 密码
         String password = user.getPassword();
         // 帐户是否可用
-        boolean enabled = "1".equals(user.getStatus());
-
+        boolean enabled = user.isEnabled();
+        //设置角色
         Set<GrantedAuthority> grantedAuthoritySet = new HashSet<GrantedAuthority>();
+        //封装角色对象到当前用户
         List<Role> roleList = roleDao.selectByUsername(username);
         for(Role role : roleList){
+            //设置角色编码
             GrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleCode());
             grantedAuthoritySet.add(authority);
         }
-
-        User userDetail = new User(username, password, enabled, true, true, true, grantedAuthoritySet);
-        return userDetail;
+        return new UserInfo(username,password,enabled,grantedAuthoritySet,user);
     }
 }

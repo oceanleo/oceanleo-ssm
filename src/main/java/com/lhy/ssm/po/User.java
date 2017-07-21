@@ -18,6 +18,16 @@ public class User extends Domain implements Serializable {
     private String name;
     //状态
     private String status;
+    //是否启用
+    private boolean isEnabled = true;
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean isEnabled) {
+        this.isEnabled = isEnabled;
+    }
 
     public String getStatus() {
         return status;
