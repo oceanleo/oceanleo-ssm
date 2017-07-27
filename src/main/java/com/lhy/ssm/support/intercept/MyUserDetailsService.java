@@ -30,10 +30,10 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AssertUtils.hasText(username,"用户名不能为空");
+        AssertUtils.hasText(username, "用户名不能为空");
         //获取用户
         User user = userDao.selectByUsername(username);
-        AssertUtils.isNotNull(user,"用户不存在！");
+        AssertUtils.isNotNull(user, "用户不存在！");
         // 密码
         String password = user.getPassword();
         // 帐户是否可用
@@ -41,12 +41,17 @@ public class MyUserDetailsService implements UserDetailsService {
         //设置角色
         Set<GrantedAuthority> grantedAuthoritySet = new HashSet<GrantedAuthority>();
         //封装角色对象到当前用户
-        List<Role> roleList = roleDao.selectByUsername(username);
-        for(Role role : roleList){
+        List<Role> roleList;
+        if (user.isRoot()) {
+            roleList = roleDao.selectAll();
+        } else {
+            roleList = roleDao.selectByUsername(username);
+        }
+        for (Role role : roleList) {
             //设置角色编码
             GrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleCode());
             grantedAuthoritySet.add(authority);
         }
-        return new UserInfo(username,password,enabled,grantedAuthoritySet,user);
+        return new UserInfo(username, password, enabled, grantedAuthoritySet, user);
     }
 }

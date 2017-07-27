@@ -17,4 +17,9 @@ public interface RoleDao {
      * 获取用户名所拥有的角色
      */
     List<Role> selectByUsername(String username);
+
+    /**
+     * 获取所有的角色
+     */
+    List<Role> selectAll();
 }

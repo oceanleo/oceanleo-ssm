@@ -78,8 +78,13 @@ Ext.define('app.lhy.ssm.view.main.main', {
     },
 
     __createMenuStore: function () {
-        var data = app.lhy.ssm.common.request.request({id: 1}, '/user/getById');
-        return data;
+        var data;
+        try{
+            data = app.lhy.ssm.common.request.request({id: 1}, '/user/getById');
+            return data;
+        }catch (e){
+            Ext.Msg.alert('温馨提示',e.message);
+        }
         //var sidebarUrl = app.platform.shfs.common.RequestUtils.url("/dashboard/sidebar");
         //if(window.Context.platform.model!=''){
         //    sidebarUrl = sidebarUrl+"?m="+window.Context.platform.model;

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class ControllerResultSupport {
 
-    @Around("execution(public * com.lhy.ssm.controller.*Controller.*(..)) && @annotation(org.springframework.web.bind.annotation.ResponseBody)")
+    @Around("execution(public * com.lhy.ssm.controller.*Controller.*(..)) && @annotation(org.springframework.web.bind.annotation.ResponseBody) && !execution(public * com.lhy.ssm.controller.ServicesController.*(..))")
     public Object setResult(ProceedingJoinPoint point){
         Result result;
         Object obj;

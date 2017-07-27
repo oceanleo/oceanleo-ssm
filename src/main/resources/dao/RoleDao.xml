@@ -31,4 +31,8 @@
     inner join user u on u.id = ur.user_id
     where r.deleted=0 and ur.deleted=0 and u.deleted=0 and u.user_name = #{username}
   </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id,role_name,role_code from role where deleted=0
+  </select>
 </mapper>

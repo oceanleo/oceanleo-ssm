@@ -1,5 +1,7 @@
 package com.lhy.ssm.po;
 
+import com.lhy.ssm.support.utils.StringUtils;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,8 @@ import java.io.Serializable;
 public class User extends Domain implements Serializable {
 
     private static final long serialVersionUID = 3914969852374588468L;
+    //系统内置超级管理员账号
+    private static final String ROOT = "root";
     //用户名
     private String username;
     //密码
@@ -67,6 +71,10 @@ public class User extends Domain implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isRoot(){
+        return StringUtils.hasText(this.getUsername())&&ROOT.equals(this.getUsername());
     }
 
     @Override

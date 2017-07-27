@@ -2,6 +2,7 @@ package com.lhy.ssm.controller;
 
 import com.lhy.ssm.po.User;
 import com.lhy.ssm.service.UserService;
+import com.lhy.ssm.support.BizException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
