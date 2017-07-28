@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class ControllerResultSupport {
 
+    private static final String SYSTEM_EXCEPTION_MESSAGE = "服务器异常，请重试！";
+
     @Around("execution(public * com.lhy.ssm.controller.*Controller.*(..)) && @annotation(org.springframework.web.bind.annotation.ResponseBody) && !execution(public * com.lhy.ssm.controller.ServicesController.*(..))")
     public Object setResult(ProceedingJoinPoint point){
         Result result;
@@ -25,7 +27,7 @@ public class ControllerResultSupport {
         }catch (BizException e){
             result = new Result(false,ResultCode.BUSINESS_FAIL,e.getMessage());
         }catch (Throwable e){
-            result = new Result(false,ResultCode.SYSTEM_FAIL,"服务器异常，请重试！");
+            result = new Result(false,ResultCode.SYSTEM_FAIL,SYSTEM_EXCEPTION_MESSAGE);
         }
         return result;
     }

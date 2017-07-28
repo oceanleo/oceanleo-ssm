@@ -18,8 +18,7 @@ import java.util.*;
  * @author haiyang.li
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({
-        "classpath:spring/*.xml"})
+@ContextConfiguration({"classpath:spring/*.xml"})
 public class UserServicesTest {
 
     @Resource

@@ -11,10 +11,15 @@ import java.util.List;
  */
 public class EmailBean implements ApplicationContextAware {
 
-    private ApplicationContext applicationContext = null;
+    private ApplicationContext applicationContext;
 
     public ApplicationContext getApplicationContext() {
         return applicationContext;
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 
     private List backList;
@@ -25,11 +30,6 @@ public class EmailBean implements ApplicationContextAware {
 
     public void setBackList(List backList) {
         this.backList = backList;
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
     }
 
     public void sendEmail(EmailEvent email) {

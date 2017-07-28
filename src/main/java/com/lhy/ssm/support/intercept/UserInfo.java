@@ -20,9 +20,9 @@ public class UserInfo extends CurrentUserInfo implements UserDetails,Credentials
 
     private final String username;
     private String password;
-    private final boolean accountNonExpired = true;
-    private final boolean accountNonLocked = true;
-    private final boolean credentialsNonExpired = true;
+    private static final boolean accountNonExpired = true;
+    private static final boolean accountNonLocked = true;
+    private static final boolean credentialsNonExpired = true;
     private boolean enabled = true;
     private final Set<GrantedAuthority> authorities;
 
