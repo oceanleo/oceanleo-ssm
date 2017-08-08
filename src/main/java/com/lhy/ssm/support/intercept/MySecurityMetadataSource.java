@@ -2,10 +2,9 @@ package com.lhy.ssm.support.intercept;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.ConfigAttribute;
-import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-import org.springframework.security.web.util.RequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -62,7 +61,7 @@ public class MySecurityMetadataSource implements FilterInvocationSecurityMetadat
         this.requestMap = this.bindRequestMap();
     }
 
-    public void refreshResuorceMap() {
+    public void refreshResourceMap() {
         this.requestMap = this.bindRequestMap();
     }
 

@@ -32,16 +32,13 @@ Ext.define('app.lhy.ssm.common.request', {
             }
         });
         if (!status) {
-            Ext.Msg.alert('<font size=4>温馨提示</font>','<font color=red>'+message+'</font>');
-            //Ext.Msg.alert('温馨提示',message+'111');
-            return;
-            //throw new BizException(message,'');
+            throw new BizException(message,'');
         }
         return responseData;
     }
 });
 function BizException(message,result){
-    var data = new Object();
+    var data;
     data.message = message;
     data.result = result;
     return data;

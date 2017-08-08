@@ -5,8 +5,8 @@ import com.lhy.ssm.dto.ResourceDto;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
-import org.springframework.security.web.util.AntPathRequestMatcher;
-import org.springframework.security.web.util.RequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.annotation.Resource;
 import java.util.*;
