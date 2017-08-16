@@ -1,5 +1,7 @@
 package com.lhy.ssm.support.task;
 
+import com.lhy.ssm.support.utils.DateUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -8,9 +10,7 @@ import java.util.Date;
  */
 public class DomainTask {
 
-    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
     public void taskTest(){
-        System.out.println("定时调度启动:当前时间---"+simpleDateFormat.format(new Date()));
+        System.out.println("定时调度启动:当前时间---"+ DateUtils.format(new Date()));
     }
 }

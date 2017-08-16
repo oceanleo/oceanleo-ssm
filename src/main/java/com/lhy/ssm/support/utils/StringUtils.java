@@ -5,6 +5,8 @@ package com.lhy.ssm.support.utils;
  */
 public class StringUtils {
 
+    public static final String EMPTY = "";
+
     public static boolean hasText(String str){
         return org.springframework.util.StringUtils.hasText(str);
     }
