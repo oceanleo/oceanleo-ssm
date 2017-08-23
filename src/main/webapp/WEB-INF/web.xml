@@ -9,7 +9,7 @@
   <!-- 配置文件 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath*:spring/*.xml</param-value>
+    <param-value>classpath*:config/spring/*.xml</param-value>
   </context-param>
 
   <!-- SpringMVC核心控制器 -->
@@ -18,7 +18,7 @@
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:spring/spring-mvc.xml</param-value>
+      <param-value>classpath:config/spring/spring-mvc.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -80,26 +80,26 @@
   </filter-mapping>
 
   <!--session过期时间-->
-  <!--<session-config>-->
-    <!--<session-timeout>60</session-timeout>-->
-  <!--</session-config>-->
+  <session-config>
+    <session-timeout>60</session-timeout>
+  </session-config>
 
 
   <!-- 异常页面 -->
-  <!--<error-page>-->
-    <!--<exception-type>java.lang.Throwable</exception-type>-->
-    <!--<location>/index.jsp</location>-->
-  <!--</error-page>-->
-  <!--<error-page>-->
-    <!--<error-code>500</error-code>-->
-    <!--<location>/index.jsp</location>-->
-  <!--</error-page>-->
-  <!--<error-page>-->
-    <!--<error-code>404</error-code>-->
-    <!--<location>/index.jsp</location>-->
-  <!--</error-page>-->
-  <!--<error-page>-->
-    <!--<error-code>403</error-code>-->
-    <!--<location>/index.jsp</location>-->
-  <!--</error-page>-->
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/index.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/index.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/index.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/index.jsp</location>
+  </error-page>
 </web-app>

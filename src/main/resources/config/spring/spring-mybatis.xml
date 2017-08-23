@@ -45,7 +45,7 @@
 
   <!--aop切面-->
   <aop:config>
-    <aop:pointcut id="servicePointcut" expression="execution(* com.ocean.*.*.*ServiceImpl(..))"/>
+    <aop:pointcut id="servicePointcut" expression="execution(* com.ocean.project.*.*ServiceImpl(..))"/>
     <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>
   </aop:config>
 
