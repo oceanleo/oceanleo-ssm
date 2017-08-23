@@ -6,7 +6,7 @@
             http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-  <bean id="emailBean" class="com.lhy.ssm.support.event.EmailBean">
+  <bean id="emailBean" class="com.ocean.project.ssm.support.event.EmailBean">
     <property name="backList">
       <list>
         <value>ncg2.0@163.com</value>
@@ -16,7 +16,7 @@
     </property>
   </bean>
 
-  <bean id="emailNotifier" class="com.lhy.ssm.support.event.EmailNotifier">
+  <bean id="emailNotifier" class="com.ocean.project.ssm.support.event.EmailNotifier">
     <property name="notificationAddress">
       <value>qingwa@163.com</value>
     </property>

@@ -3,39 +3,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>ssm</groupId>
-  <artifactId>ssm</artifactId>
+  <groupId>ocean.project.ssm</groupId>
+  <artifactId>ocean-project-ssm</artifactId>
   <version>1.0-SNAPSHOT</version>
   <build>
-    <finalName>ssm</finalName>
+    <finalName>project</finalName>
   </build>
   <packaging>war</packaging>
   <url>http://maven.apache.org</url>
 
 
-  <!--<profiles>-->
-    <!--<profile>-->
-      <!--<id>development</id>-->
-      <!--<properties>-->
-        <!--<profile.id>development</profile.id>-->
-      <!--</properties>-->
-      <!--<activation>-->
-        <!--<activeByDefault>true</activeByDefault>-->
-      <!--</activation>-->
-    <!--</profile>-->
-    <!--<profile>-->
-      <!--<id>product</id>-->
-      <!--<properties>-->
-        <!--<profile.id>product</profile.id>-->
-      <!--</properties>-->
-    <!--</profile>-->
-    <!--<profile>-->
-      <!--<id>test</id>-->
-      <!--<properties>-->
-        <!--<profile.id>test</profile.id>-->
-      <!--</properties>-->
-    <!--</profile>-->
-  <!--</profiles>-->
+  <developers>
+    <developer>
+      <name>haiyang.li</name>
+      <email>275564847@qq.com</email>
+    </developer>
+  </developers>
 
   <properties>
     <spring.version>3.2.9.RELEASE</spring.version>
@@ -73,11 +56,6 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-aop</artifactId>
       <version>${spring.version}</version>
     </dependency>
     <dependency>

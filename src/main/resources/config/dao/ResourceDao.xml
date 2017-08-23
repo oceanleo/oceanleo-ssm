@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocean.project.ssm.dao.ResourceDao">
+  <resultMap id="BaseResultMap" type="com.ocean.project.ssm.po.Resource">
+    <id column="id" property="id"/>
+    <result column="resource_name" property="resourceName"/>
+    <result column="resource_type" property="resourceType"/>
+    <result column="resource_string" property="resourceString"/>
+
+    <result column="date_create" property="dateCreate"/>
+    <result column="date_update" property="dateUpdate"/>
+    <result column="date_delete" property="dateDelete"/>
+    <result column="create_id" property="createId"/>
+    <result column="update_id" property="updateId"/>
+    <result column="delete_id" property="deleteId"/>
+    <result column="deleted" property="deleted"/>
+    <result column="version" property="version"/>
+  </resultMap>
+
+  <resultMap id="BaseResultDtoMap" type="com.ocean.project.ssm.dto.ResourceDto">
+    <result column="resource_string" property="resourceString"/>
+    <result column="role_code" property="roleCode"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="com.ocean.project.ssm.po.Resource">
+    insert into resource(
+      id,resource_name,resource_type,resource_string,date_create,date_update,date_delete,
+      create_id,update_id,delete_id,deleted,version)
+    values(
+      #{id},#{resourceName},#{resourceType},#{resourceString},#{dateCreate},#{dateUpdate},#{dateDelete},
+      #{createId},#{updateId},#{deleteId},#{deleted},#{version})
+  </insert>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id,resource_name,resource_type,resource_string
+    from resource where deleted=0
+  </select>
+
+  <select id="selectDtoAll" resultMap="BaseResultDtoMap">
+    select res.resource_string,r.role_code
+    from role r
+    inner join role_resource rs on r.id = rs.role_id and rs.deleted=0
+    inner join resource res on rs.resource_id = res.id and res.deleted=0
+    where r.deleted=0
+  </select>
+
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select distinct r.id,r.resource_name,r.resource_type,r.resource_string from resource r
+    inner join role_resource rr on r.id = rr.resource_id and rr.deleted=0
+    inner join role ro on ro.id = rr. role_id and ro.deleted=0
+    inner join user_role ur on ro.id = ur.role_id and ur.deleted=0
+    inner join user u on u.id = ur.user_id and u.deleted=0
+    where r.deleted=0 and u.user_name = #{username}
+  </select>
+</mapper>
