@@ -24,7 +24,6 @@ public class DateUtils {
 
     public static String format(Date date, String format) {
         if (StringUtils.hasText(format) && date != null) {
-
             return new SimpleDateFormat(format).format(date);
         }
         return StringUtils.EMPTY;
