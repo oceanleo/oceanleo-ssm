@@ -18,9 +18,9 @@ import java.util.UUID;
 @Component
 public class DomainSupport {
 
-    private static final String version = "1";
+    private static final String DEFAULT_VERSION = "1";
 
-    @Before("execution(public * com.lhy.ssm.service.*Service.create*(..)) && args(domain,..)")
+    @Before("execution(public * com.ocean.project.ssm.service.*Service.create*(..)) && args(domain,..)")
     public void createDomain(Domain domain){
         if (!StringUtils.hasText(domain.getId())){
             domain.setId(UUID.randomUUID().toString());
@@ -35,7 +35,7 @@ public class DomainSupport {
             domain.setDeleted(false);
         }
         if(!StringUtils.hasText(domain.getVersion())){
-            domain.setVersion(version);
+            domain.setVersion(DEFAULT_VERSION);
         }
     }
 }

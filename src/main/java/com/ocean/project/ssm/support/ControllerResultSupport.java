@@ -17,7 +17,7 @@ public class ControllerResultSupport {
 
     private static final String SYSTEM_EXCEPTION_MESSAGE = "服务器异常，请重试！";
 
-    @Around("execution(public * com.lhy.ssm.controller.*Controller.*(..)) && @annotation(org.springframework.web.bind.annotation.ResponseBody) && !execution(public * com.ocean.project.ssm.controller.ServicesController.*(..))")
+    @Around("execution(public * com.ocean.project.ssm.controller.*Controller.*(..)) && @annotation(org.springframework.web.bind.annotation.ResponseBody) && !execution(public * com.ocean.project.ssm.controller.ServicesController.*(..))")
     public Object setResult(ProceedingJoinPoint point){
         Result result;
         Object obj;
