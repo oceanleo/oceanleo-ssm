@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.intercept;
+package com.ocean.project.ssm.support.security;
 
 import com.ocean.project.ssm.po.User;
 import org.springframework.beans.BeanUtils;

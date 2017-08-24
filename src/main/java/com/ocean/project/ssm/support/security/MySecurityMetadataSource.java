@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.intercept;
+package com.ocean.project.ssm.support.security;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.ConfigAttribute;

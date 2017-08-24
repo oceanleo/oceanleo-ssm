@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.intercept;
+package com.ocean.project.ssm.support.security;
 
 /**
  * 需要获取的当前用户信息

@@ -1,7 +1,5 @@
-package com.ocean.project.ssm.support.intercept;
+package com.ocean.project.ssm.support.security;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;

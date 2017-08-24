@@ -1,7 +1,7 @@
-Ext.define('app.lhy.ssm.view.main.main', {
+Ext.define('app.ocean.ssm.view.main.main', {
     extend: 'Ext.Viewport',
     layout: 'border',
-    requires: ['app.lhy.ssm.common.request'],
+    requires: ['app.ocean.ssm.common.request'],
     initComponent: function () {
         var me = this;
         Ext.applyIf(this, {
@@ -80,7 +80,7 @@ Ext.define('app.lhy.ssm.view.main.main', {
     __createMenuStore: function () {
         var data;
         try{
-            data = app.lhy.ssm.common.request.request({id: 1}, '/user/getById');
+            data = app.ocean.ssm.common.request.request({id: 1}, '/user/getById');
             return data;
         }catch (e){
             Ext.Msg.alert('温馨提示',e.message);

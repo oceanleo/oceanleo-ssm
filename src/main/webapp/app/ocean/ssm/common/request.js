@@ -1,4 +1,4 @@
-Ext.define('app.lhy.ssm.common.request', {
+Ext.define('app.ocean.ssm.common.request', {
     singleton: true,
     request: function (params, url) {
         if (!url || typeof(url) == 'undefined'){

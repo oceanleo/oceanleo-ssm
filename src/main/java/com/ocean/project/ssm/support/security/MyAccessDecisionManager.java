@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.intercept;
+package com.ocean.project.ssm.support.security;
 
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
@@ -10,7 +10,6 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 
 public class MyAccessDecisionManager implements AccessDecisionManager {
-
 
     /*
      * 该方法决定该权限是否有权限访问该资源，其实object就是一个资源的地址，authentication是当前用户的

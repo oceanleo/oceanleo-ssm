@@ -36,7 +36,7 @@ window.onload = function () {
             //if (app.length == 0 || app.length == 1) {
             //    return "app.view.main.Main";
             //}
-            return 'app.lhy.ssm.view.main.main';
+            return 'app.ocean.ssm.view.main.main';
         }
 
         //function _getApp() {

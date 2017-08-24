@@ -18,24 +18,24 @@
   <security:http pattern="/**/*.html" security="none"/>
   <security:http pattern="/index.jsp" security="none"/>
 
-  <bean id="myFilterChainInterceptor" class="com.ocean.project.ssm.support.intercept.MyFilterChainInterceptor"/>
+  <bean id="myFilterChainInterceptor" class="com.ocean.project.ssm.support.security.MyFilterChainInterceptor"/>
 
   <bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
     <constructor-arg>
-      <bean class="com.ocean.project.ssm.support.intercept.MyLogoutSuccessHandler"/>
+      <bean class="com.ocean.project.ssm.support.security.MyLogoutSuccessHandler"/>
     </constructor-arg>
     <constructor-arg>
       <array>
-        <bean id="logoutHandler" class="com.ocean.project.ssm.support.intercept.MyLogoutHandler"/>
+        <bean id="logoutHandler" class="com.ocean.project.ssm.support.security.MyLogoutHandler"/>
       </array>
     </constructor-arg>
     <property name="filterProcessesUrl" value="/security_logout"/>
   </bean>
 
   <!--登录成功控制器 default-target-url 失效 -->
-  <bean id="myAuthenticationSuccessHandler" class="com.ocean.project.ssm.support.intercept.MyAuthenticationSuccessHandler"/>
+  <bean id="myAuthenticationSuccessHandler" class="com.ocean.project.ssm.support.security.MyAuthenticationSuccessHandler"/>
   <!--登录失败控制器 authentication-failure-url 失效-->
-  <bean id="myAuthenticationFailureHandler" class="com.ocean.project.ssm.support.intercept.MyAuthenticationFailureHandler"/>
+  <bean id="myAuthenticationFailureHandler" class="com.ocean.project.ssm.support.security.MyAuthenticationFailureHandler"/>
 
   <security:http auto-config="true" use-expressions="true">
     <security:form-login login-page="/login/in"
@@ -68,19 +68,19 @@
   </bean>
 
   <!-- 授权管理器 -->
-  <bean id="myAccessDecisionManager" class="com.ocean.project.ssm.support.intercept.MyAccessDecisionManager"/>
+  <bean id="myAccessDecisionManager" class="com.ocean.project.ssm.support.security.MyAccessDecisionManager"/>
 
   <!--自定义的切入点-->
-  <bean id="mySecurityMetadataSource" class="com.ocean.project.ssm.support.intercept.MySecurityMetadataSource">
+  <bean id="mySecurityMetadataSource" class="com.ocean.project.ssm.support.security.MySecurityMetadataSource">
     <property name="requestMapBuilder" ref="requestMapBuilder"/>
   </bean>
 
   <!--自定义 资源、权限封装，进行拦截-->
-  <bean id="requestMapBuilder" class="com.ocean.project.ssm.support.intercept.RequestMapBuilder">
+  <bean id="requestMapBuilder" class="com.ocean.project.ssm.support.security.RequestMapBuilder">
     <property name="dataSource" ref="dataSource"/>
   </bean>
 
-  <bean id="myUserDetailsService" class="com.ocean.project.ssm.support.intercept.MyUserDetailsService"/>
+  <bean id="myUserDetailsService" class="com.ocean.project.ssm.support.security.MyUserDetailsService"/>
 
   <security:authentication-manager alias="myAuthenticationManager">
     <security:authentication-provider user-service-ref="myUserDetailsService"/>

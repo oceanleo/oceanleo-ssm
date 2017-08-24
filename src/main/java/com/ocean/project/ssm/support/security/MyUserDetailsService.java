@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.intercept;
+package com.ocean.project.ssm.support.security;
 
 import com.ocean.project.ssm.dao.RoleDao;
 import com.ocean.project.ssm.dao.UserDao;
