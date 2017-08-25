@@ -47,9 +47,9 @@ public class MySqlSessionFactoryBean extends SqlSessionFactoryBean {
                             //获取所有类下面的包名
                             String packageName = Class.forName(metadataReader.getClassMetadata().getClassName()).getPackage().getName();
                             //去掉重复的
-//                            if(!result.contains(packageName)){
+                            if(!result.contains(packageName)){
                                 result.add(packageName);
-//                            }
+                            }
                         } catch (ClassNotFoundException e) {
                             logger.error("mybatis typeAliasesPackage:"+typeAliasesPackage+",class not fund");
                         }
