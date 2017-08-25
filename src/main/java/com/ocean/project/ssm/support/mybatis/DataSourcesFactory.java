@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.dataSources;
+package com.ocean.project.ssm.support.mybatis;
 
 import org.springframework.beans.factory.FactoryBean;
 
@@ -10,9 +10,6 @@ import javax.sql.DataSource;
 public class DataSourcesFactory implements FactoryBean<DataSource> {
 
     private DataSource dataSource;
-
-
-
 
     @Override
     public DataSource getObject() throws Exception {

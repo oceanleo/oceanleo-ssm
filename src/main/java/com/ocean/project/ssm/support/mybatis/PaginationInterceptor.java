@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.dataSources;
+package com.ocean.project.ssm.support.mybatis;
 
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
