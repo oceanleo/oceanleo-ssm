@@ -23,18 +23,18 @@
     <property name="password" value="${mysql.password}"/>
   </bean>
 
-  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+  <bean id="sqlSessionFactory" class="com.ocean.project.ssm.support.mybatis.MySqlSessionFactoryBean">
     <!-- 引入连接池 -->
     <property name="dataSource" ref="dataSource"/>
     <!-- 配置类的别名 -->
-    <property name="typeAliasesPackage" value="com.ocean.project.ssm.po" />
+    <property name="typeAliasesPackage" value="com.ocean.**.po" />
     <!-- 配置映射的mapper.xml文件 -->
-    <property name="mapperLocations" value="classpath:config/dao/**/*Dao.xml"/>
+    <property name="mapperLocations" value="classpath*:config/dao/**/*Dao.xml"/>
   </bean>
 
   <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <property name="basePackage" value="com.ocean.project.ssm.dao" />
+    <property name="basePackage" value="com.ocean.**.**.dao" />
     <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
   </bean>
 
@@ -45,7 +45,7 @@
 
   <!--aop切面-->
   <aop:config>
-    <aop:pointcut id="servicePointcut" expression="execution(* com.ocean.project..service..*ServiceImpl(..))"/>
+    <aop:pointcut id="servicePointcut" expression="execution(* com.ocean..service..*ServiceImpl(..))"/>
     <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>
   </aop:config>
 
