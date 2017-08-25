@@ -14,13 +14,16 @@ import java.util.Properties;
 /**
  * @author haiyang.li on 2017/8/8.
  */
-@Intercepts({@Signature(method = "prepare", type = StatementHandler.class, args = {Connection.class}),
+@Intercepts({
+        @Signature(method = "prepare", type = StatementHandler.class, args = {Connection.class}),
         @Signature(type = ResultSetHandler.class, method = "handleResultSets", args = {Statement.class})})
 public class PaginationInterceptor implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        return null;
+        // todo 分页拦截器
+        System.out.println("分页拦截器执行");
+        return invocation.proceed();
     }
 
     @Override

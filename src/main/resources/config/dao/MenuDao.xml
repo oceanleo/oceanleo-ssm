@@ -20,8 +20,18 @@
     <result column="version" property="version"/>
   </resultMap>
 
+  <resultMap id="MenuDtoMap" type="com.ocean.project.ssm.dto.MenuDto">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="url" property="url"/>
+  </resultMap>
+
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
-    select id,name,code,parent_id,url,sort from menu where id = #{id}
+    select id,name,code,parent_id,url,sort from menu where deleted=0 and id = #{id}
+  </select>
+
+  <select id="selectAllDto" resultMap="MenuDtoMap">
+    select id,name,code,parent_id,url,sort from menu where deleted = 0
   </select>
 
   <insert id="insert" parameterType="Menu">
