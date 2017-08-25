@@ -2,12 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ocean.project.ssm.dao.UserDao">
-  <resultMap id="BaseResultMap" type="com.ocean.project.ssm.po.User">
+  <resultMap id="BaseResultMap" type="User">
     <id column="id" property="id"/>
     <result column="user_name" property="username"/>
     <result column="password" property="password"/>
     <result column="age" property="age"/>
     <result column="name" property="name"/>
+    <result column="sex" property="sex"/>
     <result column="status" property="status"/>
     <result column="is_enabled" property="isEnabled"/>
     <result column="date_create" property="dateCreate"/>
@@ -20,19 +21,20 @@
     <result column="version" property="version"/>
   </resultMap>
   <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id,user_name,password,age,name,status,is_enabled from user where id=#{id} and deleted=0
+    select id,user_name,password,age,name,sex,status,is_enabled
+    from user where id=#{id} and deleted=0
   </select>
 
-  <insert id="insert" parameterType="com.ocean.project.ssm.po.User">
+  <insert id="insert" parameterType="User">
     insert into user(
-      id,user_name,password,age,name,status,is_enabled,date_create,date_update,date_delete,
+      id,user_name,password,age,name,sex,status,is_enabled,date_create,date_update,date_delete,
       create_id,update_id,delete_id,deleted,version)
     values(
-      #{id},#{username},#{username},#{age},#{name},#{status},#{isEnabled},#{dateCreate},#{dateUpdate},#{dateDelete},
+      #{id},#{username},#{password},#{age},#{name},#{sex},#{status},#{isEnabled},#{dateCreate},#{dateUpdate},#{dateDelete},
       #{createId},#{updateId},#{deleteId},#{deleted},#{version})
   </insert>
 
-  <update id="updateList" parameterType="com.ocean.project.ssm.po.User">
+  <update id="updateList" parameterType="User">
     update user
     set user_name =
     <foreach collection="userList" item="user" open="case id" close="end">
@@ -50,10 +52,10 @@
   </update>
 
   <select id="selectAll" resultMap="BaseResultMap">
-    select id,user_name,password,age,name,status,is_enabled from user where deleted=0
+    select id,user_name,password,age,name,sex,status,is_enabled from user where deleted=0
   </select>
 
   <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id,user_name,password,age,name,status,is_enabled from user where deleted=0 and user_name = #{username}
+    select id,user_name,password,age,name,sex,status,is_enabled from user where deleted=0 and user_name = #{username}
   </select>
 </mapper>

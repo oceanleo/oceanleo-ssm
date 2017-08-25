@@ -20,7 +20,7 @@ public class DomainSupport {
 
     private static final String DEFAULT_VERSION = "1";
 
-    @Before("execution(public * com.ocean.project.ssm.service.*Service.create*(..)) && args(domain,..)")
+    @Before("execution(public * com.ocean..service.*Service.create*(..)) && args(domain,..)")
     public void createDomain(Domain domain){
         if (!StringUtils.hasText(domain.getId())){
             domain.setId(UUID.randomUUID().toString());

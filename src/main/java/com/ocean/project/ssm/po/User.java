@@ -18,12 +18,22 @@ public class User extends Domain implements Serializable {
     private String password;
     //年龄
     private Integer age;
+    //性别
+    private Boolean sex;
     //姓名
     private String name;
     //状态
     private String status;
     //是否启用
     private boolean isEnabled = true;
+
+    public Boolean getSex() {
+        return sex;
+    }
+
+    public void setSex(Boolean sex) {
+        this.sex = sex;
+    }
 
     public boolean isEnabled() {
         return isEnabled;
@@ -80,11 +90,13 @@ public class User extends Domain implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "age=" + age +
-                ", username='" + username + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
                 ", name='" + name + '\'' +
                 ", status='" + status + '\'' +
+                ", isEnabled=" + isEnabled +
                 '}';
     }
 }

@@ -1,7 +1,10 @@
 package com.ocean.project.ssm.service;
 
+import com.ocean.project.ssm.dao.MenuDao;
 import com.ocean.project.ssm.dao.ResourceDao;
 import com.ocean.project.ssm.dao.RoleResourceDao;
+import com.ocean.project.ssm.po.Menu;
+import com.ocean.project.ssm.po.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,25 +30,15 @@ public class UserServicesTest {
     private ResourceDao resourceDao;
     @Resource
     private RoleResourceDao roleResourceDao;
+    @Resource
+    private MenuDao menuDao;
 
     @Test
     public void testGetUserById(){
-        try {
-//            List l = new ArrayList<Number>();
-//            List<String> ls = l;
-//            l.add(0, new Integer(42));
-//            String s = ls.get(0);
-//            System.out.println(s);
-//            String className = "ResultCode";
-//            Class<Enum> clazz = (Class<Enum>) Class.forName(className);
-//            List<EnumObj> enumObjList = getEnumList(className);
-//            for(EnumObj enumObj : enumObjList){
-//                System.out.println(enumObj.toString());
-//            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        System.out.println(menuDao.selectById("1"));
+        for(User user : userService.getAll()){
+            System.out.println(user);
         }
-
     }
 
     private static List<EnumObj> getEnumList(String classPathName){

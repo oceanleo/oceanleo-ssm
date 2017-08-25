@@ -60,7 +60,7 @@
   </style>
 </head>
 <body class="x-body">
-  <script type="text/javascript" src="<c:url value="/app/lhy/ssm/common/app.js"/>"></script>
+  <script type="text/javascript" src="<c:url value="/app/ocean/ssm/common/app.js"/>"></script>
   <script type="text/javascript" src="<c:url value="/js/jquery.js"/>"></script>
   <script type="text/javascript" src="<c:url value="/js/form.js"/>"></script>
 </body>

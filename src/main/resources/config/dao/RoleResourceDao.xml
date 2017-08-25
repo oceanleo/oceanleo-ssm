@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ocean.project.ssm.dao.RoleResourceDao">
-  <resultMap id="BaseResultMap" type="com.ocean.project.ssm.po.RoleResource">
+  <resultMap id="BaseResultMap" type="RoleResource">
     <id column="id" property="id"/>
     <result column="role_id" property="roleId"/>
     <result column="resource_id" property="resourceId"/>
@@ -17,7 +17,7 @@
     <result column="version" property="version"/>
   </resultMap>
 
-  <insert id="insert" parameterType="com.ocean.project.ssm.po.RoleResource">
+  <insert id="insert" parameterType="RoleResource">
     insert into role_resource(
       id,role_id,resource_id,date_create,date_update,date_delete,
       create_id,update_id,delete_id,deleted,version)

@@ -16,7 +16,7 @@
     <result column="version" property="version"/>
   </resultMap>
 
-  <insert id="insert" parameterType="com.ocean.project.ssm.po.Role">
+  <insert id="insert" parameterType="Role">
     insert into role(
       id,role_name,role_code,date_create,date_update,date_delete,
       create_id,update_id,delete_id,deleted,version)

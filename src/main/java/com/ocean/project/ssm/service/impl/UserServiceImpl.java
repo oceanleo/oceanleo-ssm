@@ -11,7 +11,6 @@ import java.util.List;
 /**
  * @author haiyang.li
  */
-@Service
 public class UserServiceImpl implements UserService {
 
     @Resource
@@ -19,7 +18,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getById(String id) {
-//        throw new BizException("获取失败！！");
         return userDao.selectById(id);
     }
 

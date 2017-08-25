@@ -8,9 +8,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
+ * 日期处理工具类
+ *
  * @author haiyang.li
  */
-public class DateUtils {
+public abstract class DateUtils {
 
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
