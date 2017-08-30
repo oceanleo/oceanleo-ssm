@@ -2,10 +2,7 @@ package com.ocean.project.ssm.support.mybatis;
 
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Intercepts;
-import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.plugin.*;
 
 import java.sql.Connection;
 import java.sql.Statement;
@@ -21,14 +18,15 @@ public class PaginationInterceptor implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
+        Object obj = invocation.getTarget();
         // todo 分页拦截器
-        System.out.println("分页拦截器执行");
+        System.out.println("分页拦截器执行:"+obj.getClass().getName());
         return invocation.proceed();
     }
 
     @Override
     public Object plugin(Object target) {
-        return null;
+        return Plugin.wrap(target, this);
     }
 
     @Override

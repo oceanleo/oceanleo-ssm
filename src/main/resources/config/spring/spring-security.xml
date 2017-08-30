@@ -17,6 +17,7 @@
   <security:http pattern="/**/*.gif" security="none"/>
   <security:http pattern="/**/*.html" security="none"/>
   <security:http pattern="/index.jsp" security="none"/>
+  <security:http pattern="/menu2.json" security="none"/>
 
   <bean id="myFilterChainInterceptor" class="com.ocean.project.ssm.support.security.MyFilterChainInterceptor"/>
 

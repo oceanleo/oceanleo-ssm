@@ -46,4 +46,14 @@ public class MenuDto {
     public void setChildren(List<MenuDto> children) {
         this.children = children;
     }
+
+    @Override
+    public String toString() {
+        return "MenuDto{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", children=" + children +
+                '}';
+    }
 }

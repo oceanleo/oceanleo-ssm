@@ -3,6 +3,7 @@ package com.ocean.project.ssm.service;
 import com.ocean.project.ssm.dao.MenuDao;
 import com.ocean.project.ssm.dao.ResourceDao;
 import com.ocean.project.ssm.dao.RoleResourceDao;
+import com.ocean.project.ssm.dto.MenuDto;
 import com.ocean.project.ssm.po.Menu;
 import com.ocean.project.ssm.po.User;
 import org.junit.Test;
@@ -35,9 +36,9 @@ public class UserServicesTest {
 
     @Test
     public void testGetUserById(){
-        System.out.println(menuDao.selectById("1"));
-        for(User user : userService.getAll()){
-            System.out.println(user);
+        List<MenuDto> menuDtoList = menuDao.selectAllDto();
+        for(MenuDto menuDto : menuDtoList){
+            System.out.println(menuDto);
         }
     }
 

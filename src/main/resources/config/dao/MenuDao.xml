@@ -24,6 +24,11 @@
     <id column="id" property="id"/>
     <result column="name" property="name"/>
     <result column="url" property="url"/>
+    <collection property="children" ofType="com.ocean.project.ssm.dto.MenuDto"
+                javaType="java.util.List">
+      <result column="c_name" property="name"/>
+      <result column="c_url" property="url"/>
+    </collection>
   </resultMap>
 
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -31,7 +36,9 @@
   </select>
 
   <select id="selectAllDto" resultMap="MenuDtoMap">
-    select id,name,code,parent_id,url,sort from menu where deleted = 0
+    select p.id,p.name,p.url,c.name as c_name,c.url as c_url from menu p
+    inner join menu c on p.id = c.parent_id and c.deleted=0
+    where c.deleted = 0
   </select>
 
   <insert id="insert" parameterType="Menu">

@@ -28,12 +28,14 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             for (GrantedAuthority ga : authorities) {
                 if (needPermission.equals(ga.getAuthority())) {
+                    System.out.println("访问" + object.toString() + "有权限，放行，用户权限:"+ga.getAuthority());
                     return;
                 }
             }
         }
+        System.out.println("访问" + object.toString() + "没有权限，被拦截");
         //没有权限
-        throw new AccessDeniedException(" 没有权限访问！ ");
+        throw new AccessDeniedException("没有权限访问！");
     }
 
     @Override

@@ -78,13 +78,24 @@ Ext.define('app.ocean.ssm.view.main.main', {
     },
 
     __createMenuStore: function () {
-        var data;
-        try{
-            data = app.ocean.ssm.common.request.request({id: 1}, '/user/getById');
-            return data;
-        }catch (e){
-            Ext.Msg.alert('温馨提示',e.message);
-        }
+        var navStore = Ext.create("Ext.data.TreeStore", {
+            autoLoad: true,
+            defaultExpandAll: false,
+            rootVisible:true,
+            proxy: {
+                type: "ajax",
+                reader: "json",
+                url: "/menu2.json"
+            }
+        });
+        return navStore;
+        //var data;
+        //try{
+        //    data = app.ocean.ssm.common.request.request({id: 1}, '/user/getById');
+        //    return data;
+        //}catch (e){
+        //    Ext.Msg.alert('温馨提示',e.message);
+        //}
         //var sidebarUrl = app.platform.shfs.common.RequestUtils.url("/dashboard/sidebar");
         //if(window.Context.platform.model!=''){
         //    sidebarUrl = sidebarUrl+"?m="+window.Context.platform.model;
