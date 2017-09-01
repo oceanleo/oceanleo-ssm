@@ -7,12 +7,12 @@
 <%--<meta http-equiv="cache-control" content="max-age=${expiredMaxAge}, public"/>--%>
 <%--<title>${platform.name}</title>--%>
 <title>个人开发测试系统</title>
-<link rel="stylesheet" type="text/css" href="/js/extjs/themes/neptune/ext-theme-neptune-all.css"/>
-<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
-<link rel="stylesheet" type="text/css" href="/css/app.css"/>
-<script src="/js/extjs/ext-all.js" type="text/javascript"></script>
-<script src="/js/extjs/ext-theme-neptune.js" type="text/javascript"></script>
-<script src="/js/extjs/ext-locale-zh_CN.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/js/extjs/themes/neptune/ext-theme-neptune-all.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/font-awesome.min.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/app.css"/>"/>
+<script src="<c:url value="/js/extjs/ext-all.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/js/extjs/ext-theme-neptune.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/js/extjs/ext-locale-zh_CN.js"/>" type="text/javascript"></script>
 <head>
   <style type="text/css">
     .x-body {
@@ -40,7 +40,7 @@
     }
 
     #loading.lol {
-      background: url(/img/loading.gif) no-repeat center;
+      background: url(<c:url value="/img/loading.gif"/>) no-repeat center;
       display: block height : 120 px
     }
 

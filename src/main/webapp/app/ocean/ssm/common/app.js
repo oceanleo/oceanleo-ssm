@@ -2,7 +2,7 @@
 window.onload = function () {
     Ext.onReady(function () {
         //获取当前应用缩写名
-        //var app = _getApp();
+        var app = _getApp();
         Ext.application({
             extend: 'Ext.app.Application',
             name: 'app',
@@ -36,14 +36,14 @@ window.onload = function () {
             //if (app.length == 0 || app.length == 1) {
             //    return "app.view.main.Main";
             //}
-            return 'app.ocean.ssm.view.main.main';
+            return 'app.ocean.'+app+'.view.main.main';
         }
 
-        //function _getApp() {
-        //    var context = document.location.pathname;
-        //    var pathParts = context.split("/");
-        //    return pathParts[1];
-        //}
+        function _getApp() {
+            var context = document.location.pathname;
+            var pathParts = context.split("/");
+            return pathParts[1];
+        }
 
         function _loadDependencies(scriptRootPath, callback) {
             var appDependencies = [];
@@ -56,23 +56,7 @@ window.onload = function () {
                 //"/ext/packages/ext-charts/build/ext-charts.js",
                 //"/ext/packages/ext-theme-crisp/build/ext-theme-crisp.js",
                 //"/funi/core/DateTimePicker.js",
-                //"/funi/core/DateTime.js",
-                ////EIC 项目适配组件
-                //"/funi/eic/Adaptor.js",
-                ////Biz 业务组件
-                //"/funi/core/Biz.js",
-                ////加密组件
-                //"/funi/core/Digest.js",
-                ////Ext.Data 扩展
-                //"/funi/core/Data.js",
-                ////Ext.Form 扩展
-                //"/funi/core/Form.js",
-                ////Ext.Grid 扩展
-                //"/funi/core/Grid.js",
-                ////基于Ext API 自定义组件
-                //"/funi/core/Context.js",
-                ////底层重写
-                //"/funi/core/Overrides.js"
+                //"/funi/core/DateTime.js"
             ];
             var excludeDependencies = [];
             var extDependencies = [];

@@ -1,5 +1,9 @@
 Ext.define('app.ocean.ssm.common.request', {
     singleton: true,
+    url:function(url){
+        // todo 获取当前项目的ContextPath
+        return '/ssm'+url;
+    },
     request: function (params, url) {
         if (!url || typeof(url) == 'undefined'){
             return;

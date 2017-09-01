@@ -21,6 +21,6 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
 
 
         System.out.println("My---Authentication---Success---Handler---");
-        response.sendRedirect("/main");
+        response.sendRedirect(request.getContextPath()+"/main");
     }
 }

@@ -4,10 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ocean.project.ssm</groupId>
-  <artifactId>ocean-project-ssm</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>ssm</artifactId>
+  <version>1.0.0</version>
   <build>
-    <finalName>project</finalName>
+    <finalName>ssm</finalName>
   </build>
   <packaging>war</packaging>
   <url>http://maven.apache.org</url>

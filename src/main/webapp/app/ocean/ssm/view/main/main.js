@@ -85,7 +85,7 @@ Ext.define('app.ocean.ssm.view.main.main', {
             proxy: {
                 type: "ajax",
                 reader: "json",
-                url: "/menu2.json"
+                url: app.ocean.ssm.common.request.url("/menu2.json")
             }
         });
         return navStore;
@@ -136,7 +136,7 @@ Ext.define('app.ocean.ssm.view.main.main', {
         });
 
         action.submit({
-            url: "/security_logout",
+            url: app.ocean.ssm.common.request.url("/security_logout"),
             clientValidation: false
         });
     },
