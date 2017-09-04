@@ -1,6 +1,7 @@
 package com.ocean.project.ssm.domain;
 
-import com.ocean.project.ssm.support.utils.StringUtils;
+import com.ocean.framework.utils.DateUtils;
+import com.ocean.framework.utils.StringUtils;
 
 import java.io.Serializable;
 
@@ -97,6 +98,7 @@ public class User extends Domain implements Serializable {
                 ", name='" + name + '\'' +
                 ", status='" + status + '\'' +
                 ", isEnabled=" + isEnabled +
+                ", DateCreate=" + DateUtils.format(getDateCreate())+
                 '}';
     }
 }

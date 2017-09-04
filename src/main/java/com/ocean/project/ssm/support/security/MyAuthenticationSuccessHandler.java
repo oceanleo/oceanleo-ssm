@@ -1,5 +1,6 @@
 package com.ocean.project.ssm.support.security;
 
+import com.ocean.framework.utils.DateUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -7,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * 登录成功控制器
@@ -20,7 +22,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
 
-        System.out.println("My---Authentication---Success---Handler---");
-        response.sendRedirect(request.getContextPath()+"/main");
+        System.out.println(DateUtils.format(new Date()) + " My---Authentication---Success---Handler---");
+        response.sendRedirect(request.getContextPath() + "/main");
     }
 }

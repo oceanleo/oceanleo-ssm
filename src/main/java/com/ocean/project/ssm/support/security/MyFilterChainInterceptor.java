@@ -1,5 +1,6 @@
 package com.ocean.project.ssm.support.security;
 
+import com.ocean.framework.utils.DateUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -9,6 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * 自定义过滤器
@@ -20,7 +22,7 @@ public class MyFilterChainInterceptor extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest servletRequest = (HttpServletRequest)request;
+        HttpServletRequest servletRequest = (HttpServletRequest) request;
         HttpServletResponse servletResponse = (HttpServletResponse) response;
 
 //        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -29,8 +31,8 @@ public class MyFilterChainInterceptor extends GenericFilterBean {
 //        } else {
 //            String username = principal.toString();
 //        }
-        System.out.println("MyFilterChainInterceptor---Interceptor----");
+        System.out.println(DateUtils.format(new Date()) + " MyFilterChainInterceptor---Interceptor----");
 
-        chain.doFilter(request,response);
+        chain.doFilter(request, response);
     }
 }

@@ -22,48 +22,4 @@
     <property name="username" value="${mysql.username}"/>
     <property name="password" value="${mysql.password}"/>
   </bean>
-
-  <!--<bean id="sqlSessionFactory" class="com.ocean.project.ssm.support.mybatis.MySqlSessionFactoryBean">-->
-    <!--&lt;!&ndash; 引入连接池 &ndash;&gt;-->
-    <!--<property name="dataSource" ref="dataSource"/>-->
-    <!--&lt;!&ndash; 配置类的别名 &ndash;&gt;-->
-    <!--<property name="typeAliasesPackage" value="com.ocean.**.domain" />-->
-    <!--&lt;!&ndash; 配置映射的mapper.xml文件 &ndash;&gt;-->
-    <!--<property name="mapperLocations" value="classpath*:config/dao/**/*Dao.xml"/>-->
-    <!--<property name="plugins">-->
-      <!--<array>-->
-        <!--<bean class="com.ocean.project.ssm.support.mybatis.PaginationInterceptor"/>-->
-      <!--</array>-->
-    <!--</property>-->
-  <!--</bean>-->
-
-  <!--&lt;!&ndash; DAO接口所在包名，Spring会自动查找其下的类 &ndash;&gt;-->
-  <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-    <!--<property name="basePackage" value="com.ocean.**.**.dao" />-->
-    <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
-  <!--</bean>-->
-
-  <!--&lt;!&ndash;事物管理器&ndash;&gt;-->
-  <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-    <!--<property name="dataSource" ref="dataSource" />-->
-  <!--</bean>-->
-
-  <!--&lt;!&ndash;aop切面&ndash;&gt;-->
-  <!--<aop:config>-->
-    <!--<aop:pointcut id="servicePointcut" expression="execution(* com.ocean..service..*ServiceImpl(..))"/>-->
-    <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>-->
-  <!--</aop:config>-->
-
-  <!--&lt;!&ndash;声名式事物配置&ndash;&gt;-->
-  <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">-->
-    <!--<tx:attributes>-->
-      <!--<tx:method name="get*" propagation="SUPPORTS" read-only="true"/>-->
-      <!--<tx:method name="find*" propagation="SUPPORTS" read-only="true"/>-->
-      <!--<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>-->
-      <!--<tx:method name="*" propagation="REQUIRED"/>-->
-    <!--</tx:attributes>-->
-  <!--</tx:advice>-->
-
-  <!--&lt;!&ndash;编程式事物配置&ndash;&gt;-->
-  <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
 </beans>

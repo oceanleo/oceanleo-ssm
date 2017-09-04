@@ -1,5 +1,6 @@
 package com.ocean.project.ssm.support.security;
 
+import com.ocean.framework.utils.DateUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.FilterInvocation;
@@ -42,7 +43,7 @@ public class MySecurityMetadataSource implements FilterInvocationSecurityMetadat
         for (Map.Entry<RequestMatcher, Collection<ConfigAttribute>> entry : requestMap.entrySet()) {
             allAttributes.addAll(entry.getValue());
         }
-        System.out.println("总共有这些权限：" + allAttributes.toString());
+        System.out.println(DateUtils.format(new Date()) + " 总共有这些权限：" + allAttributes.toString());
         return allAttributes;
     }
 

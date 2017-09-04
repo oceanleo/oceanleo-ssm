@@ -52,7 +52,7 @@
   </update>
 
   <select id="selectAll" resultMap="BaseResultMap">
-    select id,user_name,password,age,name,sex,status,is_enabled from user where deleted=0
+    select * from user where deleted=0
   </select>
 
   <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
