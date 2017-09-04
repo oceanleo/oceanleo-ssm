@@ -2,8 +2,8 @@ package com.ocean.project.ssm.support.security;
 
 import com.ocean.project.ssm.dao.RoleDao;
 import com.ocean.project.ssm.dao.UserDao;
-import com.ocean.project.ssm.po.Role;
-import com.ocean.project.ssm.po.User;
+import com.ocean.project.ssm.domain.Role;
+import com.ocean.project.ssm.domain.User;
 import com.ocean.project.ssm.support.utils.AssertUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

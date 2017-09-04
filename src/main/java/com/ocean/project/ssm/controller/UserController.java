@@ -1,6 +1,7 @@
 package com.ocean.project.ssm.controller;
 
-import com.ocean.project.ssm.po.User;
+import com.ocean.project.ssm.domain.User;
+import com.ocean.project.ssm.query.UserQuery;
 import com.ocean.project.ssm.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +23,7 @@ public class UserController {
 
     @RequestMapping("/getById")
     @ResponseBody
-    public Object getById(String id){
+    public Object getById(UserQuery query){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             String username = ((UserDetails) principal).getUsername();
@@ -32,7 +33,7 @@ public class UserController {
             System.out.println(username);
         }
         System.out.println(Thread.currentThread().getName());
-        User user = userService.getById(id);
+        User user = userService.getById(query);
         return user;
     }
 }

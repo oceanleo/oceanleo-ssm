@@ -1,6 +1,6 @@
 package com.ocean.project.ssm.support.security;
 
-import com.ocean.project.ssm.po.User;
+import com.ocean.project.ssm.domain.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;

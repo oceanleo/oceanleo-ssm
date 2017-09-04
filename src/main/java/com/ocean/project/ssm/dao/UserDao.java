@@ -1,6 +1,7 @@
 package com.ocean.project.ssm.dao;
 
-import com.ocean.project.ssm.po.User;
+import com.ocean.project.ssm.domain.User;
+import com.ocean.project.ssm.query.UserQuery;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface UserDao {
     /**
      * 根据用户id获取用户
      */
-    User selectById(@Param("id") String id);
+    User selectById(UserQuery query);
 
     /**
      * 修改用户信息

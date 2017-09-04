@@ -27,6 +27,18 @@
   </properties>
 
   <dependencies>
+    <!--引入自己的jar包-->
+    <dependency>
+      <groupId>com.ocean.framework.orm</groupId>
+      <artifactId>ocean-orm</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ocean.framework.utils</groupId>
+      <artifactId>ocean-utils</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
     <!-- spring核心配置 -->
     <dependency>
       <groupId>org.springframework</groupId>

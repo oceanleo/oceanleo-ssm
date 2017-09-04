@@ -1,9 +1,9 @@
 package com.ocean.project.ssm.service.impl;
 
 import com.ocean.project.ssm.dao.UserDao;
-import com.ocean.project.ssm.po.User;
+import com.ocean.project.ssm.domain.User;
+import com.ocean.project.ssm.query.UserQuery;
 import com.ocean.project.ssm.service.UserService;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -17,8 +17,8 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User getById(String id) {
-        return userDao.selectById(id);
+    public User getById(UserQuery query) {
+        return userDao.selectById(query);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.ocean.project.ssm.dao;
 
 import com.ocean.project.ssm.dto.ResourceDto;
-import com.ocean.project.ssm.po.Resource;
+import com.ocean.project.ssm.domain.Resource;
 
 import java.util.List;
 

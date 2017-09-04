@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.po;
+package com.ocean.project.ssm.domain;
 
 /**
  * 日志

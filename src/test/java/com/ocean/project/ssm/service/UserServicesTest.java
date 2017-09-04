@@ -4,8 +4,6 @@ import com.ocean.project.ssm.dao.MenuDao;
 import com.ocean.project.ssm.dao.ResourceDao;
 import com.ocean.project.ssm.dao.RoleResourceDao;
 import com.ocean.project.ssm.dto.MenuDto;
-import com.ocean.project.ssm.po.Menu;
-import com.ocean.project.ssm.po.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

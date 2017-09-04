@@ -1,8 +1,7 @@
 package com.ocean.project.ssm.dao;
 
 import com.ocean.project.ssm.dto.MenuDto;
-import com.ocean.project.ssm.po.Menu;
-import org.apache.ibatis.annotations.Param;
+import com.ocean.project.ssm.domain.Menu;
 
 import java.util.List;
 

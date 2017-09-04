@@ -1,6 +1,6 @@
 package com.ocean.project.ssm.support;
 
-import com.ocean.project.ssm.po.Domain;
+import com.ocean.project.ssm.domain.Domain;
 import com.ocean.project.ssm.support.utils.StringUtils;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;

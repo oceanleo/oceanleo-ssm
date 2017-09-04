@@ -1,6 +1,6 @@
 package com.ocean.project.ssm.dao;
 
-import com.ocean.project.ssm.po.UserRole;
+import com.ocean.project.ssm.domain.UserRole;
 
 /**
  * @author haiyang.li
