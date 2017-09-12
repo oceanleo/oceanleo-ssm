@@ -51,8 +51,11 @@
     and deleted = 0
   </update>
 
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectAll" parameterType="com.ocean.project.ssm.query.UserQuery" resultMap="BaseResultMap">
     select * from user where deleted=0
+    <if test="id !=null and id !=''">
+      and id = #{id}
+    </if>
   </select>
 
   <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">

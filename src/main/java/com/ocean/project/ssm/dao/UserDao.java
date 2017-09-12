@@ -29,7 +29,7 @@ public interface UserDao {
     /**
      * 获取所有的用户
      */
-    List<User> selectAll();
+    List<User> selectAll(UserQuery query);
 
     /**
      * 用户名获取用户信息

@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
-        return userDao.selectAll();
+    public List<User> getAll(UserQuery query) {
+        return userDao.selectAll(query);
     }
 }

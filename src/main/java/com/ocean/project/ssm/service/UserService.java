@@ -20,5 +20,5 @@ public interface UserService {
     @Log("新增用户")
     void create(User user);
 
-    List<User> getAll();
+    List<User> getAll(UserQuery query);
 }

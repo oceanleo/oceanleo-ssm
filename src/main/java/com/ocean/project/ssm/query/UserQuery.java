@@ -1,6 +1,6 @@
 package com.ocean.project.ssm.query;
 
-import com.ocean.framework.orm.page.PageQuery;
+import com.ocean.framework.orm.query.PageQuery;
 
 /**
  * @author haiyang.li on 2017/9/4.

@@ -1,5 +1,7 @@
 package com.ocean.project.ssm.controller;
 
+import com.ocean.framework.mvc.annotation.NotUseResult;
+import com.ocean.framework.utils.DateUtils;
 import com.ocean.project.ssm.domain.User;
 import com.ocean.project.ssm.query.UserQuery;
 import com.ocean.project.ssm.service.UserService;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author haiyang.li
@@ -35,5 +39,15 @@ public class UserController {
         System.out.println(Thread.currentThread().getName());
         User user = userService.getById(query);
         return user;
+    }
+
+    @RequestMapping("/getAll")
+    @ResponseBody
+    @NotUseResult
+    public Object getAll(UserQuery query){
+        System.out.println(DateUtils.format(new Date()) + " getAll before : "+Thread.currentThread().getName());
+        List<User> userList = userService.getAll(query);
+        System.out.println(DateUtils.format(new Date()) + " getAll after : "+Thread.currentThread().getName());
+        return userList;
     }
 }

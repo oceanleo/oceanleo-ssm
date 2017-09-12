@@ -26,7 +26,7 @@
     <!--<aop:advisor advice-ref="txManager" order="1" pointcut-ref="servicePointcut"/>-->
   <!--</aop:config>-->
 
-  <!--<aop:aspectj-autoproxy/>-->
+  <aop:aspectj-autoproxy/>
 
   <!--调度配置-->
   <bean id="domainTask" class="com.ocean.project.ssm.support.task.DomainTask"/>

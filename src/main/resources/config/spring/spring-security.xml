@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
 
-  <import resource="spring-mybatis.xml"/>
+  <!--<import resource="spring-mybatis.xml"/>-->
 
   <security:http pattern="/login/in" security="none"/>
   <security:http pattern="/**/*.js" security="none"/>
