@@ -58,10 +58,10 @@ Ext.define('app.ocean.ssm.view.main.main', {
                 width: 200,
                 store: this.__createMenuStore(),
                 listeners: {
-                    //scope: this,
-                    //itemclick: function (source, record, item, index, e, eOpts) {
-                    //    me.__openIframeView(record.data.text, record.data.url);
-                    //}
+                    scope: this,
+                    itemclick: function (source, record, item, index, e, eOpts) {
+                        me._openView(record.data.text, record.data.url);
+                    }
                 }
             }, {
                 itemId: 'centerBox',
@@ -81,13 +81,21 @@ Ext.define('app.ocean.ssm.view.main.main', {
         var navStore = Ext.create("Ext.data.TreeStore", {
             autoLoad: true,
             defaultExpandAll: false,
-            rootVisible:true,
+            rootVisible: true,
             proxy: {
                 type: "ajax",
                 reader: "json",
                 url: app.ocean.ssm.common.request.url("/menu2.json")
             }
         });
+        //var store = Ext.create("Ext.data.Store", {
+        //    autoLoad: true,
+        //    proxy: {
+        //        type: "ajax",
+        //        reader: "json",
+        //        url: app.ocean.ssm.common.request.url("/user/getAll")
+        //    }
+        //});
         return navStore;
         //var data;
         //try{
@@ -148,18 +156,73 @@ Ext.define('app.ocean.ssm.view.main.main', {
      * @param onlyOne @type boolean 是否仅允许单实例，默认false
      * @return 打开的视图对象
      */
-    __openIframeView: function (viewClsName, url, config) {
+    _openView: function (viewClsName, url, config) {
         config = config || {};
-        if (url != '') {
+        if (url) {
             //取得视图
             var urlPatterns = url.split("?");
             var view = urlPatterns[1].replace("viewName=", "");
             try {
                 //Funi.core.Dashboard.newTab({title: viewClsName, view: view});
+                this._createTab({title: viewClsName, view: view});
             } catch (e) {
-                //Funi.core.Dashboard.error({message: "视图加载错误"});
+                Ext.Msg.alert('温馨提示','视图加载错误！');
             }
         }
 
+    },
+    _createTab: function (opts) {
+        function getViewId(opts) {
+            var viewId;
+            if (opts.viewId) {
+                viewId = (typeof (opts.viewId) == 'function') ? opts.viewId() : opts.viewId;
+            } else {
+                //如果只是简单地视图路径则直接拼接生成视图ID
+                if (typeof opts.view == 'string') {
+                    viewId = opts.view + (opts.title ? opts.title : "");
+                } else if (opts.view.id) {
+                    //如果是对象且ID存在，则ID+试图名称生成ID
+                    viewId = opts.view.id + (opts.title ? opts.title : (opts.view.title ? opts.view.title : ""));
+                }
+            }
+
+            if (opts.feature) {
+                viewId = viewId + feature;
+            }
+            return viewId;
+        }
+
+        var tabId = "tab_" + getViewId(opts);
+        var tab = Ext.getCmp(tabId);
+        if (tab == null) {
+            //新建选项卡页
+            tab = Ext.create({
+                id: tabId,
+                title: opts.title,
+                xtype: 'container',
+                scrollable: false,
+                closable: true,
+                layout: 'fit'
+            });
+            var contentView;
+            /**
+             * 如果传入的是视图名称则创建视图
+             */
+            if (typeof opts.view == 'string') {
+                contentView = Ext.create(opts.view, {params: (opts.params ? opts.params : {})});
+            }
+            /**
+             * 如果视图已经是对象且，且ID已经存在，则直接作为视图内容生成
+             */
+            if (typeof opts.view == 'object' && opts.view.id) {
+                contentView = opts.view;
+            }
+            if (contentView != null) {
+                tab.add(contentView);
+                Ext.mainFrame.getComponent("centerBox").add(tab);
+            }
+
+        }
+        Ext.mainFrame.getComponent("centerBox").setActiveTab(tab);
     }
 });

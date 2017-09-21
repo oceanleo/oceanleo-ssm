@@ -3,6 +3,7 @@ package com.ocean.project.ssm.utils;
 import com.ocean.framework.utils.AssertUtils;
 import com.ocean.framework.utils.BeanUtils;
 import com.ocean.framework.utils.DateUtils;
+import com.ocean.framework.utils.StringUtils;
 import com.ocean.project.ssm.query.UserQuery;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,11 @@ import java.util.*;
 public class UtilsTest {
 
     @Test
+    public void testDiy() {
+
+    }
+
+    @Test
     public void testBean() {
         Map<String, Object> map = new HashMap<String, Object>();
         UserQuery userQuery = new UserQuery();
@@ -34,6 +40,21 @@ public class UtilsTest {
             String fieldName = field.getName();
             map.put(fieldName, getFieldValue(userQuery, fieldName));
         }
+    }
+
+    public String join(String sourcesStr, String addStr, int length) {
+        if(StringUtils.hasText(sourcesStr)){
+            if(sourcesStr.length()<length){
+                StringBuilder stringBuilder = new StringBuilder(sourcesStr);
+                while (stringBuilder.length()<length){
+                    stringBuilder.append(addStr);
+                }
+                return stringBuilder.toString();
+            }else{
+                return sourcesStr;
+            }
+        }
+        return StringUtils.EMPTY;
     }
 
     public static Object getFieldValue(Object target, String fieldName) {

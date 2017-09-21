@@ -78,9 +78,7 @@ window.onload = function () {
                 if (add) {
                     extDependencies.push(r);
                 }
-
             });
-
 
             function _load(i) {
                 Ext.Loader.loadScript({
@@ -93,12 +91,9 @@ window.onload = function () {
                         }
                     }
                 });
-
             }
-
             _load(extDependencies.length - 1);
         }
-
 
         /**
          * 取得js源地址
@@ -115,5 +110,4 @@ window.onload = function () {
         //    return bootstrapUrl.replace("/ext/bootstrap.js", "");
         //}
     });
-
 };
