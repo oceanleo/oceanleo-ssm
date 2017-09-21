@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <context:property-placeholder location="classpath:dataSources.properties"/>
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="${mysql.driver}"/>
+    <property name="url" value="${mysql.url}"/>
+    <property name="username" value="${mysql.username}"/>
+    <property name="password" value="${mysql.password}"/>
+  </bean>
+
+  <bean id="sqlSessionFactory" class="com.ocean.project.ssm.support.orm.factory.SqlSessionFactoryBean">
+    <!--引入数据源-->
+    <property name="dataSource" ref="dataSource"/>
+    <!--设置类的别名映射-->
+    <property name="typeAliasesPackage" value="com.ocean.**.**.domain"/>
+    <!--设置本地xml文件映射-->
+    <property name="mapperLocations" value="classpath*:config/dao/**/*Dao.xml"/>
+    <!--本地核心配置文件-->
+    <!--<property name="configLocation" value="classpath:config/mybatis/orm-core.xml"/>-->
+    <!--自动分页插件-->
+    <property name="plugins">
+      <array>
+        <bean class="com.ocean.project.ssm.support.orm.interceptor.PageInterceptor"/>
+      </array>
+    </property>
+  </bean>
+  <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="com.ocean.**.**.dao"/>
+    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+  </bean>
+
+  <!--事物管理器-->
+  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+  </bean>
+
+  <!--aop切面-->
+  <!--<aop:config>-->
+  <!--<aop:pointcut id="servicePointcut" expression="execution(* com.ocean..service..*ServiceImpl(..))"/>-->
+  <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>-->
+  <!--</aop:config>-->
+  <aop:config>
+    <aop:pointcut id="servicePointcut" expression="within(com.ocean..service..*ServiceImpl)
+        and not within(@org.springframework.transaction.annotation.Transactional *)"/>
+    <aop:advisor advice-ref="txAdvice" order="1" pointcut-ref="servicePointcut"/>
+  </aop:config>
+
+  <!--声名式事物配置-->
+  <tx:advice id="txAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+      <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+      <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+      <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+      <tx:method name="*" propagation="REQUIRED"/>
+    </tx:attributes>
+  </tx:advice>
+
+  <!--编程式事物配置-->
+  <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>

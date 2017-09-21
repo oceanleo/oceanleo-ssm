@@ -1,6 +1,6 @@
 package com.ocean.project.ssm.support.security;
 
-import com.ocean.framework.utils.DateUtils;
+import com.ocean.project.ssm.support.utils.DateUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.FilterInvocation;

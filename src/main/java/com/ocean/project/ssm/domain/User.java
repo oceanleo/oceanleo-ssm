@@ -1,7 +1,7 @@
 package com.ocean.project.ssm.domain;
 
-import com.ocean.framework.utils.DateUtils;
-import com.ocean.framework.utils.StringUtils;
+import com.ocean.project.ssm.support.utils.DateUtils;
+import com.ocean.project.ssm.support.utils.StringUtils;
 
 import java.io.Serializable;
 

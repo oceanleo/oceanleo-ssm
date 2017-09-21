@@ -1,10 +1,9 @@
 package com.ocean.project.ssm.utils;
 
-import com.ocean.framework.utils.AssertUtils;
-import com.ocean.framework.utils.BeanUtils;
-import com.ocean.framework.utils.DateUtils;
-import com.ocean.framework.utils.StringUtils;
 import com.ocean.project.ssm.query.UserQuery;
+import com.ocean.project.ssm.support.utils.AssertUtils;
+import com.ocean.project.ssm.support.utils.DateUtils;
+import com.ocean.project.ssm.support.utils.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

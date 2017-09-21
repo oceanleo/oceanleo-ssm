@@ -1,7 +1,7 @@
-package com.ocean.project.ssm.support;
+package com.ocean.project.ssm.support.core;
 
-import com.ocean.framework.utils.StringUtils;
 import com.ocean.project.ssm.domain.Domain;
+import com.ocean.project.ssm.support.utils.StringUtils;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;

@@ -1,8 +1,8 @@
 package com.ocean.project.ssm.controller;
 
-import com.ocean.framework.mvc.annotation.NotUseResult;
 import com.ocean.project.ssm.dto.MenuDto;
 import com.ocean.project.ssm.service.MenuService;
+import com.ocean.project.ssm.support.mvc.annotation.NotUseResult;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
