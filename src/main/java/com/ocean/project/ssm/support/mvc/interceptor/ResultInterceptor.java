@@ -1,12 +1,16 @@
 package com.ocean.project.ssm.support.mvc.interceptor;
 
-import com.ocean.project.ssm.support.core.BizException;
+import com.ocean.project.ssm.support.core.exception.BizException;
 import com.ocean.project.ssm.support.mvc.domain.Result;
 import com.ocean.project.ssm.support.mvc.domain.ResultCode;
+import com.ocean.project.ssm.support.orm.page.PageList;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 控制层返回数据封装
@@ -23,16 +27,20 @@ public class ResultInterceptor {
             "&& @annotation(org.springframework.web.bind.annotation.ResponseBody) " +
             "&& !@annotation(com.ocean.project.ssm.support.mvc.annotation.NotUseResult) ")
     public Object setResult(ProceedingJoinPoint point) {
-        Result result;
-        Object obj;
         try {
-            obj = point.proceed();
-            result = new Result(obj);
+            Object obj = point.proceed();
+            if (obj instanceof PageList) {
+                PageList pageList = (PageList) obj;
+                Map<String, Object> resultMap = new HashMap<String, Object>();
+                resultMap.put("total", pageList.getTotal());
+                resultMap.put("list", pageList);
+                return new Result(resultMap);
+            }
+            return new Result(obj);
         } catch (BizException e) {
-            result = new Result(false, ResultCode.BUSINESS_FAIL, e.getMessage());
+            return new Result(false, ResultCode.BUSINESS_FAIL, e.getMessage());
         } catch (Throwable e) {
-            result = new Result(false, ResultCode.SYSTEM_FAIL, SYSTEM_EXCEPTION_MESSAGE);
+            return new Result(false, ResultCode.SYSTEM_FAIL, SYSTEM_EXCEPTION_MESSAGE);
         }
-        return result;
     }
 }

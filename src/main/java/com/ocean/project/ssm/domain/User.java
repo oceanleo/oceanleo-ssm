@@ -26,7 +26,7 @@ public class User extends Domain implements Serializable {
     //状态
     private String status;
     //是否启用
-    private boolean isEnabled = true;
+    private Boolean enabled;
 
     public Boolean getSex() {
         return sex;
@@ -36,12 +36,12 @@ public class User extends Domain implements Serializable {
         this.sex = sex;
     }
 
-    public boolean isEnabled() {
-        return isEnabled;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setEnabled(boolean isEnabled) {
-        this.isEnabled = isEnabled;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getStatus() {
@@ -97,8 +97,7 @@ public class User extends Domain implements Serializable {
                 ", sex=" + sex +
                 ", name='" + name + '\'' +
                 ", status='" + status + '\'' +
-                ", isEnabled=" + isEnabled +
-                ", DateCreate=" + DateUtils.format(getDateCreate())+
+                ", enabled=" + enabled +
                 '}';
     }
 }

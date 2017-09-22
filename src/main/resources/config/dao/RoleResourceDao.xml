@@ -6,23 +6,14 @@
     <id column="id" property="id"/>
     <result column="role_id" property="roleId"/>
     <result column="resource_id" property="resourceId"/>
-
-    <result column="date_create" property="dateCreate"/>
-    <result column="date_update" property="dateUpdate"/>
-    <result column="date_delete" property="dateDelete"/>
-    <result column="create_id" property="createId"/>
-    <result column="update_id" property="updateId"/>
-    <result column="delete_id" property="deleteId"/>
-    <result column="deleted" property="deleted"/>
-    <result column="version" property="version"/>
   </resultMap>
 
   <insert id="insert" parameterType="RoleResource">
     insert into role_resource(
-      id,role_id,resource_id,date_create,date_update,date_delete,
+      id,role_id,resource_id,create_date,update_date,delete_date,
       create_id,update_id,delete_id,deleted,version)
     values(
-      #{id},#{roleId},#{resourceId},#{dateCreate},#{dateUpdate},#{dateDelete},
+      #{id},#{roleId},#{resourceId},#{createDate},#{updateDate},#{deleteDate},
       #{createId},#{updateId},#{deleteId},#{deleted},#{version})
   </insert>
 

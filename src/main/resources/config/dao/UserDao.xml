@@ -10,15 +10,7 @@
     <result column="name" property="name"/>
     <result column="sex" property="sex"/>
     <result column="status" property="status"/>
-    <result column="is_enabled" property="isEnabled"/>
-    <result column="date_create" property="dateCreate"/>
-    <result column="date_update" property="dateUpdate"/>
-    <result column="date_delete" property="dateDelete"/>
-    <result column="create_id" property="createId"/>
-    <result column="update_id" property="updateId"/>
-    <result column="delete_id" property="deleteId"/>
-    <result column="deleted" property="deleted"/>
-    <result column="version" property="version"/>
+    <result column="is_enabled" property="enabled"/>
   </resultMap>
   <select id="selectById" parameterType="com.ocean.project.ssm.query.UserQuery" resultMap="BaseResultMap">
     select id,user_name,password,age,name,sex,status,is_enabled
@@ -27,10 +19,10 @@
 
   <insert id="insert" parameterType="User">
     insert into user(
-      id,user_name,password,age,name,sex,status,is_enabled,date_create,date_update,date_delete,
+      id,user_name,password,age,name,sex,status,is_enabled,create_date,update_date,delete_date,
       create_id,update_id,delete_id,deleted,version)
     values(
-      #{id},#{username},#{password},#{age},#{name},#{sex},#{status},#{isEnabled},#{dateCreate},#{dateUpdate},#{dateDelete},
+      #{id},#{username},#{password},#{age},#{name},#{sex},#{status},#{enabled},#{createDate},#{updateDate},#{deleteDate},
       #{createId},#{updateId},#{deleteId},#{deleted},#{version})
   </insert>
 
@@ -52,10 +44,11 @@
   </update>
 
   <select id="selectAll" parameterType="com.ocean.project.ssm.query.UserQuery" resultMap="BaseResultMap">
-    select * from user where deleted=0
+    select id,user_name,password,age,name,sex,status,is_enabled from user where deleted=0
     <if test="id !=null and id !=''">
       and id = #{id}
     </if>
+    order by age desc
   </select>
 
   <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">

@@ -1,12 +1,15 @@
 package com.ocean.project.ssm.domain;
 
+import java.io.Serializable;
+
 /**
  * 日志
  *
  * @author haiyang.li on 2017/8/30.
  */
-public class Log extends Domain {
+public class Log extends Domain implements Serializable {
 
+    private static final long serialVersionUID = -1228373527877362434L;
     //模块
     private String model;
     //访问方法名
@@ -14,7 +17,7 @@ public class Log extends Domain {
     //访问参数
     private String arguments;
     //是否访问成功
-    private String isSuccess;
+    private Boolean success;
 
     public String getModel() {
         return model;
@@ -40,11 +43,11 @@ public class Log extends Domain {
         this.arguments = arguments;
     }
 
-    public String getIsSuccess() {
-        return isSuccess;
+    public Boolean getSuccess() {
+        return success;
     }
 
-    public void setIsSuccess(String isSuccess) {
-        this.isSuccess = isSuccess;
+    public void setSuccess(Boolean success) {
+        this.success = success;
     }
 }

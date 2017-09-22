@@ -3,6 +3,7 @@ package com.ocean.project.ssm.service;
 import com.ocean.project.ssm.dao.MenuDao;
 import com.ocean.project.ssm.dao.ResourceDao;
 import com.ocean.project.ssm.dao.RoleResourceDao;
+import com.ocean.project.ssm.domain.User;
 import com.ocean.project.ssm.dto.MenuDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,47 +34,58 @@ public class UserServicesTest {
     private MenuDao menuDao;
 
     @Test
-    public void testGetUserById(){
+    public void testGetUserById() {
         List<MenuDto> menuDtoList = menuDao.selectAllDto();
-        for(MenuDto menuDto : menuDtoList){
+        for (MenuDto menuDto : menuDtoList) {
             System.out.println(menuDto);
         }
     }
 
-    private static List<EnumObj> getEnumList(String classPathName){
-        try{
-            Class<Enum> c = (Class<Enum>)Class.forName(classPathName);
+    @Test
+    public void testCreateUser() {
+//        for (int i = 0; i <= 100; i++) {
+//            User user = new User();
+//            user.setAge(i);
+//            user.setUsername("li_hai_yang"+i);
+//            user.setName("李海洋"+i);
+//            userService.create(user);
+//        }
+    }
+
+    private static List<EnumObj> getEnumList(String classPathName) {
+        try {
+            Class<Enum> c = (Class<Enum>) Class.forName(classPathName);
             Enum[] enums = c.getEnumConstants();
             Field[] fields = c.getDeclaredFields();
             StringBuilder methodName;
-            if(fields.length == 0){
+            if (fields.length == 0) {
                 throw new RuntimeException("sorry,the class have not fields!");
-            }else{
+            } else {
                 methodName = new StringBuilder("get");
-                for(Field field:fields){
-                    if(!field.isEnumConstant()){
+                for (Field field : fields) {
+                    if (!field.isEnumConstant()) {
                         String firstBigStr = getFirstBigString(field.getName());
                         methodName.append(firstBigStr);
                     }
-                    if(methodName.length() > 3){
+                    if (methodName.length() > 3) {
                         break;
                     }
                 }
             }
-            if(methodName.length() == 3){
+            if (methodName.length() == 3) {
                 throw new RuntimeException("when use EnumUtils.findEnumList ,enum must have description!");
             }
             List<EnumObj> list = new LinkedList<EnumObj>();
-            for(Enum obj:enums){
+            for (Enum obj : enums) {
                 list.add(new EnumObj(obj.name(), getEnumDescription(obj, methodName.toString())));
             }
             return list;
-        }catch(Exception e){
-            throw new RuntimeException(e.getMessage(),e);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage(), e);
         }
     }
 
-    public static class EnumObj{
+    public static class EnumObj {
         /**
          * 枚举名称
          */
@@ -105,29 +117,29 @@ public class UserServicesTest {
                     '}';
         }
     }
+
     /**
      * 获取描述内容
-     *
-     * */
-    private static String getEnumDescription(Enum obj, String methodName){
-        try{
+     */
+    private static String getEnumDescription(Enum obj, String methodName) {
+        try {
             Method method = obj.getClass().getMethod(methodName);
             return method.invoke(obj).toString();
-        }catch(Exception e){
-            throw new RuntimeException(e.getMessage(),e);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage(), e);
         }
     }
 
-    private static String getFirstBigString(String val){
-        if(StringUtils.hasText(val)){
+    private static String getFirstBigString(String val) {
+        if (StringUtils.hasText(val)) {
             return val.substring(0, 1).toUpperCase() + val.substring(1, val.length());
-        }else{
+        } else {
             return "";
         }
     }
 
     @Test
-    public void testInsertUser(){
+    public void testInsertUser() {
 //        User user = new User();
 //        user.setUsername("lhy");
 //        user.setPassword("lhy");
@@ -146,13 +158,13 @@ public class UserServicesTest {
             @Override
             public void run() {
                 a++;
-                if(a==5){
+                if (a == 5) {
                     timer.cancel();
                 }
                 System.out.println(a);
                 System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             }
-        }, 1000,3000);
+        }, 1000, 3000);
         System.out.println("------");
     }
 }

@@ -88,6 +88,22 @@ Ext.define('app.ocean.ssm.view.main.main', {
                 url: app.ocean.ssm.common.request.url("/menu2.json")
             }
         });
+        var menuStore = Ext.create("Ext.data.Store", {
+            autoLoad: true,
+            fields: [
+                {type: 'string', name: 'id'},
+                {type: 'string', name: 'name'},
+                {type: 'string', name: 'url'}
+            ],
+            proxy: {
+                type: "ajax",
+                url: app.ocean.ssm.common.request.url("/user/getAllMenu"),
+                reader:{
+                    type: 'json',
+                    root: 'resultData'
+                }
+            }
+        });
         //var store = Ext.create("Ext.data.Store", {
         //    autoLoad: true,
         //    proxy: {

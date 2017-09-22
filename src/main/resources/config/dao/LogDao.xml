@@ -7,23 +7,15 @@
     <result column="model" property="model"/>
     <result column="method_name" property="methodName"/>
     <result column="arguments" property="arguments"/>
-    <result column="is_success" property="isSuccess"/>
-    <result column="date_create" property="dateCreate"/>
-    <result column="date_update" property="dateUpdate"/>
-    <result column="date_delete" property="dateDelete"/>
-    <result column="create_id" property="createId"/>
-    <result column="update_id" property="updateId"/>
-    <result column="delete_id" property="deleteId"/>
-    <result column="deleted" property="deleted"/>
-    <result column="version" property="version"/>
+    <result column="is_success" property="success"/>
   </resultMap>
 
   <insert id="insert" parameterType="Log">
     insert into log (
-      id ,model ,method_name ,arguments ,is_success,date_create,date_update,date_delete,
+      id ,model ,method_name ,arguments ,is_success,create_date,update_date,delete_date,
       create_id,update_id,delete_id,deleted,version)
     values (
-      #{id},#{model},#{methodName},#{arguments},#{isSuccess},#{dateCreate},#{dateUpdate},#{dateDelete},
+      #{id},#{model},#{methodName},#{arguments},#{success},#{createDate},#{updateDate},#{deleteDate},
       #{createId},#{updateId},#{deleteId},#{deleted},#{version})
   </insert>
 </mapper>

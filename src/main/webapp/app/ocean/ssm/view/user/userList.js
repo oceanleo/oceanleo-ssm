@@ -30,7 +30,8 @@ Ext.define('app.ocean.ssm.view.user.userList', {
                 url: app.ocean.ssm.common.request.url(url),
                 reader: {
                     type: 'json',
-                    root: 'list'
+                    rootProperty: 'resultData.list',
+                    totalProperty:'resultData.total'
                 }
             },
             autoLoad: true
@@ -46,7 +47,11 @@ Ext.define('app.ocean.ssm.view.user.userList', {
                 store: store,
                 bbar: [
                     {xtype: 'pagingtoolbar', displayInfo: true, height: "auto", store: store}
-                ]
+                ],
+                tbar:[{
+                    xtype:'button',
+                    text:'添加账户'
+                }]
             }]
         });
         this.callParent(arguments);

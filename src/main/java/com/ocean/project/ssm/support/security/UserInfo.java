@@ -16,13 +16,13 @@ import java.util.*;
  *
  * @author haiyang.li on 2017/7/12.
  */
-public class UserInfo extends CurrentUserInfo implements UserDetails,CredentialsContainer{
+public class UserInfo extends CurrentUser implements UserDetails,CredentialsContainer{
 
     private final String username;
     private String password;
-    private static final boolean accountNonExpired = true;
-    private static final boolean accountNonLocked = true;
-    private static final boolean credentialsNonExpired = true;
+    private static final boolean ACCOUNT_NON_EXPIRED = true;
+    private static final boolean ACCOUNT_NON_LOCKED = true;
+    private static final boolean CREDENTIALS_NON_EXPIRED = true;
     private boolean enabled = true;
     private final Set<GrantedAuthority> authorities;
 
@@ -77,17 +77,17 @@ public class UserInfo extends CurrentUserInfo implements UserDetails,Credentials
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.accountNonExpired;
+        return this.ACCOUNT_NON_EXPIRED;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.accountNonLocked;
+        return this.ACCOUNT_NON_LOCKED;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.credentialsNonExpired;
+        return this.CREDENTIALS_NON_EXPIRED;
     }
 
     @Override
@@ -104,4 +104,6 @@ public class UserInfo extends CurrentUserInfo implements UserDetails,Credentials
     public int hashCode() {
         return username.hashCode();
     }
+
+
 }

@@ -10,15 +10,15 @@ public class Domain {
     //主键id
     private String id;
     //创建时间
-    private Date dateCreate;
+    private Date createDate;
     //创建人id
     private String createId;
     //上次修改时间
-    private Date dateUpdate;
+    private Date updateDate;
     //修改人id
     private String updateId;
     //删除时间
-    private Date dateDelete;
+    private Date deleteDate;
     //删除人id
     private String deleteId;
     //是否删除
@@ -34,12 +34,12 @@ public class Domain {
         this.id = id;
     }
 
-    public Date getDateCreate() {
-        return dateCreate;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setDateCreate(Date dateCreate) {
-        this.dateCreate = dateCreate;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public String getCreateId() {
@@ -50,12 +50,12 @@ public class Domain {
         this.createId = createId;
     }
 
-    public Date getDateUpdate() {
-        return dateUpdate;
+    public Date getUpdateDate() {
+        return updateDate;
     }
 
-    public void setDateUpdate(Date dateUpdate) {
-        this.dateUpdate = dateUpdate;
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     public String getUpdateId() {
@@ -66,12 +66,12 @@ public class Domain {
         this.updateId = updateId;
     }
 
-    public Date getDateDelete() {
-        return dateDelete;
+    public Date getDeleteDate() {
+        return deleteDate;
     }
 
-    public void setDateDelete(Date dateDelete) {
-        this.dateDelete = dateDelete;
+    public void setDeleteDate(Date deleteDate) {
+        this.deleteDate = deleteDate;
     }
 
     public String getDeleteId() {

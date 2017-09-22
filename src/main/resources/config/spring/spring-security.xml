@@ -8,6 +8,7 @@
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
 
+  <!--如果都在spring容器里面，不需要引入-->
   <!--<import resource="spring-orm.xml"/>-->
 
   <security:http pattern="/login/in" security="none"/>
@@ -103,8 +104,6 @@
     <!--</security:authentication-provider>-->
   </security:authentication-manager>
 
-
-
   <!--配置过滤器链-->
   <!--<bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">-->
     <!--<security:filter-chain-map path-type="ant">-->
@@ -113,4 +112,6 @@
         <!--filterSecurityInterceptor"/>-->
     <!--</security:filter-chain-map>-->
   <!--</bean>-->
+
+  <bean id="currentUserAccess" class="com.ocean.project.ssm.support.core.access.CurrentUserAccessImpl"/>
 </beans>

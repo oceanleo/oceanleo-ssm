@@ -7,15 +7,6 @@
     <result column="resource_name" property="resourceName"/>
     <result column="resource_type" property="resourceType"/>
     <result column="resource_string" property="resourceString"/>
-
-    <result column="date_create" property="dateCreate"/>
-    <result column="date_update" property="dateUpdate"/>
-    <result column="date_delete" property="dateDelete"/>
-    <result column="create_id" property="createId"/>
-    <result column="update_id" property="updateId"/>
-    <result column="delete_id" property="deleteId"/>
-    <result column="deleted" property="deleted"/>
-    <result column="version" property="version"/>
   </resultMap>
 
   <resultMap id="BaseResultDtoMap" type="com.ocean.project.ssm.dto.ResourceDto">
@@ -25,10 +16,10 @@
 
   <insert id="insert" parameterType="Resource">
     insert into resource(
-      id,resource_name,resource_type,resource_string,date_create,date_update,date_delete,
+      id,resource_name,resource_type,resource_string,create_date,update_date,delete_date,
       create_id,update_id,delete_id,deleted,version)
     values(
-      #{id},#{resourceName},#{resourceType},#{resourceString},#{dateCreate},#{dateUpdate},#{dateDelete},
+      #{id},#{resourceName},#{resourceType},#{resourceString},#{createDate},#{updateDate},#{deleteDate},
       #{createId},#{updateId},#{deleteId},#{deleted},#{version})
   </insert>
 

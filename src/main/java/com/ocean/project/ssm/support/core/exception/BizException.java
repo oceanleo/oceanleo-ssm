@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.core;
+package com.ocean.project.ssm.support.core.exception;
 
 /**
  * 业务异常

@@ -10,14 +10,6 @@
     <result column="url" property="url"/>
     <result column="sort" property="sort"/>
     <result column="parent_id" property="parentId"/>
-    <result column="date_create" property="dateCreate"/>
-    <result column="date_update" property="dateUpdate"/>
-    <result column="date_delete" property="dateDelete"/>
-    <result column="create_id" property="createId"/>
-    <result column="update_id" property="updateId"/>
-    <result column="delete_id" property="deleteId"/>
-    <result column="deleted" property="deleted"/>
-    <result column="version" property="version"/>
   </resultMap>
 
   <resultMap id="MenuDtoMap" type="com.ocean.project.ssm.dto.MenuDto">
@@ -43,10 +35,10 @@
 
   <insert id="insert" parameterType="Menu">
     insert into menu (
-      id,name,code,parent_id,url,sort,date_create,date_update,date_delete,
+      id,name,code,parent_id,url,sort,create_date,update_date,delete_date,
       create_id,update_id,delete_id,deleted,version)
     values (
-      #{id},#{name},#{code},#{parentId},#{url},#{sort},#{dateCreate},#{dateUpdate},#{dateDelete},
+      #{id},#{name},#{code},#{parentId},#{url},#{sort},#{createDate},#{updateDate},#{deleteDate},
       #{createId},#{updateId},#{deleteId},#{deleted},#{version})
   </insert>
 </mapper>

@@ -37,7 +37,7 @@ public class MyUserDetailsService implements UserDetailsService {
         // 密码
         String password = user.getPassword();
         // 帐户是否可用
-        boolean enabled = user.isEnabled();
+        boolean enabled = user.getEnabled();
         //设置角色
         Set<GrantedAuthority> grantedAuthoritySet = new HashSet<GrantedAuthority>();
         //封装角色对象到当前用户

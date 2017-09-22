@@ -5,7 +5,7 @@ package com.ocean.project.ssm.support.security;
  *
  * @author haiyang.li 2017/7/21.
  */
-public class CurrentUserInfo {
+public class CurrentUser {
 
     private String id;
 
