@@ -12,7 +12,7 @@
     <result column="status" property="status"/>
     <result column="is_enabled" property="enabled"/>
   </resultMap>
-  <select id="selectById" parameterType="com.ocean.project.ssm.query.UserQuery" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id,user_name,password,age,name,sex,status,is_enabled
     from user where id=#{id} and deleted=0
   </select>

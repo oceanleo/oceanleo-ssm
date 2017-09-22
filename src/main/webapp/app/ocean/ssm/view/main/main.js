@@ -28,7 +28,7 @@ Ext.define('app.ocean.ssm.view.main.main', {
                     cls: "top-tool",
                     items: [{
                         xtype: "label",
-                        html: "<i class='icon-user'></i> 欢迎您,ocean木子 "
+                        html: "<i class='icon-user'></i> 欢迎您,"+window.Context.name.name+" "
                     }, {
                         xtype: 'button',
                         //glyph: 0xf011,

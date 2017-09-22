@@ -23,6 +23,6 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
 
 
         System.out.println(DateUtils.format(new Date()) + " My---Authentication---Success---Handler---");
-        response.sendRedirect(request.getContextPath() + "/main");
+        response.sendRedirect(request.getContextPath() + "/");
     }
 }

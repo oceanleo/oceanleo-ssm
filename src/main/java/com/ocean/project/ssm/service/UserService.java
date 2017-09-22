@@ -13,7 +13,7 @@ import java.util.List;
 public interface UserService {
 
     @Log("获取用户")
-    User getById(UserQuery query);
+    User getById(String id);
 
     void update(List<User> userList);
 

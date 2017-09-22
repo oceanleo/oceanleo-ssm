@@ -17,8 +17,8 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User getById(UserQuery query) {
-        return userDao.selectById(query);
+    public User getById(String id) {
+        return userDao.selectById(id);
     }
 
     @Override

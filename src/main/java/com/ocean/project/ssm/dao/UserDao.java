@@ -14,7 +14,7 @@ public interface UserDao {
     /**
      * 根据用户id获取用户
      */
-    User selectById(UserQuery query);
+    User selectById(String id);
 
     /**
      * 修改用户信息

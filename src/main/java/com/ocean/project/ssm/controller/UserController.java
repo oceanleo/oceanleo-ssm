@@ -35,11 +35,10 @@ public class UserController extends BaseController {
 
     @RequestMapping("/getById")
     @ResponseBody
-    public Object getById(UserQuery query){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public Object getById(String id){
         System.out.println(DateUtils.format(new Date())+" current user id : " +getUserId());
         System.out.println(DateUtils.format(new Date())+" currentThread name : "+Thread.currentThread().getName());
-        User user = userService.getById(query);
+        User user = userService.getById(id);
         return user;
     }
 
