@@ -23,6 +23,28 @@
     <property name="password" value="${mysql.password}"/>
   </bean>
 
+
+  <!--多数据源配置-->
+  <!--<bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource">-->
+    <!--<property name="driverClassName" value="${mysql.driver2}"/>-->
+    <!--<property name="url" value="${mysql.url2}"/>-->
+    <!--<property name="username" value="${mysql.username2}"/>-->
+    <!--<property name="password" value="${mysql.password2}"/>-->
+  <!--</bean>-->
+
+  <!--<bean id="multipleDataSource" class="com.ocean.project.ssm.support.orm.datasource.MultipleDataSource">-->
+    <!--<property name="defaultTargetDataSource" ref="dataSource"/>-->
+    <!--<property name="targetDataSources">-->
+      <!--<map>-->
+        <!--<entry key="dataSource" value-ref="dataSource"/>-->
+        <!--<entry key="dataSource2" value-ref="dataSource2"/>-->
+      <!--</map>-->
+    <!--</property>-->
+  <!--</bean>-->
+  <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+    <!--<property name="dataSource" ref="multipleDataSource"/>-->
+  <!--</bean>-->
+
   <bean id="sqlSessionFactory" class="com.ocean.project.ssm.support.orm.factory.SqlSessionFactoryBean">
     <!--引入数据源-->
     <property name="dataSource" ref="dataSource"/>
