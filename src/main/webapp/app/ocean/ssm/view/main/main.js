@@ -100,6 +100,10 @@ Ext.define('app.ocean.ssm.view.main.main', {
                 type: "ajax",
                 reader: "json",
                 url: app.ocean.ssm.common.request.url("/menu2.json")
+            },
+            root:{
+                expanded: true,
+                text: "个人开发测试系统"
             }
         });
         var menuStore = Ext.create("Ext.data.Store", {

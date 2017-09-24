@@ -1,23 +1,21 @@
 /**
  * @author haiyang.li on 2017/9/12.
  */
-Ext.define('app.ocean.ssm.view.user.userList', {
+Ext.define('app.ocean.ssm.view.role.roleList', {
     extend: 'Ext.panel.Panel',
-    xtype: 'ssm-user-userList-xtype',
-    itemId: 'ssm-user-userList-itemId',
-    searchUrl: '/user/list',
+    xtype: 'ssm-role-roleList-xtype',
+    itemId: 'ssm-role-roleList-itemId',
+    searchUrl: '/role/list',
     layout: 'fit',
     columns: [
-        {text: '用户名', dataIndex: 'username', flex: 1},
-        {text: '姓名', dataIndex: 'name', flex: 1},
-        {text: '年龄', dataIndex: 'age', flex: 1},
-        {text: '性别', dataIndex: 'sex', flex: 1, renderer: function (val) {return val ? '男' : '女';}}
+        {text: '角色id', dataIndex: 'id', flex: 1},
+        {text: '角色名称', dataIndex: 'roleName', flex: 1},
+        {text: '角色编码', dataIndex: 'roleCode', flex: 1}
     ],
     fields: [
-        {type: 'string', name: 'username'},
-        {type: 'string', name: 'name'},
-        {type: 'number', name: 'age'},
-        {type: 'boolean', name: 'sex'}
+        {type: 'string', name: 'id'},
+        {type: 'string', name: 'roleName'},
+        {type: 'string', name: 'roleCode'}
     ],
     initComponent: function () {
         var me = this;
@@ -53,7 +51,7 @@ Ext.define('app.ocean.ssm.view.user.userList', {
                 ],
                 tbar: [{
                     xtype: 'button',
-                    text: '添加用户'
+                    text: '添加角色'
                 }]
             }]
         });

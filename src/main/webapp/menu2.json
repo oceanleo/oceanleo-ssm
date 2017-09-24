@@ -10,7 +10,8 @@
       "children": [
         {
           "text": "角色管理",
-          "leaf": true
+          "leaf": true,
+          "url": "getView?viewName=app.ocean.ssm.view.role.roleList"
         },
         {
           "text": "用户管理",

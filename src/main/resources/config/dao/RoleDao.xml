@@ -27,4 +27,8 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select id,role_name,role_code from role where deleted=0
   </select>
+
+  <select id="selectPageList" parameterType="com.ocean.project.ssm.support.orm.query.PageQuery" resultMap="BaseResultMap">
+    select id,role_name,role_code from role where deleted=0 order by role_code
+  </select>
 </mapper>

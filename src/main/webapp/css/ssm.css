@@ -40,7 +40,7 @@ body{
 }
 
 .x-toolbar-default-docked-bottom{
-    background: #F5F5F5;
+    /*background: #F5F5F5;*/
 }
 .x-toolbar-text-default{
     font-family: "Sans Noto", "Hiragino Sans GB", Arial, Helvetica, "微软雅黑", sans-serif;
@@ -49,16 +49,16 @@ body{
 
 .x-column-header{
     font-family: "Sans Noto", "Hiragino Sans GB", Arial, Helvetica, "微软雅黑", sans-serif;
-    border-right:none;
+    /*border-right:none;*/
     font-weight: bold;
-    background: #E7E7E6;
+    /*background: #E7E7E6;*/
 }
 .x-panel-header-title-default{
     font-weight: bold;
     color: #433E3C;
 }
 .x-grid-with-col-lines .x-grid-cell{
-    border-right:none;
+    /*border-right:none;*/
 }
 .x-grid-row-checker, .x-column-header-checkbox .x-column-header-text {
     height: 15px;

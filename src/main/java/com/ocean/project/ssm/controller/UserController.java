@@ -42,7 +42,7 @@ public class UserController extends BaseController {
         return user;
     }
 
-    @RequestMapping("/getAll")
+    @RequestMapping("/list")
     @ResponseBody
     public Object getAll(UserQuery query){
         System.out.println(DateUtils.format(new Date()) + " getAll before : "+Thread.currentThread().getName());
