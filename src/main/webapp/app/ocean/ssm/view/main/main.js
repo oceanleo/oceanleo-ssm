@@ -103,7 +103,7 @@ Ext.define('app.ocean.ssm.view.main.main', {
             },
             root:{
                 expanded: true,
-                text: "个人开发测试系统"
+                text: "个人开发测试"
             }
         });
         var menuStore = Ext.create("Ext.data.Store", {

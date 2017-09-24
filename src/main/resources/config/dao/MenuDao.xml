@@ -16,8 +16,11 @@
     <id column="id" property="id"/>
     <result column="name" property="name"/>
     <result column="url" property="url"/>
-    <collection property="children" ofType="com.ocean.project.ssm.dto.MenuDto"
-                javaType="java.util.List">
+    <result column="code" property="code"/>
+    <result column="sort" property="sort"/>
+    <result column="parent_name" property="parentName"/>
+
+    <collection property="children" ofType="com.ocean.project.ssm.dto.MenuDto" javaType="java.util.List">
       <result column="c_name" property="name"/>
       <result column="c_url" property="url"/>
     </collection>
@@ -27,6 +30,14 @@
     select p.id,p.name,p.url,c.name as c_name,c.url as c_url from menu p
     inner join menu c on p.id = c.parent_id and c.deleted=0
     where c.deleted = 0
+  </select>
+
+  <select id="selectPageList" parameterType="com.ocean.project.ssm.support.orm.query.PageQuery" resultMap="MenuDtoMap">
+    select
+      c.id,c.name,c.code,c.url,c.sort,p.name as parent_name
+    from menu c
+    left join menu p on c.parent_id = p.id and p.deleted=0
+    where c.deleted=0
   </select>
 
   <insert id="insert" parameterType="Menu">

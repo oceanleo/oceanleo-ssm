@@ -11,12 +11,17 @@
         {
           "text": "角色管理",
           "leaf": true,
-          "url": "getView?viewName=app.ocean.ssm.view.role.roleList"
+          "url": "getView?viewName=app.ocean.ssm.view.system.roleList"
+        },
+        {
+          "text": "菜单管理",
+          "leaf": true,
+          "url": "getView?viewName=app.ocean.ssm.view.system.menuList"
         },
         {
           "text": "用户管理",
           "leaf": true,
-          "url": "getView?viewName=app.ocean.ssm.view.user.userList"
+          "url": "getView?viewName=app.ocean.ssm.view.system.userList"
         }
       ]
     },

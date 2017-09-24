@@ -3,6 +3,7 @@ package com.ocean.project.ssm.service.impl;
 import com.ocean.project.ssm.dao.MenuDao;
 import com.ocean.project.ssm.dto.MenuDto;
 import com.ocean.project.ssm.service.MenuService;
+import com.ocean.project.ssm.support.orm.query.PageQuery;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -18,5 +19,10 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<MenuDto> findAllMenu() {
         return menuDao.selectAllDto();
+    }
+
+    @Override
+    public List<MenuDto> getPageList(PageQuery query) {
+        return menuDao.selectPageList(query);
     }
 }

@@ -1,10 +1,10 @@
 /**
  * @author haiyang.li on 2017/9/12.
  */
-Ext.define('app.ocean.ssm.view.user.userList', {
+Ext.define('app.ocean.ssm.view.system.userList', {
     extend: 'Ext.panel.Panel',
-    xtype: 'ssm-user-userList-xtype',
-    itemId: 'ssm-user-userList-itemId',
+    xtype: 'ssm-system-userList-xtype',
+    itemId: 'ssm-system-userList-itemId',
     searchUrl: '/user/list',
     layout: 'fit',
     columns: [

@@ -1,10 +1,10 @@
 /**
  * @author haiyang.li on 2017/9/12.
  */
-Ext.define('app.ocean.ssm.view.role.roleList', {
+Ext.define('app.ocean.ssm.view.system.roleList', {
     extend: 'Ext.panel.Panel',
-    xtype: 'ssm-role-roleList-xtype',
-    itemId: 'ssm-role-roleList-itemId',
+    xtype: 'ssm-system-roleList-xtype',
+    itemId: 'ssm-system-roleList-itemId',
     searchUrl: '/role/list',
     layout: 'fit',
     columns: [
