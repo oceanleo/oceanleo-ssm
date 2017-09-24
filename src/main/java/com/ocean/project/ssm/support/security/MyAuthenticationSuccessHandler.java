@@ -22,7 +22,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
 
-        System.out.println(DateUtils.format(new Date()) + " My---Authentication---Success---Handler---");
+        System.out.println(DateUtils.format(new Date()) + " 登录成功 跳转到主界面");
         response.sendRedirect(request.getContextPath() + "/");
     }
 }

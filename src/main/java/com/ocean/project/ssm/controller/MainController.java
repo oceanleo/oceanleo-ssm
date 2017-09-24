@@ -36,7 +36,7 @@ public class MainController extends BaseController {
         String userId = getUserId();
         User user = userService.getById(userId);
         String viewName = "/main";
-        model.addAttribute("name",user.getName());
+        model.addAttribute("user",user);
         return viewName;
     }
 

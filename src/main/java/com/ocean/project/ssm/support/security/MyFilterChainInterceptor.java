@@ -31,7 +31,7 @@ public class MyFilterChainInterceptor extends GenericFilterBean {
 //        } else {
 //            String username = principal.toString();
 //        }
-        System.out.println(DateUtils.format(new Date()) + " MyFilterChainInterceptor---Interceptor----");
+        System.out.println(DateUtils.format(new Date()) + " 自定义过滤器执行 在SpringSecurity过滤器链最前面过滤");
 
         chain.doFilter(request, response);
     }

@@ -28,11 +28,13 @@ Ext.define('app.ocean.ssm.view.main.main', {
                     cls: "top-tool",
                     items: [{
                         xtype: "label",
-                        html: "<i class='icon-user'></i> 欢迎您,"+window.Context.name.name+" "
+                        itemId:'welcome',
+                        html: ''
                     }, {
                         xtype: 'button',
-                        //glyph: 0xf011,
+                        glyph: 0xf011,
                         text: '退出',
+                        // border: false,
                         handler: function () {
                             me.logout();
                         }
@@ -43,8 +45,20 @@ Ext.define('app.ocean.ssm.view.main.main', {
                 xtype: 'toolbar',
                 region: 'south',
                 height: 40,
-                listeners: {},
-                items: []
+                listeners: {
+                    afterRender: function (cmp) {
+                        var qtip = "<div style='color: gray;'><span style='font-weight: bold;margin-left: 10px;'>登录账号</span>:" + window.Context.user.username +"</div>";
+                        cmp.queryById("qtip").setHtml(qtip);
+
+                        var welcome = "<span style='font-weight: bold;margin-left: 10px;color: orangered'>Hi&nbsp;</span>,&nbsp;" + window.Context.user.name;
+                        me.queryById("welcome").setHtml(welcome);
+                    }
+                },
+                items: [{
+                    itemId: "qtip",
+                    width: "100%",
+                    xtype: 'displayfield'
+                }]
             }, {
                 region: "west",
                 border: true,
@@ -56,11 +70,11 @@ Ext.define('app.ocean.ssm.view.main.main', {
                 xtype: 'treepanel',
                 title: '功能菜单',
                 width: 200,
-                store: this.__createMenuStore(),
+                store: this.createMenuStore(),
                 listeners: {
                     scope: this,
-                    itemclick: function (source, record, item, index, e, eOpts) {
-                        me._openView(record.data.text, record.data.url);
+                    itemClick: function (source, record, item, index, e, eOpts) {
+                        me.openView(record.data.text, record.data.url);
                     }
                 }
             }, {
@@ -77,7 +91,7 @@ Ext.define('app.ocean.ssm.view.main.main', {
         this.callParent(arguments);
     },
 
-    __createMenuStore: function () {
+    createMenuStore: function () {
         var navStore = Ext.create("Ext.data.TreeStore", {
             autoLoad: true,
             defaultExpandAll: false,
@@ -172,7 +186,7 @@ Ext.define('app.ocean.ssm.view.main.main', {
      * @param onlyOne @type boolean 是否仅允许单实例，默认false
      * @return 打开的视图对象
      */
-    _openView: function (viewClsName, url, config) {
+    openView: function (viewClsName, url, config) {
         config = config || {};
         if (url) {
             //取得视图
@@ -180,14 +194,14 @@ Ext.define('app.ocean.ssm.view.main.main', {
             var view = urlPatterns[1].replace("viewName=", "");
             try {
                 //Funi.core.Dashboard.newTab({title: viewClsName, view: view});
-                this._createTab({title: viewClsName, view: view});
+                this.createTab({title: viewClsName, view: view});
             } catch (e) {
                 Ext.Msg.alert('温馨提示','视图加载错误！');
             }
         }
 
     },
-    _createTab: function (opts) {
+    createTab: function (opts) {
         function getViewId(opts) {
             var viewId;
             if (opts.viewId) {

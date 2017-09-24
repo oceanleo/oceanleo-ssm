@@ -15,9 +15,4 @@ public interface ResourceDao {
     List<Resource> selectAll();
 
     List<ResourceDto> selectDtoAll();
-
-    /**
-     * 根据用户名获取用户拥有的资源
-     */
-    List<Resource> selectByUsername(String username);
 }

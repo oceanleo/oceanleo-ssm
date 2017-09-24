@@ -9,13 +9,15 @@ Ext.define('app.ocean.ssm.view.user.userList', {
     layout: 'fit',
     columns: [
         {text: '用户名', dataIndex: 'username', flex: 1},
+        {text: '姓名', dataIndex: 'name', flex: 1},
         {text: '年龄', dataIndex: 'age', flex: 1},
-        {text: '姓名', dataIndex: 'name', flex: 1}
+        {text: '性别', dataIndex: 'sex', flex: 1, renderer: function (val) {return val ? '男' : '女';}}
     ],
     fields: [
         {type: 'string', name: 'username'},
+        {type: 'string', name: 'name'},
         {type: 'number', name: 'age'},
-        {type: 'string', name: 'name'}
+        {type: 'boolean', name: 'sex'}
     ],
     initComponent: function () {
         var me = this;
@@ -31,7 +33,7 @@ Ext.define('app.ocean.ssm.view.user.userList', {
                 reader: {
                     type: 'json',
                     rootProperty: 'resultData.list',
-                    totalProperty:'resultData.total'
+                    totalProperty: 'resultData.total'
                 }
             },
             autoLoad: true
@@ -43,14 +45,15 @@ Ext.define('app.ocean.ssm.view.user.userList', {
                 columnLines: true,
                 overflowY: 'auto',
                 width: "100%",
+                margin: "5 5 5 5",
                 columns: columnsObj,
                 store: store,
                 bbar: [
                     {xtype: 'pagingtoolbar', displayInfo: true, height: "auto", store: store}
                 ],
-                tbar:[{
-                    xtype:'button',
-                    text:'添加账户'
+                tbar: [{
+                    xtype: 'button',
+                    text: '添加账户'
                 }]
             }]
         });

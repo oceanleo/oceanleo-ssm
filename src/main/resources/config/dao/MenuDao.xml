@@ -23,10 +23,6 @@
     </collection>
   </resultMap>
 
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
-    select id,name,code,parent_id,url,sort from menu where deleted=0 and id = #{id}
-  </select>
-
   <select id="selectAllDto" resultMap="MenuDtoMap">
     select p.id,p.name,p.url,c.name as c_name,c.url as c_url from menu p
     inner join menu c on p.id = c.parent_id and c.deleted=0

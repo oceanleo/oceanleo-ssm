@@ -7,12 +7,17 @@
 <%--<meta http-equiv="cache-control" content="max-age=${expiredMaxAge}, public"/>--%>
 <%--<title>${platform.name}</title>--%>
 <title>个人开发测试系统</title>
-<link rel="stylesheet" type="text/css" href="<c:url value="/js/extjs/themes/neptune/ext-theme-neptune-all.css"/>"/>
+
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/font-awesome.min.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/ext/build/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css"/>"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/app.css"/>"/>
-<script src="<c:url value="/js/extjs/ext-all.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/js/extjs/ext-theme-neptune.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/js/extjs/ext-locale-zh_CN.js"/>" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/ssm.css"/>"/>
+
+<script type="text/javascript" src="<c:url value="/ext/ext-all.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/ext/ext-locale-zh_CN.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/ext/build/packages/ext-charts/build/ext-charts.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/ext/build/packages/ext-theme-crisp/build/ext-theme-crisp.js"/>"></script>
+
 <head>
   <script language="javascript">
     (function () {
@@ -31,11 +36,14 @@
           <%--code:"${platform.code}"--%>
         <%--},--%>
         //是否是房管局用户
-        name:{name:'${name}'}
+        user:{
+            name:'${user.name}',
+            username:'${user.username}'
+        }
       };
-      <c:forEach items="${authorityList}" var="a">
-      Context.security.authorities.push('${a}');
-      </c:forEach>
+      <%--<c:forEach items="${authorityList}" var="a">--%>
+        <%--Context.security.authorities.push('${a}');--%>
+      <%--</c:forEach>--%>
 
     })();
   </script>

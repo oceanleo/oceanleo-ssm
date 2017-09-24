@@ -12,7 +12,5 @@ public interface MenuDao {
 
     void insert(Menu menu);
 
-    Menu selectById(String id);
-
     List<MenuDto> selectAllDto();
 }
