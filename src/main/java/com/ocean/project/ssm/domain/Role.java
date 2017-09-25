@@ -28,4 +28,12 @@ public class Role extends Domain implements Serializable {
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "roleName='" + roleName + '\'' +
+                ", roleCode='" + roleCode + '\'' +
+                '}';
+    }
 }

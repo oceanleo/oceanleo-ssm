@@ -1,5 +1,6 @@
 package com.ocean.project.ssm.service;
 
+import com.ocean.project.ssm.domain.Menu;
 import com.ocean.project.ssm.dto.MenuDto;
 import com.ocean.project.ssm.support.log.Log;
 import com.ocean.project.ssm.support.orm.query.PageQuery;
@@ -12,11 +13,18 @@ import java.util.List;
 @Log("菜单业务层")
 public interface MenuService {
 
-    @Log("获取所有的菜单")
-    List<MenuDto> findAllMenu();
+    /**
+     * 新增菜单
+     */
+    void create(Menu menu);
 
     /**
      * 获取菜单列表
      */
     List<MenuDto> getPageList(PageQuery query);
+
+    /**
+     * 获取当前用户的菜单
+     */
+    List<MenuDto> getByUserId(String userId);
 }

@@ -32,6 +32,16 @@
     where c.deleted = 0
   </select>
 
+  <select id="selectByUserId" parameterType="java.lang.String" resultMap="MenuDtoMap">
+    select distinct p.id,p.name,p.url,c.name as c_name,c.url as c_url
+    from menu p
+    inner join menu c on p.id = c.parent_id and c.deleted=0
+    inner join role_menu rm on p.id = role_id and rm.deleted=0
+    inner join role r on r.id = rm.role_id and r.deleted=0
+    inner join user_role ur on ur.role_id = r.id and ur.deleted=0
+    where p.deleted = 0 and ur.user_id = #{userId}
+  </select>
+
   <select id="selectPageList" parameterType="com.ocean.project.ssm.support.orm.query.PageQuery" resultMap="MenuDtoMap">
     select
       c.id,c.name,c.code,c.url,c.sort,p.name as parent_name

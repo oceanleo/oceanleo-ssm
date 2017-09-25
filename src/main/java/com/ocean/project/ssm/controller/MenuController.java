@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 /**
+ * 菜单控制层
+ *
  * @author haiyang.li on 2017/9/24.
  */
 @Controller

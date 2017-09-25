@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 用户控制层
+ *
  * @author haiyang.li
  */
 @Controller
@@ -30,17 +32,6 @@ public class UserController extends BaseController {
 
     @Resource
     private UserService userService;
-    @Resource
-    private MenuService menuService;
-
-    @RequestMapping("/getById")
-    @ResponseBody
-    public Object getById(String id){
-        System.out.println(DateUtils.format(new Date())+" current user id : " +getUserId());
-        System.out.println(DateUtils.format(new Date())+" currentThread name : "+Thread.currentThread().getName());
-        User user = userService.getById(id);
-        return user;
-    }
 
     @RequestMapping("/list")
     @ResponseBody
@@ -49,13 +40,5 @@ public class UserController extends BaseController {
         List<User> userList = userService.getAll(query);
         System.out.println(DateUtils.format(new Date()) + " getAll after : "+Thread.currentThread().getName());
         return userList;
-    }
-
-    @RequestMapping("/getAllMenu")
-    @ResponseBody
-    @NotUseResult
-    public Object getAllMenu(){
-        List<MenuDto> menuDtoList = menuService.findAllMenu();
-        return menuDtoList;
     }
 }

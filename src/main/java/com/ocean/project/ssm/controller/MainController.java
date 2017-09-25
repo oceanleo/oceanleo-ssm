@@ -18,6 +18,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ * 主控制层
+ *
  * @author haiyang.li
  */
 @Controller
@@ -40,19 +42,13 @@ public class MainController extends BaseController {
         return viewName;
     }
 
-    @RequestMapping("/menu")
+    /**
+     * 获取菜单
+     */
+    @RequestMapping("/sys/menu")
     @ResponseBody
-    @NotUseResult
-    public Object getAllMenu() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails) principal).getUsername();
-            System.out.println(username);
-        } else {
-            String username = principal.toString();
-            System.out.println(username);
-        }
-        List<MenuDto> menuDtoList = menuService.findAllMenu();
-        return menuDtoList;
+    public Object menu() {
+        String userId = getUserId();
+        return menuService.getByUserId(userId);
     }
 }

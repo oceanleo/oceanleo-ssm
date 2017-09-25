@@ -1,10 +1,5 @@
 package com.ocean.project.ssm.service;
 
-import com.ocean.project.ssm.dao.MenuDao;
-import com.ocean.project.ssm.dao.ResourceDao;
-import com.ocean.project.ssm.dao.RoleResourceDao;
-import com.ocean.project.ssm.domain.User;
-import com.ocean.project.ssm.dto.MenuDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -26,19 +21,9 @@ public class UserServicesTest {
 
     @Resource
     private UserService userService;
-    @Resource
-    private ResourceDao resourceDao;
-    @Resource
-    private RoleResourceDao roleResourceDao;
-    @Resource
-    private MenuDao menuDao;
 
     @Test
     public void testGetUserById() {
-        List<MenuDto> menuDtoList = menuDao.selectAllDto();
-        for (MenuDto menuDto : menuDtoList) {
-            System.out.println(menuDto);
-        }
     }
 
     @Test

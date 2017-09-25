@@ -1,6 +1,16 @@
 
 set foreign_key_checks=0;
 
+-- 基础字段
+alter table role_menu add create_date datetime default null;
+alter table role_menu add update_date datetime default null;
+alter table role_menu add delete_date datetime default null;
+alter table role_menu add create_id varchar(50) default null;
+alter table role_menu add update_id varchar(50) default null;
+alter table role_menu add delete_id varchar(50) default null;
+alter table role_menu add deleted tinyint(1) default 0;
+alter table role_menu add version varchar(50) default 1;
+
 drop table if exists 'menu';
 create table 'menu' (
   'id' varchar(50) not null,

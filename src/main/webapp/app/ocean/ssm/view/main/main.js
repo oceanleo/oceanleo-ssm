@@ -6,7 +6,7 @@ Ext.define('app.ocean.ssm.view.main.main', {
         var me = this;
         Ext.applyIf(this, {
             items: [{
-                region: "north",
+                region: 'north',
                 itemId: 'maintop',
                 height: 40,
                 margin: '10 0 0 0',
@@ -14,27 +14,26 @@ Ext.define('app.ocean.ssm.view.main.main', {
                 collapsible: false,
                 xtype: 'toolbar',
                 border: false,
-                layout: "auto",
+                layout: 'auto',
                 items: [{
-                    xtype: "image",
-                    src: "img/extjs5.png",
-                    cls: "main-logo"
+                    xtype: 'image',
+                    src: 'img/extjs5.png',
+                    cls: 'main-logo'
                 }, {
-                    xtype: "image",
-                    src: "img/mainLogo.png",
-                    cls: "main-logo"
+                    xtype: 'image',
+                    src: 'img/mainLogo.png',
+                    cls: 'main-logo'
                 }, {
-                    xtype: "container",
-                    cls: "top-tool",
+                    xtype: 'container',
+                    cls: 'top-tool',
                     items: [{
-                        xtype: "label",
-                        itemId:'welcome',
+                        xtype: 'label',
+                        itemId: 'top-welcome',
                         html: ''
                     }, {
                         xtype: 'button',
                         glyph: 0xf011,
                         text: '退出',
-                        // border: false,
                         handler: function () {
                             me.logout();
                         }
@@ -47,20 +46,20 @@ Ext.define('app.ocean.ssm.view.main.main', {
                 height: 40,
                 listeners: {
                     afterRender: function (cmp) {
-                        var qtip = "<div style='color: gray;'><span style='font-weight: bold;margin-left: 10px;'>登录账号</span>:" + window.Context.user.username +"</div>";
-                        cmp.queryById("qtip").setHtml(qtip);
+                        var bottom_welcome = "<div style='color: gray;'><span style='font-weight: bold;margin-left: 50px;'>登录账号</span>:" + window.Context.user.username + '</div>';
+                        cmp.queryById('bottom-welcome').setHtml(bottom_welcome);
 
-                        var welcome = "<span style='font-weight: bold;margin-left: 10px;color: orangered'>Hi&nbsp;</span>,&nbsp;" + window.Context.user.name;
-                        me.queryById("welcome").setHtml(welcome);
+                        var top_welcome = "<span style='font-weight: bold;margin-left: 50px;color: orangered'>Hi&nbsp;</span>,&nbsp;" + window.Context.user.name;
+                        me.queryById('top-welcome').setHtml(top_welcome);
                     }
                 },
                 items: [{
-                    itemId: "qtip",
-                    width: "100%",
-                    xtype: 'displayfield'
+                    xtype: 'displayfield',
+                    itemId: 'bottom-welcome',
+                    width: '100%'
                 }]
             }, {
-                region: "west",
+                region: 'west',
                 border: true,
                 padding: '0px',
                 split: true,
@@ -79,7 +78,7 @@ Ext.define('app.ocean.ssm.view.main.main', {
                 }
             }, {
                 itemId: 'centerBox',
-                region: "center",
+                region: 'center',
                 layout: 'fit',
                 border: true,
                 margin: '0 0 0 0',
@@ -92,84 +91,21 @@ Ext.define('app.ocean.ssm.view.main.main', {
     },
 
     createMenuStore: function () {
-        var navStore = Ext.create("Ext.data.TreeStore", {
+        var navStore = Ext.create('Ext.data.TreeStore', {
             autoLoad: true,
             defaultExpandAll: false,
             rootVisible: true,
             proxy: {
-                type: "ajax",
-                reader: "json",
-                url: app.ocean.ssm.common.request.url("/menu2.json")
+                type: 'ajax',
+                reader: 'json',
+                url: app.ocean.ssm.common.request.url('/menu2.json')
             },
-            root:{
+            root: {
                 expanded: true,
-                text: "个人开发测试"
+                text: '个人开发测试'
             }
         });
-        var menuStore = Ext.create("Ext.data.Store", {
-            autoLoad: true,
-            fields: [
-                {type: 'string', name: 'id'},
-                {type: 'string', name: 'name'},
-                {type: 'string', name: 'url'}
-            ],
-            proxy: {
-                type: "ajax",
-                url: app.ocean.ssm.common.request.url("/user/getAllMenu"),
-                reader:{
-                    type: 'json',
-                    root: 'resultData'
-                }
-            }
-        });
-        //var store = Ext.create("Ext.data.Store", {
-        //    autoLoad: true,
-        //    proxy: {
-        //        type: "ajax",
-        //        reader: "json",
-        //        url: app.ocean.ssm.common.request.url("/user/getAll")
-        //    }
-        //});
         return navStore;
-        //var data;
-        //try{
-        //    data = app.ocean.ssm.common.request.request({id: 1}, '/user/getById');
-        //    return data;
-        //}catch (e){
-        //    Ext.Msg.alert('温馨提示',e.message);
-        //}
-        //var sidebarUrl = app.platform.shfs.common.RequestUtils.url("/dashboard/sidebar");
-        //if(window.Context.platform.model!=''){
-        //    sidebarUrl = sidebarUrl+"?m="+window.Context.platform.model;
-        //}
-        //var longNameFilter = new Ext.util.Filter({
-        //    filterFn:function(item) {
-        //        var level = item.data.nodeLevel;
-        //        if(level){
-        //            level = level.trim();
-        //            if(!isNaN(level)){
-        //                if(parseInt(level)>=3)
-        //                    return false;
-        //                else if(parseInt(level)==2){
-        //                    item.data.leaf = true;
-        //                }
-        //            }
-        //        }
-        //        return true;
-        //    }
-        //});
-        //return Ext.create('Funi.data.TreeStore', {
-        //    url: sidebarUrl,
-        //    autoLoad: true,
-        //    defaultExpandAll: false,
-        //    defaultRootProperty: "children",
-        //    fields: [{
-        //        name: 'text',
-        //        mapping: 'name'
-        //    }],
-        //    filters:longNameFilter
-        //});
-        //return null;
     },
 
     logout: function () {
@@ -178,7 +114,7 @@ Ext.define('app.ocean.ssm.view.main.main', {
         });
 
         action.submit({
-            url: app.ocean.ssm.common.request.url("/security_logout"),
+            url: app.ocean.ssm.common.request.url('/security_logout'),
             clientValidation: false
         });
     },
@@ -194,13 +130,13 @@ Ext.define('app.ocean.ssm.view.main.main', {
         config = config || {};
         if (url) {
             //取得视图
-            var urlPatterns = url.split("?");
-            var view = urlPatterns[1].replace("viewName=", "");
+            var urlPatterns = url.split('?');
+            var view = urlPatterns[1].replace('viewName=', '');
             try {
                 //Funi.core.Dashboard.newTab({title: viewClsName, view: view});
                 this.createTab({title: viewClsName, view: view});
             } catch (e) {
-                Ext.Msg.alert('温馨提示','视图加载错误！');
+                Ext.Msg.alert('温馨提示', '视图加载错误！');
             }
         }
 
@@ -213,10 +149,10 @@ Ext.define('app.ocean.ssm.view.main.main', {
             } else {
                 //如果只是简单地视图路径则直接拼接生成视图ID
                 if (typeof opts.view == 'string') {
-                    viewId = opts.view + (opts.title ? opts.title : "");
+                    viewId = opts.view + (opts.title ? opts.title : '');
                 } else if (opts.view.id) {
                     //如果是对象且ID存在，则ID+试图名称生成ID
-                    viewId = opts.view.id + (opts.title ? opts.title : (opts.view.title ? opts.view.title : ""));
+                    viewId = opts.view.id + (opts.title ? opts.title : (opts.view.title ? opts.view.title : ''));
                 }
             }
 
@@ -226,7 +162,7 @@ Ext.define('app.ocean.ssm.view.main.main', {
             return viewId;
         }
 
-        var tabId = "tab_" + getViewId(opts);
+        var tabId = 'tab_' + getViewId(opts);
         var tab = Ext.getCmp(tabId);
         if (tab == null) {
             //新建选项卡页
@@ -253,10 +189,10 @@ Ext.define('app.ocean.ssm.view.main.main', {
             }
             if (contentView != null) {
                 tab.add(contentView);
-                Ext.mainFrame.getComponent("centerBox").add(tab);
+                Ext.mainFrame.getComponent('centerBox').add(tab);
             }
 
         }
-        Ext.mainFrame.getComponent("centerBox").setActiveTab(tab);
+        Ext.mainFrame.getComponent('centerBox').setActiveTab(tab);
     }
 });

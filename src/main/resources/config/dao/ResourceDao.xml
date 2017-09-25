@@ -29,10 +29,12 @@
   </select>
 
   <select id="selectDtoAll" resultMap="BaseResultDtoMap">
-    select res.resource_string,r.role_code
-    from role r
-    inner join role_resource rs on r.id = rs.role_id and rs.deleted=0
-    inner join resource res on rs.resource_id = res.id and res.deleted=0
+    select distinct r.resource_string,ro.role_code
+    from resource r
+    inner join menu_resource mr on mr.resource_id = r.id and mr.deleted=0
+    inner join menu m on m.id = mr.menu_id and m.deleted=0
+    inner join role_menu rm on rm.menu_id = m.id and rm.deleted=0
+    inner join role ro on ro.id = rm.role_id and ro.deleted=0
     where r.deleted=0
   </select>
 </mapper>

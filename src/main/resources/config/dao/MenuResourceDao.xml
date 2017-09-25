@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ocean.project.ssm.dao.RoleResourceDao">
-  <resultMap id="BaseResultMap" type="RoleResource">
+<mapper namespace="com.ocean.project.ssm.dao.MenuResourceDao">
+  <resultMap id="BaseResultMap" type="MenuResource">
     <id column="id" property="id"/>
-    <result column="role_id" property="roleId"/>
+    <result column="menu_id" property="menuId"/>
     <result column="resource_id" property="resourceId"/>
   </resultMap>
 
-  <insert id="insert" parameterType="RoleResource">
-    insert into role_resource(
-      id,role_id,resource_id,create_date,update_date,delete_date,
+  <insert id="insert" parameterType="MenuResource">
+    insert into menu_resource(
+      id,menu_id,resource_id,create_date,update_date,delete_date,
       create_id,update_id,delete_id,deleted,version)
     values(
-      #{id},#{roleId},#{resourceId},#{createDate},#{updateDate},#{deleteDate},
+      #{id},#{menuId},#{resourceId},#{createDate},#{updateDate},#{deleteDate},
       #{createId},#{updateId},#{deleteId},#{deleted},#{version})
   </insert>
 
   <select id="selectAll" resultMap="BaseResultMap">
-    select id,role_id,resource_id
-    from role_resource where deleted=0
+    select id,menu_id,resource_id from menu_resource where deleted=0
   </select>
 </mapper>

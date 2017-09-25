@@ -5,11 +5,11 @@ import java.io.Serializable;
 /**
  * @author haiyang.li
  */
-public class RoleResource extends Domain implements Serializable {
+public class MenuResource extends Domain implements Serializable {
 
     private static final long serialVersionUID = -8858332840490606429L;
     //角色Id
-    private String roleId;
+    private String menuId;
     //资源id
     private String resourceId;
 
@@ -21,19 +21,19 @@ public class RoleResource extends Domain implements Serializable {
         this.resourceId = resourceId;
     }
 
-    public String getRoleId() {
-        return roleId;
+    public String getMenuId() {
+        return menuId;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
+    public void setMenuId(String menuId) {
+        this.menuId = menuId;
     }
 
     @Override
     public String toString() {
-        return "RoleResource{" +
-                "resourceId='" + resourceId + '\'' +
-                ", roleId='" + roleId + '\'' +
+        return "MenuResource{" +
+                "menuId='" + menuId + '\'' +
+                ", resourceId='" + resourceId + '\'' +
                 '}';
     }
 }

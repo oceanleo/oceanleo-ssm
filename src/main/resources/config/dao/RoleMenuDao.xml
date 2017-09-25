@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocean.project.ssm.dao.RoleMenuDao">
+  <resultMap id="BaseResultMap" type="RoleMenu">
+    <id column="id" property="id"/>
+    <result column="role_id" property="roleId"/>
+    <result column="menu_id" property="menuId"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="RoleMenu">
+    insert into role_menu(
+      id,role_id,menu_id,create_date,update_date,delete_date,
+      create_id,update_id,delete_id,deleted,version)
+    values(
+      #{id},#{roleId},#{menuId},#{createDate},#{updateDate},#{deleteDate},
+      #{createId},#{updateId},#{deleteId},#{deleted},#{version})
+  </insert>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id,role_id,menu_id from role_menu where deleted=0
+  </select>
+</mapper>

@@ -28,4 +28,12 @@ public class UserRole extends Domain implements Serializable {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "UserRole{" +
+                "userId='" + userId + '\'' +
+                ", roleId='" + roleId + '\'' +
+                '}';
+    }
 }
