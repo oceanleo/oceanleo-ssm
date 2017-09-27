@@ -42,8 +42,8 @@ public class MybatisPagination {
         THREAD_LOCAL.set(total);
     }
 
-    public static PageList toPageList(List list){
-        PageList pageList = new PageList();
+    public static <T> PageList<T> toPageList(List<T> list){
+        PageList<T> pageList = new PageList<>();
         pageList.setTotal(THREAD_LOCAL.get());
         pageList.addAll(list);
         THREAD_LOCAL.remove();
