@@ -16,9 +16,17 @@
 
   <context:property-placeholder location="classpath:dataSources.properties"/>
 
-  <!--<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">-->
-    <!--<property name="jndiName" value="java:comp/env/jndi/ssm"/>-->
-  <!--</bean>-->
+  <bean id="ssmDataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">
+    <property name="jndi" value="jdbc/ssm"/>
+  </bean>
+
+  <bean id="ssm2DataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">
+    <property name="jndi" value="jdbc/ssm2"/>
+  </bean>
+
+  <bean id="tradingDataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">
+    <property name="jndi" value="jdbc/ds_trading"/>
+  </bean>
 
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
     <property name="driverClassName" value="${mysql.driver}"/>
@@ -48,11 +56,12 @@
     <!--</property>-->
   <!--</bean>-->
 
-  <!--<bean id="dataSource" class="com.ocean.project.ssm.support.orm.datasource.MultipleDataSource">-->
+  <!--<bean id="dataSource" class="com.ocean.project.ssm.support.orm.datasource.DynamicRoutingDataSource">-->
     <!--<property name="targetDataSources">-->
       <!--<map key-type="java.lang.String">-->
         <!--<entry key="ssm" value-ref="ssmDataSource"/>-->
         <!--<entry key="ssm2" value-ref="ssm2DataSource"/>-->
+        <!--<entry key="trading" value-ref="tradingDataSource"/>-->
       <!--</map>-->
     <!--</property>-->
     <!--<property name="defaultTargetDataSource" ref="ssmDataSource"/>-->

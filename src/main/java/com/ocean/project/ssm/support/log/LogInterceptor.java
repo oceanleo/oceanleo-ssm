@@ -1,6 +1,7 @@
 package com.ocean.project.ssm.support.log;
 
 import com.ocean.project.ssm.dao.LogDao;
+import com.ocean.project.ssm.support.utils.DateUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -25,10 +26,15 @@ public class LogInterceptor {
 
     @Around("execution(public * com.ocean..service.*Service.*(..))")
     public Object createLog(ProceedingJoinPoint joinPoint) throws Throwable {
+        Object object;
         try {
-            return joinPoint.proceed();
+            System.out.println(DateUtils.formatCurrentTime()+" 访问Service方法,方法名： "+joinPoint.getSignature().toString());
+            System.out.println(DateUtils.formatCurrentTime()+" 日志 Aop Service方法执行前");
+            object = joinPoint.proceed();
+            System.out.println(DateUtils.formatCurrentTime()+" 日志 Aop Service方法执行后");
         } finally {
 
         }
+        return object;
     }
 }

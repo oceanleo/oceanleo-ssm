@@ -84,22 +84,25 @@
     <session-timeout>60</session-timeout>
   </session-config>
 
-
-  <!-- 异常页面 -->
-  <error-page>
-    <exception-type>java.lang.Throwable</exception-type>
-    <location>/index.jsp</location>
-  </error-page>
-  <error-page>
-    <error-code>500</error-code>
-    <location>/index.jsp</location>
-  </error-page>
-  <error-page>
-    <error-code>404</error-code>
-    <location>/index.jsp</location>
-  </error-page>
-  <error-page>
-    <error-code>403</error-code>
-    <location>/index.jsp</location>
-  </error-page>
+  <!--绑定Jndi数据源-->
+  <!--模拟使用两个本地mysql数据库-->
+  <resource-ref>
+    <description>jdbc/ssm</description>
+    <res-ref-name>jdbc/ssm</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  <resource-ref>
+    <description>jdbc/ssm2</description>
+    <res-ref-name>jdbc/ssm2</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  <!--模拟一个不同类型的数据库-->
+  <resource-ref>
+    <description>jdbc/ds_trading</description>
+    <res-ref-name>jdbc/ds_trading</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
 </web-app>

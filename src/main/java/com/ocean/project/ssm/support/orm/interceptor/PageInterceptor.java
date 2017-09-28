@@ -47,26 +47,30 @@ public class PageInterceptor implements Interceptor {
         //发sql 和 返回结果都会进行拦截
         Object target = invocation.getTarget();
         if ((target instanceof ResultSetHandler)) {
-            System.out.println(DateUtils.format(new Date()) + " 返回数据拦截");
+            System.out.println(DateUtils.format(new Date()) + " sql查询后,返回数据拦截");
             return processAsPagingListIfNecessary(invocation);
         }
-        System.out.println(DateUtils.format(new Date()) + " 查询sql拦截");
+        System.out.println(DateUtils.format(new Date()) + " sql查询前,查询sql拦截");
         RoutingStatementHandler handler = (RoutingStatementHandler) invocation.getTarget();
         Connection connection = (Connection) invocation.getArgs()[0];
+
         StatementHandler delegate = (StatementHandler) BeanUtils.getFieldValue(handler, "delegate");
         BoundSql boundSql = delegate.getBoundSql();
-        System.out.println(DateUtils.format(new Date()) + " 原始sql : " + boundSql.getSql());
+        System.out.println(DateUtils.format(new Date()) + " 原始sql : \r\n\t" + boundSql.getSql());
         Object paramObject = boundSql.getParameterObject();
         //只要实现了接口则认为必然分页
         if (paramObject instanceof Pageable) {
             System.out.println(DateUtils.format(new Date()) + " 实现了分页接口,进行分页");
             System.out.println(DateUtils.format(new Date()) + " 分页参数: pageNumber:" + ((Pageable) paramObject).getPageNumber() + ",pageSize:" + ((Pageable) paramObject).getPageSize());
+
             MybatisPagination mybatisPagination = new MybatisPagination((Pageable) paramObject);
             MappedStatement mappedStatement = (MappedStatement) BeanUtils.getFieldValue(delegate, "mappedStatement");
             boundSql = mappedStatement.getBoundSql(mybatisPagination.getParams());
             countTotalRecord(connection, mappedStatement, mybatisPagination, boundSql);
+
             String pageSql = getPageSql(mybatisPagination, boundSql.getSql());
-            System.out.println(DateUtils.format(new Date()) + " 分页之后的sql : " + pageSql);
+            System.out.println(DateUtils.format(new Date()) + " 分页之后的sql : \r\n\t" + pageSql);
+
             BeanUtils.setFieldValue(boundSql, "sql", pageSql);
             BeanUtils.setFieldValue(delegate, "boundSql", boundSql);
             BeanUtils.setFieldValue(delegate.getParameterHandler(), "boundSql", boundSql);
@@ -78,12 +82,12 @@ public class PageInterceptor implements Interceptor {
 
     private Object processAsPagingListIfNecessary(Invocation invocation) throws InvocationTargetException, IllegalAccessException {
         Object result = invocation.proceed();
-        System.out.println(DateUtils.format(new Date()) + " 返回数据 " + result.getClass());
+        System.out.println(DateUtils.format(new Date()) + " 返回数据类型 " + result.getClass());
         if ((MybatisPagination.isPagingResult()) && ((result instanceof List))) {
             System.out.println(DateUtils.format(new Date()) + " 返回数据支持分页 返回数据类型为 List " + result.getClass());
             return MybatisPagination.toPageList((List) result);
         }
-        System.out.println(DateUtils.format(new Date()) + " 返回数据不进行分页");
+        System.out.println(DateUtils.format(new Date()) + " 返回数据不进行分页处理");
         return result;
     }
 
@@ -97,16 +101,20 @@ public class PageInterceptor implements Interceptor {
     private void countTotalRecord(Connection connection, MappedStatement mappedStatement, MybatisPagination mybatisPagination, BoundSql boundSql) {
         String countSql = sqlBuilder.countSql(mybatisPagination, boundSql.getSql());
         List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
+
         Object additionalParameters = BeanUtils.getFieldValue(boundSql, "additionalParameters");
         Object metaParameters = BeanUtils.getFieldValue(boundSql, "metaParameters");
+
         BoundSql sql = new BoundSql(mappedStatement.getConfiguration(), countSql, parameterMappings, mybatisPagination.getParams());
+
         BeanUtils.setFieldValue(sql, "additionalParameters", additionalParameters);
         BeanUtils.setFieldValue(sql, "metaParameters", metaParameters);
+
         ParameterHandler parameterHandler = new DefaultParameterHandler(mappedStatement, mybatisPagination.getParams(), sql);
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            System.out.println(DateUtils.format(new Date()) + " 查询总条数SQL:" + sql.getSql());
+            System.out.println(DateUtils.format(new Date()) + " 查询总条数SQL: \r\n\t" + sql.getSql());
             preparedStatement = connection.prepareStatement(sql.getSql());
             parameterHandler.setParameters(preparedStatement);
             resultSet = preparedStatement.executeQuery();
@@ -148,7 +156,6 @@ public class PageInterceptor implements Interceptor {
     interface SqlBuilder {
         //查询分页sql
         String querySql(MybatisPagination myBatisPageNation, String sql);
-
         //查询总条数sql
         String countSql(MybatisPagination myBatisPageNation, String sql);
     }

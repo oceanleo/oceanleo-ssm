@@ -1,5 +1,6 @@
 package com.ocean.project.ssm.support.orm.factory;
 
+import com.ocean.project.ssm.support.utils.DateUtils;
 import com.ocean.project.ssm.support.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,7 @@ public class SqlSessionFactoryBean extends org.mybatis.spring.SqlSessionFactoryB
     private Logger logger = LoggerFactory.getLogger(SqlSessionFactoryBean.class);
 
     /**
-     * 包别名 支符持通配
+     * mybatis类别名映射 支符持通配
      */
     @Override
     public void setTypeAliasesPackage(String typeAliasesPackage) {
@@ -52,16 +53,21 @@ public class SqlSessionFactoryBean extends org.mybatis.spring.SqlSessionFactoryB
                             }
                         } catch (ClassNotFoundException e) {
                             logger.error("mybatis typeAliasesPackage:" + typeAliasesPackage + ",class not fund");
+                            System.out.println(DateUtils.formatCurrentTime()+" mybatis 类的别名映射错误,别名: "+typeAliasesPackage+" 错误: "+e.getMessage());
                         }
                     }
                 }
             }
             if (result.size() > 0) {
-                super.setTypeAliasesPackage(StringUtils.join(result, StringUtils.SEPARATOR));
+                String packageString = StringUtils.join(result, StringUtils.SEPARATOR);
+                System.out.println(DateUtils.formatCurrentTime()+" mybatis 类的别名映射,包名: "+packageString);
+                super.setTypeAliasesPackage(packageString);
             } else {
+                System.out.println(DateUtils.formatCurrentTime()+" mybatis 类的别名映射,包名不存在");
                 logger.error("mybatis typeAliasesPackage:" + typeAliasesPackage + ",package not fund");
             }
         } catch (IOException e) {
+            System.out.println(DateUtils.formatCurrentTime()+" mybatis 类的别名映射错误,别名: "+typeAliasesPackage+" 错误: "+e.getMessage());
             logger.error("mybatis set typeAliasesPackage error,typeAliasesPackage:" + typeAliasesPackage, e);
         }
     }

@@ -7,10 +7,10 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
  *
  * @author haiyang.li on 2017/9/22.
  */
-public class MultipleDataSource extends AbstractRoutingDataSource {
+public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
-        return "";
+        return DataSourceContextHolder.getDataType();
     }
 }

@@ -43,7 +43,7 @@ public class MybatisPagination {
     }
 
     public static <T> PageList<T> toPageList(List<T> list){
-        PageList<T> pageList = new PageList<>();
+        PageList<T> pageList = new PageList<T>();
         pageList.setTotal(THREAD_LOCAL.get());
         pageList.addAll(list);
         THREAD_LOCAL.remove();
