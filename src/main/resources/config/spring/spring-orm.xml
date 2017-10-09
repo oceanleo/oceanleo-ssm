@@ -109,10 +109,11 @@
   </bean>
 
   <!--aop切面-->
-  <aop:config>
-  <aop:pointcut id="servicePointcut" expression="execution(* com.ocean..service..*ServiceImpl(..))"/>
-  <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>
-  </aop:config>
+  <!--<aop:config>-->
+    <!--<aop:pointcut id="servicePointcut" expression="execution(* com.ocean..service..*ServiceImpl(..))"/>-->
+    <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>-->
+  <!--</aop:config>-->
+
   <aop:config>
     <aop:pointcut id="servicePointcut" expression="within(com.ocean..service..*ServiceImpl)
         and not within(@org.springframework.transaction.annotation.Transactional *)"/>

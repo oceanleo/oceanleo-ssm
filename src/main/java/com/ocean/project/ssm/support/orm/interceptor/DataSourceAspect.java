@@ -24,7 +24,7 @@ public class DataSourceAspect {
         if (className.contains("Oracle")) {
             System.out.println(DateUtils.formatCurrentTime() + " 设置数据源:" + DataSourceContextHolder.DATA_SOURCE_TRADING);
             DataSourceContextHolder.setDataSourceType(DataSourceContextHolder.DATA_SOURCE_TRADING);
-        } if(className.contains("Log")){
+        } else if(className.contains("Log")){
             System.out.println(DateUtils.formatCurrentTime() + " 设置数据源:" + DataSourceContextHolder.DATA_SOURCE_SSM2);
             DataSourceContextHolder.setDataSourceType(DataSourceContextHolder.DATA_SOURCE_SSM2);
         } else {
