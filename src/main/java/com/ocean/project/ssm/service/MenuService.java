@@ -2,7 +2,7 @@ package com.ocean.project.ssm.service;
 
 import com.ocean.project.ssm.domain.Menu;
 import com.ocean.project.ssm.dto.MenuDto;
-import com.ocean.project.ssm.support.log.Log;
+import com.ocean.project.ssm.support.log.AppLog;
 import com.ocean.project.ssm.support.orm.query.PageQuery;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author haiyang.li on 2017/8/29.
  */
-@Log("菜单业务层")
+@AppLog("菜单业务层")
 public interface MenuService {
 
     /**

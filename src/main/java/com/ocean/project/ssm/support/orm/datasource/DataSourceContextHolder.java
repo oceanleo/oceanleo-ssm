@@ -7,9 +7,9 @@ import org.springframework.util.StringUtils;
  */
 public class DataSourceContextHolder {
 
-    public static final String DATA_SOURCE_SSM = "ssm";//默认数据源
-    public static final String DATA_SOURCE_SSM2 = "ssm2";
-    public static final String DATA_SOURCE_TRADING = "trading";
+    public static final String DATA_SOURCE_SSM = "ssmDataSource";//默认数据源
+    public static final String DATA_SOURCE_SSM2 = "ssmDataSource2";
+    public static final String DATA_SOURCE_TRADING = "tradingDataSource";
 
     //用ThreadLocal来设置当前线程使用哪个dataSource
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
@@ -27,7 +27,7 @@ public class DataSourceContextHolder {
         }
     }
 
-    public static void clearCustomerType() {
+    public static void clearDataSourceType() {
         contextHolder.remove();
     }
 }

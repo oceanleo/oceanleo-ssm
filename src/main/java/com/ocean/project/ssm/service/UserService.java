@@ -2,23 +2,24 @@ package com.ocean.project.ssm.service;
 
 import com.ocean.project.ssm.domain.User;
 import com.ocean.project.ssm.query.UserQuery;
-import com.ocean.project.ssm.support.log.Log;
+import com.ocean.project.ssm.support.log.AppLog;
 
 import java.util.List;
 
 /**
  * @author haiyang.li
  */
-@Log("用户业务层")
+@AppLog("用户业务层")
 public interface UserService {
 
-    @Log("获取用户")
+    @AppLog("获取用户")
     User getById(String id);
 
     void update(List<User> userList);
 
-    @Log("新增用户")
+    @AppLog("新增用户")
     void create(User user);
 
+    @AppLog("获取所有的用户")
     List<User> getAll(UserQuery query);
 }

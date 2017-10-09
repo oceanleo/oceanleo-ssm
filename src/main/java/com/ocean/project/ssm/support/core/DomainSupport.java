@@ -2,6 +2,7 @@ package com.ocean.project.ssm.support.core;
 
 import com.ocean.project.ssm.domain.Domain;
 import com.ocean.project.ssm.support.core.access.CurrentUserAccess;
+import com.ocean.project.ssm.support.security.CurrentUser;
 import com.ocean.project.ssm.support.utils.StringUtils;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -27,7 +28,11 @@ public class DomainSupport {
 
     @Before("execution(public * com.ocean..service.*Service.create*(..)) && args(domain,..)")
     public void createDomain(Domain domain) {
-        String userId = currentUserAccess.getCurrentUser().getId();
+        CurrentUser currentUser = getCurrentUser();
+        String userId = StringUtils.EMPTY;
+        if (currentUser != null) {
+            userId = getCurrentUser().getId();
+        }
         if (!StringUtils.hasText(domain.getId())) {
             domain.setId(UUID.randomUUID().toString());
         }
@@ -53,8 +58,20 @@ public class DomainSupport {
 
     @Before("execution(public * com.ocean..service.*Service.update*(..)) && args(domain,..)")
     public void updateDomain(Domain domain) {
-        String userId = currentUserAccess.getCurrentUser().getId();
+        CurrentUser currentUser = getCurrentUser();
+        String userId = StringUtils.EMPTY;
+        if (currentUser != null) {
+            userId = getCurrentUser().getId();
+        }
         domain.setUpdateDate(new Date());
         domain.setUpdateId(userId);
+    }
+
+    private CurrentUser getCurrentUser() {
+        try {
+            return currentUserAccess.getCurrentUser();
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.ocean.project.ssm.support.orm.interceptor;
 
+import com.ocean.project.ssm.support.orm.datasource.DataSourceContextHolder;
 import com.ocean.project.ssm.support.orm.page.MybatisPagination;
 import com.ocean.project.ssm.support.orm.query.Pageable;
 import com.ocean.project.ssm.support.utils.BeanUtils;
@@ -33,17 +34,40 @@ import java.util.Properties;
 public class PageInterceptor implements Interceptor {
 
     private static Logger logger = LoggerFactory.getLogger(PageInterceptor.class);
+    //sql构造器 默认mysql
+    private static SqlBuilder sqlBuilder = new MySqlBuilder();
+    //
+    private static SqlBuilder mysqlBuilder = new MySqlBuilder();
+    //
+    private static SqlBuilder oracleBuilder = new OracleSqlBuilder();
 
-    private static SqlBuilder sqlBuilder = initSqlBuilder();
-
-    private static SqlBuilder initSqlBuilder() {
+    private static void initSqlBuilder(Connection connection) {
         //todo 查询拦截 判断是mysql 还是oracle
-        return new MySqlBuilder();
+        try {
+            if (connection != null) {
+                String driverName = connection.getMetaData().getDriverName().toLowerCase();
+//                String driverName = DataSourceContextHolder.getDataType();
+                System.out.println(DateUtils.formatCurrentTime() + " 数据库连接驱动,driverName: " + driverName);
+                if (driverName.contains("mysql")) {
+                    System.out.println(DateUtils.formatCurrentTime() + " 设置mysql分页构造器");
+                    if(!(sqlBuilder instanceof MySqlBuilder)){
+                        sqlBuilder = mysqlBuilder;
+                    }
+                } else if (driverName.contains("oracle")) {
+                    System.out.println(DateUtils.formatCurrentTime() + " oracle分页构造器");
+                    if(!(sqlBuilder instanceof OracleSqlBuilder)){
+                       sqlBuilder = oracleBuilder;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(DateUtils.formatCurrentTime() + " 分页拦截器获取连接信息失败 " + e.getMessage());
+        }
     }
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        System.out.println(DateUtils.format(new Date()) + " thread name:"+Thread.currentThread().getName());
+        System.out.println(DateUtils.format(new Date()) + " thread name:" + Thread.currentThread().getName());
         //发sql 和 返回结果都会进行拦截
         Object target = invocation.getTarget();
         if ((target instanceof ResultSetHandler)) {
@@ -53,7 +77,8 @@ public class PageInterceptor implements Interceptor {
         System.out.println(DateUtils.format(new Date()) + " sql查询前,查询sql拦截");
         RoutingStatementHandler handler = (RoutingStatementHandler) invocation.getTarget();
         Connection connection = (Connection) invocation.getArgs()[0];
-
+        //区分数据库连接
+        initSqlBuilder(connection);
         StatementHandler delegate = (StatementHandler) BeanUtils.getFieldValue(handler, "delegate");
         BoundSql boundSql = delegate.getBoundSql();
         System.out.println(DateUtils.format(new Date()) + " 原始sql : \r\n\t" + boundSql.getSql());
@@ -156,6 +181,7 @@ public class PageInterceptor implements Interceptor {
     interface SqlBuilder {
         //查询分页sql
         String querySql(MybatisPagination myBatisPageNation, String sql);
+
         //查询总条数sql
         String countSql(MybatisPagination myBatisPageNation, String sql);
     }

@@ -16,31 +16,45 @@
 
   <context:property-placeholder location="classpath:dataSources.properties"/>
 
-  <bean id="ssmDataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">
-    <property name="jndi" value="jdbc/ssm"/>
-  </bean>
-
-  <bean id="ssm2DataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">
-    <property name="jndi" value="jdbc/ssm2"/>
-  </bean>
-
-  <bean id="tradingDataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">
-    <property name="jndi" value="jdbc/ds_trading"/>
-  </bean>
-
-  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-    <property name="driverClassName" value="${mysql.driver}"/>
-    <property name="url" value="${mysql.url}"/>
-    <property name="username" value="${mysql.username}"/>
-    <property name="password" value="${mysql.password}"/>
-  </bean>
-
-  <!--<bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
-    <!--<property name="driverClassName" value="${mysql.driver2}"/>-->
-    <!--<property name="url" value="${mysql.url2}"/>-->
-    <!--<property name="username" value="${mysql.username2}"/>-->
-    <!--<property name="password" value="${mysql.password2}"/>-->
+  <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
+    <!--<property name="driverClassName" value="${mysql.driver}"/>-->
+    <!--<property name="url" value="${mysql.url}"/>-->
+    <!--<property name="username" value="${mysql.username}"/>-->
+    <!--<property name="password" value="${mysql.password}"/>-->
   <!--</bean>-->
+
+  <!--<bean id="ssmDataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">-->
+    <!--<property name="jndi" value="jdbc/ssm"/>-->
+  <!--</bean>-->
+
+  <!--<bean id="ssm2DataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">-->
+    <!--<property name="jndi" value="jdbc/ssm2"/>-->
+  <!--</bean>-->
+
+  <!--<bean id="tradingDataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">-->
+    <!--<property name="jndi" value="jdbc/ds_trading"/>-->
+  <!--</bean>-->
+
+  <bean id="ssmDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="${mysql_driver}"/>
+    <property name="url" value="${mysql_url}"/>
+    <property name="username" value="${mysql_username}"/>
+    <property name="password" value="${mysql_password}"/>
+  </bean>
+
+  <bean id="ssm2DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="${mysql_driver2}"/>
+    <property name="url" value="${mysql_url2}"/>
+    <property name="username" value="${mysql_username2}"/>
+    <property name="password" value="${mysql_password2}"/>
+  </bean>
+
+  <bean id="tradingDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="${oracle_driver}"/>
+    <property name="url" value="${oracle_url}"/>
+    <property name="username" value="${oracle_username}"/>
+    <property name="password" value="${oracle_password}"/>
+  </bean>
 
 
   <!--多数据源配置-->
@@ -56,16 +70,16 @@
     <!--</property>-->
   <!--</bean>-->
 
-  <!--<bean id="dataSource" class="com.ocean.project.ssm.support.orm.datasource.DynamicRoutingDataSource">-->
-    <!--<property name="targetDataSources">-->
-      <!--<map key-type="java.lang.String">-->
-        <!--<entry key="ssm" value-ref="ssmDataSource"/>-->
-        <!--<entry key="ssm2" value-ref="ssm2DataSource"/>-->
-        <!--<entry key="trading" value-ref="tradingDataSource"/>-->
-      <!--</map>-->
-    <!--</property>-->
-    <!--<property name="defaultTargetDataSource" ref="ssmDataSource"/>-->
-  <!--</bean>-->
+  <bean id="dataSource" class="com.ocean.project.ssm.support.orm.datasource.DynamicRoutingDataSource">
+    <property name="targetDataSources">
+      <map key-type="java.lang.String">
+        <entry key="ssmDataSource" value-ref="ssmDataSource"/>
+        <entry key="ssm2DataSource" value-ref="ssm2DataSource"/>
+        <entry key="tradingDataSource" value-ref="tradingDataSource"/>
+      </map>
+    </property>
+    <property name="defaultTargetDataSource" ref="ssmDataSource"/>
+  </bean>
 
   <bean id="sqlSessionFactory" class="com.ocean.project.ssm.support.orm.factory.SqlSessionFactoryBean">
     <!--引入数据源-->
@@ -95,10 +109,10 @@
   </bean>
 
   <!--aop切面-->
-  <!--<aop:config>-->
-  <!--<aop:pointcut id="servicePointcut" expression="execution(* com.ocean..service..*ServiceImpl(..))"/>-->
-  <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>-->
-  <!--</aop:config>-->
+  <aop:config>
+  <aop:pointcut id="servicePointcut" expression="execution(* com.ocean..service..*ServiceImpl(..))"/>
+  <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>
+  </aop:config>
   <aop:config>
     <aop:pointcut id="servicePointcut" expression="within(com.ocean..service..*ServiceImpl)
         and not within(@org.springframework.transaction.annotation.Transactional *)"/>

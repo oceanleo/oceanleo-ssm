@@ -76,12 +76,12 @@ public class DataSourceFactory implements FactoryBean<DataSource>, InitializingB
             System.out.println(DateUtils.formatCurrentTime() + " Jndi 数据源路径: " + defaultJndi);
             dataSource = (DataSource) context.lookup(defaultJndi);
             System.out.println(DateUtils.formatCurrentTime()+" 获取数据库驱动: "+dataSource.getConnection().getMetaData().getDriverName());
+            System.out.println(DateUtils.formatCurrentTime()+" 获取Jndi数据源成功,Jndi 名称: " +jndi);
         } catch (SQLException e){
             System.out.println(DateUtils.formatCurrentTime() + " 获取数据库连接失败: "+e.getMessage());
         } catch (NamingException e) {
             System.out.println(DateUtils.formatCurrentTime() + " 获取Jndi数据源失败: "+e.getMessage());
         }
-        System.out.println(DateUtils.formatCurrentTime()+" 获取Jndi数据源成功,Jndi 名称: " +jndi);
         return dataSource;
     }
 

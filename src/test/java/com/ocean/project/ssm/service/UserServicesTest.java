@@ -1,5 +1,6 @@
 package com.ocean.project.ssm.service;
 
+import com.ocean.project.ssm.domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -31,7 +32,7 @@ public class UserServicesTest {
 //        for (int i = 0; i <= 100; i++) {
 //            User user = new User();
 //            user.setAge(i);
-//            user.setUsername("li_hai_yang"+i);
+//            user.setUsername("li_hai_yang_"+i);
 //            user.setName("李海洋"+i);
 //            userService.create(user);
 //        }
