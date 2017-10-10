@@ -1,8 +1,8 @@
 package com.ocean.project.ssm.support.mvc.interceptor;
 
 import com.ocean.project.ssm.support.core.exception.BizException;
-import com.ocean.project.ssm.support.mvc.domain.Result;
-import com.ocean.project.ssm.support.mvc.domain.ResultCode;
+import com.ocean.project.ssm.support.mvc.po.Result;
+import com.ocean.project.ssm.support.mvc.po.ResultCode;
 import com.ocean.project.ssm.support.orm.page.PageList;
 import com.ocean.project.ssm.support.utils.DateUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

@@ -17,11 +17,11 @@ public interface RoleService {
     /**
      * 获取所有角色
      */
-    @AppLog("获取所有角色")
     List<Role> getPageList(PageQuery query);
 
     /**
      * 新增角色
      */
+    @AppLog("新增角色")
     void create(Role role);
 }

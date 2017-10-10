@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.mvc.domain;
+package com.ocean.project.ssm.support.mvc.po;
 
 /**
  * 统一返回前端数据封装

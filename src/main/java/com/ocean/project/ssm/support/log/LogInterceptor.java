@@ -43,25 +43,24 @@ public class LogInterceptor {
         if (!LogServiceImpl.class.equals(targetClass)) {
             boolean flag = false;
             Log log = new Log();
-            //判断类上是否有日志注解
-            if (targetClass.isAnnotationPresent(AppLog.class)) {
-                flag = true;
-                AppLog modelLog = (AppLog) targetClass.getAnnotation(AppLog.class);
-                String model = modelLog.value();
-                log.setModel(model);
-            }
             //判断方法上面是否有日志注解
             if (targetMethod.isAnnotationPresent(AppLog.class)) {
                 flag = true;
                 AppLog methodLog = targetMethod.getAnnotation(AppLog.class);
                 String method = methodLog.value();
                 log.setMethodName(method);
+                //判断类上是否有日志注解
+                if (targetClass.isAnnotationPresent(AppLog.class)) {
+                    AppLog modelLog = (AppLog) targetClass.getAnnotation(AppLog.class);
+                    String model = modelLog.value();
+                    log.setModel(model);
+                }
+                Object[] params = joinPoint.getArgs();
+                if(params != null && params.length>0){
+                    log.setArguments(JSONObject.toJSONString(params));
+                }
+                log.setSuccess(true);
             }
-            Object[] params = joinPoint.getArgs();
-            if(params != null && params.length>0){
-                log.setArguments(JSONObject.toJSONString(params));
-            }
-            log.setSuccess(true);
             if (flag) {
                 appBizLogSupport.createAppLog(log);
             }

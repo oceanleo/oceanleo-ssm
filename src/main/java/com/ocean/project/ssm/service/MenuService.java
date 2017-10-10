@@ -16,6 +16,7 @@ public interface MenuService {
     /**
      * 新增菜单
      */
+    @AppLog("新增菜单")
     void create(Menu menu);
 
     /**
