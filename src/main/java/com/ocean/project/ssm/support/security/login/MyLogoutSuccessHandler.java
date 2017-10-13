@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.security;
+package com.ocean.project.ssm.support.security.login;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;

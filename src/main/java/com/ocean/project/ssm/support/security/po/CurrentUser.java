@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.security;
+package com.ocean.project.ssm.support.security.po;
 
 /**
  * 需要获取的当前用户信息

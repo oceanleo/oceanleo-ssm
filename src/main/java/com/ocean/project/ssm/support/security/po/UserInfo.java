@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.security;
+package com.ocean.project.ssm.support.security.po;
 
 import com.ocean.project.ssm.domain.User;
 import org.springframework.beans.BeanUtils;

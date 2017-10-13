@@ -24,20 +24,20 @@
 
   <bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
     <constructor-arg>
-      <bean class="com.ocean.project.ssm.support.security.MyLogoutSuccessHandler"/>
+      <bean class="com.ocean.project.ssm.support.security.login.MyLogoutSuccessHandler"/>
     </constructor-arg>
     <constructor-arg>
       <array>
-        <bean id="logoutHandler" class="com.ocean.project.ssm.support.security.MyLogoutHandler"/>
+        <bean id="logoutHandler" class="com.ocean.project.ssm.support.security.login.MyLogoutHandler"/>
       </array>
     </constructor-arg>
     <property name="filterProcessesUrl" value="/security_logout"/>
   </bean>
 
   <!--登录成功控制器 default-target-url 失效 -->
-  <bean id="myAuthenticationSuccessHandler" class="com.ocean.project.ssm.support.security.MyAuthenticationSuccessHandler"/>
+  <bean id="myAuthenticationSuccessHandler" class="com.ocean.project.ssm.support.security.login.MyAuthenticationSuccessHandler"/>
   <!--登录失败控制器 authentication-failure-url 失效-->
-  <bean id="myAuthenticationFailureHandler" class="com.ocean.project.ssm.support.security.MyAuthenticationFailureHandler"/>
+  <bean id="myAuthenticationFailureHandler" class="com.ocean.project.ssm.support.security.login.MyAuthenticationFailureHandler"/>
 
   <security:http auto-config="true" use-expressions="true">
     <security:form-login login-page="/login/in"
@@ -70,15 +70,15 @@
   </bean>
 
   <!-- 授权管理器 -->
-  <bean id="myAccessDecisionManager" class="com.ocean.project.ssm.support.security.MyAccessDecisionManager"/>
+  <bean id="myAccessDecisionManager" class="com.ocean.project.ssm.support.security.core.MyAccessDecisionManager"/>
 
   <!--自定义的切入点-->
-  <bean id="mySecurityMetadataSource" class="com.ocean.project.ssm.support.security.MySecurityMetadataSource">
+  <bean id="mySecurityMetadataSource" class="com.ocean.project.ssm.support.security.core.MySecurityMetadataSource">
     <property name="requestMapBuilder" ref="requestMapBuilder"/>
   </bean>
 
   <!--自定义 资源、权限封装，进行拦截-->
-  <bean id="requestMapBuilder" class="com.ocean.project.ssm.support.security.RequestMapBuilder">
+  <bean id="requestMapBuilder" class="com.ocean.project.ssm.support.security.core.RequestMapBuilder">
     <property name="dataSource" ref="dataSource"/>
   </bean>
 

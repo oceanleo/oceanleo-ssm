@@ -1,7 +1,7 @@
 package com.ocean.project.ssm.support.core.access;
 
 import com.ocean.project.ssm.support.core.exception.BizException;
-import com.ocean.project.ssm.support.security.CurrentUser;
+import com.ocean.project.ssm.support.security.po.CurrentUser;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**

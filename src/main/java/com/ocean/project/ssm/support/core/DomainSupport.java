@@ -2,7 +2,7 @@ package com.ocean.project.ssm.support.core;
 
 import com.ocean.project.ssm.domain.Domain;
 import com.ocean.project.ssm.support.core.access.CurrentUserAccess;
-import com.ocean.project.ssm.support.security.CurrentUser;
+import com.ocean.project.ssm.support.security.po.CurrentUser;
 import com.ocean.project.ssm.support.utils.StringUtils;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;

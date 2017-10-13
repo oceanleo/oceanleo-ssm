@@ -1,6 +1,6 @@
 package com.ocean.project.ssm.support.core.access;
 
-import com.ocean.project.ssm.support.security.CurrentUser;
+import com.ocean.project.ssm.support.security.po.CurrentUser;
 
 /**
  * 当前用户支持

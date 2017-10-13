@@ -1,7 +1,7 @@
 package com.ocean.project.ssm.support.mvc.controller;
 
 import com.ocean.project.ssm.support.core.access.CurrentUserAccess;
-import com.ocean.project.ssm.support.security.CurrentUser;
+import com.ocean.project.ssm.support.security.po.CurrentUser;
 
 import javax.annotation.Resource;
 
