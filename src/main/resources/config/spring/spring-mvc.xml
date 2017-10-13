@@ -39,8 +39,7 @@
 
   <!-- JSON转换器,避免IE执行AJAX时,返回JSON出现下载文件 -->
   <!--处理返回的JSON数据的编码，默认是ISO-88859-1的，这里把它设置为UTF-8,解决有乱码的情况-->
-  <bean id="mappingJacksonHttpMessageConverter"
-        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+  <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
     <property name="supportedMediaTypes">
       <list>
         <value>text/html;charset=UTF-8</value>
@@ -48,9 +47,35 @@
     </property>
   </bean>
 
+  <!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
+  <!--<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">-->
+    <!--<property name="mediaTypes" >-->
+      <!--<map>-->
+        <!--<entry key="xml" value="application/xml"/>-->
+        <!--<entry key="json" value="application/json"/>-->
+      <!--</map>-->
+    <!--</property>-->
+    <!--<property name="ignoreAcceptHeader" value="true"/>-->
+    <!--<property name="favorPathExtension" value="true"/>-->
+  <!--</bean>-->
+
+  <!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
+  <!--<mvc:default-servlet-handler />-->
+
+  <!-- 静态资源映射 -->
+  <!--<mvc:resources mapping="/static/**" location="/static/" cache-period="31536000"/>-->
+
+  <!-- 定义无Controller的path<->view直接映射 -->
+  <!--<mvc:view-controller path="/" view-name="redirect:${web.view.index}"/>-->
+
   <!--配置视图解析器-->
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="prefix" value="/WEB-INF/view"/>
     <property name="suffix" value=".jsp"/>
+  </bean>
+
+  <!-- 上传文件拦截，设置最大上传文件大小   10M=10*1024*1024(B)=10485760 bytes -->
+  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="maxUploadSize" value="#{10*1024*1024}" />
   </bean>
 </beans>
