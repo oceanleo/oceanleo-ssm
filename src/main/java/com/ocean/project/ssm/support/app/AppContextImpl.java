@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.listeners;
+package com.ocean.project.ssm.support.app;
 
 import com.ocean.project.ssm.support.utils.StringUtils;
 
@@ -17,7 +17,7 @@ public class AppContextImpl implements AppContext{
 
     @Override
     public void init() {
-        System.out.println("AppContextImpl---初始化---");
+        System.out.println("AppContextImpl---init---");
     }
 
     @Override
@@ -31,6 +31,6 @@ public class AppContextImpl implements AppContext{
 
     @Override
     public void destroy() {
-        System.out.println("AppContextImpl---销毁---");
+        System.out.println("AppContextImpl---destroy---");
     }
 }

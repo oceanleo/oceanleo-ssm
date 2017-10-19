@@ -41,6 +41,6 @@ public class DataSourceTest {
 
     @Test
     public void testOracleConnect() throws Exception {
-        System.out.println(oracleService.testConnect());
+//        System.out.println(oracleService.testConnect());
     }
 }

@@ -1,4 +1,4 @@
-package com.ocean.project.ssm.support.listeners;
+package com.ocean.project.ssm.support.app;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
