@@ -1,5 +1,6 @@
 package com.ocean.project.ssm.controller;
 
+import com.ocean.project.ssm.support.utils.StringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,12 +24,17 @@ import java.util.Map;
 @RequestMapping("/file")
 public class FileController {
 
+    private int file = 0;
+
     @RequestMapping("/preview")
-    public void preview(HttpServletResponse response) {
+    public void preview(HttpServletResponse response,String filePath) {
         BufferedInputStream inputStream = null;
         BufferedOutputStream outputStream = null;
         try {
-            File file = new File("D:\\我的图片\\psb.jpg");
+            if(!StringUtils.hasText(filePath)){
+                filePath = "D:\\我的图片\\psb.jpg";
+            }
+            File file = new File(filePath);
             inputStream = new BufferedInputStream(new FileInputStream(file));
             outputStream = new BufferedOutputStream(response.getOutputStream());
             int len;
@@ -48,17 +54,20 @@ public class FileController {
         }
 
     }
+
     @RequestMapping("/upload")
-    public ResponseEntity upload(MultipartFile uploadFile) {
-        Map<String, Object> resultMap = new HashMap<>();
+    public ResponseEntity<Map<String, Object>> upload(MultipartFile uploadFile) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
         HttpHeaders headers = new HttpHeaders();
         MediaType mediaType = new MediaType("text", "plain", Charset.forName("UTF-8"));
         headers.setContentType(mediaType);
         BufferedInputStream inputStream = null;
         BufferedOutputStream outputStream = null;
         try{
+            String filePath = "D:\\1\\"+file+".jpg";
+            file++;
             inputStream = new BufferedInputStream(uploadFile.getInputStream());
-            outputStream = new BufferedOutputStream(new FileOutputStream(new File("D:\\1.jpg")));
+            outputStream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
             int len;
             byte[] buffer = new byte[1024*1024];
             while ((len = inputStream.read(buffer)) != -1) {
@@ -66,6 +75,7 @@ public class FileController {
             }
             outputStream.flush();
             resultMap.put("success",true);
+            resultMap.put("filePath",filePath);
             resultMap.put("message","上传成功");
         }catch (Exception e){
             resultMap.put("success",false);
@@ -79,6 +89,6 @@ public class FileController {
                 e.printStackTrace();
             }
         }
-        return new ResponseEntity<>(resultMap, headers, HttpStatus.OK);
+        return new ResponseEntity<Map<String, Object>>(resultMap, headers, HttpStatus.OK);
     }
 }

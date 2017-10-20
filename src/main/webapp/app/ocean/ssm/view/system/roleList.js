@@ -45,34 +45,26 @@ Ext.define('app.ocean.ssm.view.system.roleList', {
                 ],
                 tbar: [{
                     xtype: 'button', text: '添加角色',
-                    handler:function () {
+                    handler: function () {
                         var win = Ext.create('Ext.Window', {
-                            title:'上传文件',
-                            width:400,
-                            height:200,
-                            modal:true,
-                            itemId: 'sh-itemId-netContract-com-upload',
-                            items: {
-                                xtype: 'form',
-                                layout:'fit',
-                                margin: '50 50 0 50',
-                                items:[{
-                                    fieldLabel: '文件',
-                                    xtype: 'filefield',
-                                    name: 'uploadFile',
-                                    width:150,
-                                    buttonText: '选择文件',
-                                    labelWidth: 50
-                                }],
-                                listeners: {
-                                    afterUpload: function (returnData) {
-                                        if (returnData) {
-                                            Ext.Msg.alert('温馨提示','上传成功后!!!');
-                                        }
-                                    }
+                            title: '上传文件', width: 400, height: 450, modal: true,
+                            itemId: 'ssm-system-roleList-add-itemId',
+                            items: [{
+                                xtype: 'form', layout: 'fit', margin: '10 50 0 50',
+                                items: [{
+                                    xtype: 'filefield', itemId: 'ssm-system-roleList-upload-itemId',
+                                    name: 'uploadFile', width: 150, labelWidth: 50, fieldLabel: '文件', buttonText: '选择文件'
+                                }]
+                            }, {
+                                xtype: 'box', itemId: 'ssm-system-roleList-preview-itemId',
+                                id: 'imagePreview', boder: true, height: 300, width: 300, margin: '10 50 0 50',
+                                //html: '<div style="height: 300px;width: 300px"><img style="width: 100%;height: 100%" src="'+app.ocean.ssm.common.request.url('/file/preview')+'" alt="没有图片" /></div>'
+                                autoEl: {
+                                    tag: 'img',
+                                    src: app.ocean.ssm.common.request.url('/file/preview')
                                 }
-                            },
-                            buttons:[{
+                            }],
+                            buttons: [{
                                 text: '上传',
                                 glyph: 'xf093@FontAwesome',
                                 handler: function () {
@@ -80,15 +72,15 @@ Ext.define('app.ocean.ssm.view.system.roleList', {
                                     var form = formObj.getForm();
                                     if (form.isValid()) {
                                         form.submit({
-                                            type:'ajax',
+                                            type: 'ajax',
                                             method: 'post',
                                             url: app.ocean.ssm.common.request.url('/file/upload'),
                                             waitMsg: '文件上传中，请稍等...',
                                             success: function (form, action) {
                                                 var data = action.result;
-                                                formObj.fireEvent('afterUpload', data);
-                                                Ext.Msg.alert('温馨提示','上传成功!');
-                                                formObj.up('window').close();
+                                                Ext.get('imagePreview').dom.src = app.ocean.ssm.common.request.url('/file/preview?filePath=' + data.filePath);
+                                                Ext.Msg.alert('温馨提示', '上传成功!');
+                                                // formObj.up('window').close();
                                             },
                                             failure: function (form, action) {
                                                 Ext.Msg.alert('温馨提示', action.result.message);
@@ -96,7 +88,7 @@ Ext.define('app.ocean.ssm.view.system.roleList', {
                                         });
                                     }
                                 }
-                            },{
+                            }, {
                                 text: '取消',
                                 glyph: 0xf00d,
                                 handler: function () {
