@@ -1,11 +1,15 @@
 Ext.define('app.ocean.ssm.common.request', {
     singleton: true,
-    url:function(url){
-        // todo 获取当前项目的ContextPath
-        return '/ssm'+url;
+    context: null,
+    url: function (url) {
+        if (!this.context) {
+            var context = document.location.pathname;
+            this.context = context.substr(0,context.lastIndexOf('/'));
+        }
+        return this.context + url;
     },
     request: function (params, url) {
-        if (!url || typeof(url) == 'undefined'){
+        if (!url || typeof(url) == 'undefined') {
             return;
         }
         var message = null;
@@ -29,19 +33,20 @@ Ext.define('app.ocean.ssm.common.request', {
                     return;
                 }
                 //区分业务异常和系统异常
-                message = data.statusCode == '300'?data.message:exceptionStr;
+                message = data.statusCode == '300' ? data.message : exceptionStr;
             },
             failure: function () {
                 message = exceptionStr;
             }
         });
         if (!status) {
-            throw new BizException(message,'');
+            throw new BizException(message, '');
         }
         return responseData;
     }
 });
-function BizException(message,result){
+
+function BizException(message, result) {
     var data;
     data.message = message;
     data.result = result;
