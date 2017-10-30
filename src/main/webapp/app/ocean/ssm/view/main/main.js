@@ -6,44 +6,25 @@ Ext.define('app.ocean.ssm.view.main.main', {
         var me = this;
         Ext.applyIf(this, {
             items: [{
-                region: 'north',
-                itemId: 'maintop',
-                height: 40,
-                margin: '10 0 0 0',
-                padding: '0px',
-                collapsible: false,
-                xtype: 'toolbar',
-                border: false,
-                layout: 'auto',
+                region: 'north', xtype: 'toolbar', itemId: 'maintop', height: 40, margin: '10 0 0 0',
+                padding: '0px', collapsible: false, border: false, layout: 'auto',
                 items: [{
-                    xtype: 'image',
-                    src: 'img/extjs5.png',
-                    cls: 'main-logo'
+                    xtype: 'image', src: 'img/extjs5.png', cls: 'main-logo'
                 }, {
-                    xtype: 'image',
-                    src: 'img/mainLogo.png',
-                    cls: 'main-logo'
+                    xtype: 'image', src: 'img/mainLogo.png', cls: 'main-logo'
                 }, {
-                    xtype: 'container',
-                    cls: 'top-tool',
+                    xtype: 'container', cls: 'top-tool',
                     items: [{
-                        xtype: 'label',
-                        itemId: 'top-welcome',
-                        html: ''
+                        xtype: 'label', itemId: 'top-welcome', html: ''
                     }, {
-                        xtype: 'button',
-                        glyph: 0xf011,
-                        text: '退出',
+                        xtype: 'button', glyph: 0xf011, text: '退出',
                         handler: function () {
                             me.logout();
                         }
                     }]
                 }]
             }, {
-                itemId: 'mainbottom',
-                xtype: 'toolbar',
-                region: 'south',
-                height: 40,
+                itemId: 'mainbottom', xtype: 'toolbar', region: 'south', height: 40,
                 listeners: {
                     afterRender: function (cmp) {
                         var bottom_welcome = "<div style='color: gray;'><span style='font-weight: bold;margin-left: 50px;'>登录账号</span>:" + window.Context.user.username + '</div>';
@@ -54,22 +35,12 @@ Ext.define('app.ocean.ssm.view.main.main', {
                     }
                 },
                 items: [{
-                    xtype: 'displayfield',
-                    itemId: 'bottom-welcome',
-                    width: '100%'
+                    xtype: 'displayfield', itemId: 'bottom-welcome', width: '100%'
                 }]
             }, {
-                region: 'west',
-                border: true,
-                padding: '0px',
-                split: true,
-                margin: '0',
-                collapsible: true,
-                collapsed: false,
-                xtype: 'treepanel',
-                title: '功能菜单',
-                width: 200,
-                store: this.createMenuStore(),
+                region: 'west', border: true, padding: '0px',
+                split: true, margin: '0', collapsible: true, collapsed: false,
+                xtype: 'treepanel', title: '功能菜单', width: 200, store: this.createMenuStore(),
                 listeners: {
                     scope: this,
                     itemClick: function (source, record, item, index, e, eOpts) {
@@ -77,19 +48,13 @@ Ext.define('app.ocean.ssm.view.main.main', {
                     }
                 }
             }, {
-                itemId: 'centerBox',
-                region: 'center',
-                layout: 'fit',
-                border: true,
-                margin: '0 0 0 0',
-                collapsible: false,
-                xtype: 'tabpanel',
+                itemId: 'centerBox', region: 'center', layout: 'fit',
+                border: true, margin: '0 0 0 0', collapsible: false, xtype: 'tabpanel',
                 items: []
             }]
         });
         this.callParent(arguments);
     },
-
     createMenuStore: function () {
         var navStore = Ext.create('Ext.data.TreeStore', {
             autoLoad: true,
@@ -107,25 +72,16 @@ Ext.define('app.ocean.ssm.view.main.main', {
         });
         return navStore;
     },
-
     logout: function () {
         var action = Ext.create('Ext.form.Basic', this, {
             standardSubmit: true
         });
-
         action.submit({
             url: app.ocean.ssm.common.request.url('/security_logout'),
             clientValidation: false
         });
     },
-
-    /**
-     * 打开一个新视图
-     * @param viewClsName @type String 视图类名称
-     * @param config 视图配置
-     * @param onlyOne @type boolean 是否仅允许单实例，默认false
-     * @return 打开的视图对象
-     */
+    //打开一个新视图
     openView: function (viewClsName, url, config) {
         config = config || {};
         if (url) {
@@ -139,7 +95,6 @@ Ext.define('app.ocean.ssm.view.main.main', {
                 Ext.Msg.alert('温馨提示', '视图加载错误！');
             }
         }
-
     },
     createTab: function (opts) {
         function getViewId(opts) {
@@ -155,13 +110,11 @@ Ext.define('app.ocean.ssm.view.main.main', {
                     viewId = opts.view.id + (opts.title ? opts.title : (opts.view.title ? opts.view.title : ''));
                 }
             }
-
             if (opts.feature) {
                 viewId = viewId + feature;
             }
             return viewId;
         }
-
         var tabId = 'tab_' + getViewId(opts);
         var tab = Ext.getCmp(tabId);
         if (tab == null) {
@@ -175,15 +128,11 @@ Ext.define('app.ocean.ssm.view.main.main', {
                 layout: 'fit'
             });
             var contentView;
-            /**
-             * 如果传入的是视图名称则创建视图
-             */
+            //如果传入的是视图名称则创建视图
             if (typeof opts.view == 'string') {
                 contentView = Ext.create(opts.view, {params: (opts.params ? opts.params : {})});
             }
-            /**
-             * 如果视图已经是对象且，且ID已经存在，则直接作为视图内容生成
-             */
+            //如果视图已经是对象且，且ID已经存在，则直接作为视图内容生成
             if (typeof opts.view == 'object' && opts.view.id) {
                 contentView = opts.view;
             }
@@ -191,7 +140,6 @@ Ext.define('app.ocean.ssm.view.main.main', {
                 tab.add(contentView);
                 Ext.mainFrame.getComponent('centerBox').add(tab);
             }
-
         }
         Ext.mainFrame.getComponent('centerBox').setActiveTab(tab);
     }

@@ -6,6 +6,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataSourceAspect {
 
-    @Before("execution(public * com.ocean..service.*Service.*(..))")
+    @Pointcut("execution(public * com.ocean..service.*Service.*(..))")
+    public void execute(){
+
+    }
+
+    @Before("execute()")
     public void setDataSource(JoinPoint joinPoint) {
         String className = joinPoint.getTarget().getClass().getSimpleName();
         System.out.println(DateUtils.formatCurrentTime() + " 访问service层开始,访问类名:" + className);
@@ -33,7 +39,7 @@ public class DataSourceAspect {
         }
     }
 
-    @After("execution(public * com.ocean..service.*Service.*(..))")
+    @After("execute()")
     public void setClearDataSource(JoinPoint joinPoint) {
         String className = joinPoint.getTarget().getClass().getSimpleName();
         System.out.println(DateUtils.formatCurrentTime() + " 访问service层结束,访问类名:" + className+",清空数据源");
