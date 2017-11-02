@@ -53,7 +53,8 @@ Ext.define('app.ocean.ssm.view.system.userList', {
                 ],
                 tbar: [{
                     xtype: 'button',
-                    text: '添加用户'
+                    text: '添加用户',
+                    glyph: 0xf0fe
                 }]
             }]
         });

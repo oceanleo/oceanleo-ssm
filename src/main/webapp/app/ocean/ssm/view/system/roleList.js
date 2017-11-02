@@ -44,7 +44,7 @@ Ext.define('app.ocean.ssm.view.system.roleList', {
                     {xtype: 'pagingtoolbar', displayInfo: true, height: 'auto', store: store}
                 ],
                 tbar: [{
-                    xtype: 'button', text: '添加角色',
+                    xtype: 'button', text: '添加角色', glyph: 0xf0fe,
                     handler: function () {
                         var win = Ext.create('Ext.Window', {
                             title: '上传文件', width: 400, height: 450, modal: true,
@@ -57,7 +57,7 @@ Ext.define('app.ocean.ssm.view.system.roleList', {
                                 }]
                             }, {
                                 xtype: 'box', itemId: 'ssm-system-roleList-preview-itemId',
-                                id: 'imagePreview', boder: true, height: 300, width: 300, margin: '10 50 0 50',
+                                id: 'imagePreview', border: true, height: 300, width: 300, margin: '10 50 0 50',
                                 //html: '<div style="height: 300px;width: 300px"><img style="width: 100%;height: 100%" src="'+app.ocean.ssm.common.request.url('/file/preview')+'" alt="没有图片" /></div>'
                                 autoEl: {
                                     tag: 'img',
@@ -66,7 +66,7 @@ Ext.define('app.ocean.ssm.view.system.roleList', {
                             }],
                             buttons: [{
                                 text: '上传',
-                                glyph: 'xf093@FontAwesome',
+                                glyph: 0xf093,
                                 handler: function () {
                                     var formObj = this.up('window').down('form');
                                     var form = formObj.getForm();

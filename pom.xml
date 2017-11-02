@@ -16,14 +16,14 @@
   <developers>
     <developer>
       <name>haiyang.li</name>
-      <email>275564847@qq.com</email>
+      <email>ocean.leo@qq.com</email>
     </developer>
   </developers>
 
   <properties>
-    <spring.version>3.2.9.RELEASE</spring.version>
+    <spring.version>3.2.18.RELEASE</spring.version>
     <mybatis.version>3.2.5</mybatis.version>
-    <spring.security.version>3.2.7.RELEASE</spring.security.version>
+    <spring.security.version>3.2.10.RELEASE</spring.security.version>
   </properties>
 
   <dependencies>

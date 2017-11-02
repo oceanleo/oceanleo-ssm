@@ -6,36 +6,49 @@ Ext.define('app.ocean.ssm.view.main.main', {
         var me = this;
         Ext.applyIf(this, {
             items: [{
-                region: 'north', xtype: 'toolbar', itemId: 'maintop', height: 40, margin: '10 0 0 0',
-                padding: '0px', collapsible: false, border: false, layout: 'auto',
+                region: 'north', xtype: 'toolbar', itemId: 'maintop', height: 40,
+                padding: '0px', collapsible: false, border: false, layout: 'hbox',
                 items: [{
-                    xtype: 'image', src: 'img/extjs5.png', cls: 'main-logo'
+                    xtype: 'image', src: 'img/extjs5.png', height: 30, width: 120, margin: '5'
                 }, {
-                    xtype: 'image', src: 'img/mainLogo.png', cls: 'main-logo'
-                }, {
-                    xtype: 'container', cls: 'top-tool',
-                    items: [{
-                        xtype: 'label', itemId: 'top-welcome', html: ''
-                    }, {
-                        xtype: 'button', glyph: 0xf011, text: '退出',
-                        handler: function () {
-                            me.logout();
-                        }
+                    xtype: 'image', src: 'img/mainLogo.png', height: 30, width: 550, margin: '5 0'
+                },
+                    '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->',
+                    '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->', '->',
+                    {
+                        xtype: 'container', height: 40, width: '100%', layout: 'hbox',
+                        items: [{
+                            xtype: 'label', itemId: 'top-welcome', height: 20, html: '', margin: '20 2 0 0'
+                        }, {
+                            xtype: 'button', height: 20, glyph: 0xf090, text: '退出', margin: '16 2 0 2', border: false,
+                            handler: function () {
+                                me.logout();
+                            }
+                        }, {
+                            xtype: 'button', height: 20, glyph: 0xf023, text: '密码', margin: '16 2 0 2', border: false,
+                            handler: function () {
+                                me.logout();
+                            }
+                        }, {
+                            xtype: 'button', height: 20, glyph: 0xf085, text: '主题', margin: '16 2 0 2', border: false,
+                            handler: function () {
+                                me.logout();
+                            }
+                        }]
                     }]
-                }]
             }, {
-                itemId: 'mainbottom', xtype: 'toolbar', region: 'south', height: 40,
+                itemId: 'mainbottom', xtype: 'toolbar', region: 'south', height: 30, width: '100%', margin: '2 0 0 0',
                 listeners: {
                     afterRender: function (cmp) {
-                        var bottom_welcome = "<div style='color: gray;'><span style='font-weight: bold;margin-left: 50px;'>登录账号</span>:" + window.Context.user.username + '</div>';
+                        var bottom_welcome = "<div style='color: gray;'><span style='font-weight: bold'>登录账号</span>:" + window.Context.user.username + '</div>';
                         cmp.queryById('bottom-welcome').setHtml(bottom_welcome);
 
-                        var top_welcome = "<span style='font-weight: bold;margin-left: 50px;color: orangered'>Hi&nbsp;</span>,&nbsp;" + window.Context.user.name;
+                        var top_welcome = "<span style='font-weight: bold;margin-left: 0px;color: red'>Hi&nbsp;</span>" + window.Context.user.name;
                         me.queryById('top-welcome').setHtml(top_welcome);
                     }
                 },
                 items: [{
-                    xtype: 'displayfield', itemId: 'bottom-welcome', width: '100%'
+                    xtype: 'displayfield', itemId: 'bottom-welcome'
                 }]
             }, {
                 region: 'west', border: true, padding: '0px',
@@ -115,6 +128,7 @@ Ext.define('app.ocean.ssm.view.main.main', {
             }
             return viewId;
         }
+
         var tabId = 'tab_' + getViewId(opts);
         var tab = Ext.getCmp(tabId);
         if (tab == null) {

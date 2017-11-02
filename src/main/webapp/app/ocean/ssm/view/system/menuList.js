@@ -57,7 +57,8 @@ Ext.define('app.ocean.ssm.view.system.menuList', {
                 ],
                 tbar: [{
                     xtype: 'button',
-                    text: '添加菜单'
+                    text: '添加菜单',
+                    glyph: 0xf0fe
                 }]
             }]
         });

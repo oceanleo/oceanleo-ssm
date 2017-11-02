@@ -8,15 +8,15 @@
 <%--<title>${platform.name}</title>--%>
 <title>个人开发测试系统</title>
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/ext/build/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/ext/build/packages/theme-crisp/resources/theme-crisp-all.css"/>"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/font-awesome.min.css"/>"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/app.css"/>"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/ssm.css"/>"/>
+<%--<link rel="stylesheet" type="text/css" href="<c:url value="/css/ssm.css"/>"/>--%>
 
 <script type="text/javascript" src="<c:url value="/ext/ext-all.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/ext/ext-locale-zh_CN.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/ext/build/packages/ext-charts/build/ext-charts.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/ext/build/packages/ext-theme-crisp/build/ext-theme-crisp.js"/>"></script>
+<%--<script type="text/javascript" src="<c:url value="/ext/build/packages/ext-charts/build/ext-charts.js"/>"></script>--%>
+<script type="text/javascript" src="<c:url value="/ext/build/packages/theme-crisp/theme-crisp.js"/>"></script>
 
 <head>
   <script language="javascript">
