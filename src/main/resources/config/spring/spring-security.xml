@@ -39,15 +39,15 @@
   <!--登录失败控制器 authentication-failure-url 失效-->
   <bean id="myAuthenticationFailureHandler" class="com.ocean.project.ssm.support.security.login.MyAuthenticationFailureHandler"/>
 
-  <security:http auto-config="true" use-expressions="true">
+  <security:http auto-config="false" use-expressions="true">
     <security:form-login login-page="/login/in"
                 authentication-success-handler-ref="myAuthenticationSuccessHandler"
                 authentication-failure-handler-ref="myAuthenticationFailureHandler"
         />
-    <security:logout invalidate-session="true" logout-success-url="/login/in" logout-url="/security_logout"/>
+    <!--<security:logout invalidate-session="true" logout-success-url="/login/in" logout-url="/security_logout"/>-->
 
     <security:custom-filter ref="myFilterChainInterceptor" position="FIRST"/>
-    <!--<security:custom-filter ref="logoutFilter" position="LOGOUT_FILTER"/>-->
+    <security:custom-filter ref="logoutFilter" position="LOGOUT_FILTER"/>
     <security:custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
 
     <!--session 过多,提示页面-->

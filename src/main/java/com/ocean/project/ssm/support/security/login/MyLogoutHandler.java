@@ -17,6 +17,7 @@ public class MyLogoutHandler implements LogoutHandler {
 
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-        System.out.println(DateUtils.format(new Date()) + " My Logout Handler-----");
+        System.out.println(DateUtils.format(new Date()) + " 退出登录,清空session的值");
+        request.getSession().invalidate();
     }
 }
