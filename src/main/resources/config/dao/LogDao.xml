@@ -18,4 +18,23 @@
       #{id},#{model},#{methodName},#{arguments},#{success},#{createDate},#{updateDate},#{deleteDate},
       #{createId},#{updateId},#{deleteId},#{deleted},#{version})
   </insert>
+
+  <insert id="insertList" parameterType="Log">
+    insert into log (
+      id ,model ,method_name ,arguments ,is_success,create_date,update_date,delete_date,
+      create_id,update_id,delete_id,deleted,version)
+    <foreach collection="logList" separator="union all" item="log">
+      select
+        #{log.id},#{log.model},#{log.methodName},#{log.arguments},#{log.success},#{log.createDate},#{log.updateDate},#{log.deleteDate},
+        #{log.createId},#{log.updateId},#{log.deleteId},#{log.deleted},#{log.version}
+      from dual
+    </foreach>
+  </insert>
+
+  <select id="selectAll" parameterType="com.ocean.project.ssm.support.orm.query.PageQuery" resultMap="BaseResultMap">
+    select
+      id ,model ,method_name ,arguments ,is_success,create_date,update_date,delete_date,
+      create_id,update_id,delete_id,deleted,version
+    from log order by (id+0)
+  </select>
 </mapper>

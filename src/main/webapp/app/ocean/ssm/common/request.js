@@ -4,7 +4,7 @@ Ext.define('app.ocean.ssm.common.request', {
     url: function (url) {
         if (!this.context) {
             var context = document.location.pathname;
-            this.context = context.substr(0,context.lastIndexOf('/'));
+            this.context = context.substr(0, context.lastIndexOf('/'));
         }
         return this.context + url;
     },
@@ -17,7 +17,7 @@ Ext.define('app.ocean.ssm.common.request', {
         var responseData = null;
         var status = false;
         Ext.Ajax.request({
-            url: url,
+            url: this.url(url),
             method: "post",
             params: params,
             async: false,
@@ -30,10 +30,10 @@ Ext.define('app.ocean.ssm.common.request', {
                 if (data.status) {
                     status = true;
                     responseData = data.resultData;
-                    return;
+                } else {
+                    //区分业务异常和系统异常
+                    message = data.statusCode == '300' ? data.message : exceptionStr;
                 }
-                //区分业务异常和系统异常
-                message = data.statusCode == '300' ? data.message : exceptionStr;
             },
             failure: function () {
                 message = exceptionStr;
@@ -47,7 +47,7 @@ Ext.define('app.ocean.ssm.common.request', {
 });
 
 function BizException(message, result) {
-    var data;
+    var data = {message: null, result: null};
     data.message = message;
     data.result = result;
     return data;

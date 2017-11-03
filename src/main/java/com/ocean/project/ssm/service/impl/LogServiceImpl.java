@@ -3,8 +3,10 @@ package com.ocean.project.ssm.service.impl;
 import com.ocean.project.ssm.dao.LogDao;
 import com.ocean.project.ssm.domain.Log;
 import com.ocean.project.ssm.service.LogService;
+import com.ocean.project.ssm.support.orm.query.PageQuery;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author haiyang.li on 2017/9/30.
@@ -17,5 +19,15 @@ public class LogServiceImpl implements LogService {
     @Override
     public void create(Log log) {
         logDao.insert(log);
+    }
+
+    @Override
+    public List<Log> findAll(PageQuery query) {
+        return logDao.selectAll(query);
+    }
+
+    @Override
+    public void createList(List<Log> logList) {
+        logDao.insertList(logList);
     }
 }
