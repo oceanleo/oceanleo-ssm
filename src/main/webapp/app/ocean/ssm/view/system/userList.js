@@ -49,7 +49,7 @@ Ext.define('app.ocean.ssm.view.system.userList', {
                 columns: columnsObj,
                 store: store,
                 bbar: [
-                    {xtype: 'pagingtoolbar', displayInfo: true, height: "auto", store: store}
+                    {xtype: 'pagingtoolbar', displayInfo: true, store: store}
                 ],
                 tbar: [{
                     xtype: 'button',

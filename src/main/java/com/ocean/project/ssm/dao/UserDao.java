@@ -35,4 +35,9 @@ public interface UserDao {
      * 用户名获取用户信息
      */
     User selectByUsername(String username);
+
+    /**
+     * 修改当前用户密码
+     */
+    void updatePassword(@Param("userId") String userId, @Param("newPassword") String newPassword);
 }

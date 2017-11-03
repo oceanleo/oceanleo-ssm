@@ -22,6 +22,11 @@
           "text": "用户管理",
           "leaf": true,
           "url": "getView?viewName=app.ocean.ssm.view.system.userList"
+        },
+        {
+          "text": "日志记录",
+          "leaf": true,
+          "url": "getView?viewName=app.ocean.ssm.view.system.logList"
         }
       ]
     },

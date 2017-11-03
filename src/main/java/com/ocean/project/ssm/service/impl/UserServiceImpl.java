@@ -5,7 +5,8 @@ import com.ocean.project.ssm.domain.User;
 import com.ocean.project.ssm.query.UserQuery;
 import com.ocean.project.ssm.service.UserService;
 import com.ocean.project.ssm.support.core.exception.BizException;
-import com.ocean.project.ssm.support.orm.datasource.DataSourceContextHolder;
+import com.ocean.project.ssm.support.security.po.CurrentUser;
+import com.ocean.project.ssm.support.utils.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -36,5 +37,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll(UserQuery query) {
         return userDao.selectAll(query);
+    }
+
+    @Override
+    public void updatePassword(CurrentUser currentUser, String oldPassword, String newPassword) {
+        if (!StringUtils.hasText(oldPassword) || !StringUtils.hasText(newPassword)) {
+            throw new BizException("密码不能为空");
+        }
+        if (oldPassword.equals(newPassword)) {
+            throw new BizException("新旧密码不能相同");
+        }
+        User user = userDao.selectById(currentUser.getId());
+        if (!user.getPassword().equals(oldPassword)) {
+            throw new BizException("旧密码不正确");
+        }
+        userDao.updatePassword(currentUser.getId(), newPassword);
     }
 }

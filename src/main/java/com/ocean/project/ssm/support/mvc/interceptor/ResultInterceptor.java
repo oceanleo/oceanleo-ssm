@@ -41,8 +41,10 @@ public class ResultInterceptor {
             System.out.println(DateUtils.formatCurrentTime()+" 返回数据到前端 正常返回数据");
             return new Result(obj);
         } catch (BizException e) {
+            e.printStackTrace();
             return new Result(false, ResultCode.BUSINESS_FAIL, e.getMessage());
         } catch (Throwable e) {
+            e.printStackTrace();
             return new Result(false, ResultCode.SYSTEM_FAIL, SYSTEM_EXCEPTION_MESSAGE);
         }
     }

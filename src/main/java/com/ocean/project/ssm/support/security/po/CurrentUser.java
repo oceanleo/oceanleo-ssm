@@ -5,7 +5,7 @@ package com.ocean.project.ssm.support.security.po;
  *
  * @author haiyang.li 2017/7/21.
  */
-public class CurrentUser {
+public abstract class CurrentUser {
 
     private String id;
 
@@ -16,4 +16,6 @@ public class CurrentUser {
     public void setId(String id) {
         this.id = id;
     }
+
+    public abstract String getUsername();
 }

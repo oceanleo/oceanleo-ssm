@@ -48,10 +48,15 @@
     <if test="id !=null and id !=''">
       and id = #{id}
     </if>
-    order by age desc
+    order by age,user_name
   </select>
 
   <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id,user_name,password,age,name,sex,status,is_enabled from user where deleted=0 and user_name = #{username}
   </select>
+
+  <update id="updatePassword" parameterType="java.lang.String">
+    update user set password = #{newPassword},update_date = sysdate(),update_id = #{userId},version = version+1
+    where deleted=0 and id = #{userId}
+  </update>
 </mapper>
