@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,13 +33,17 @@ public class LogServicesTest {
     @Test
     public void testCreate() {
 //        List<Log> logList = new ArrayList<>();
-//        for (int i = 200001; i <= 1000000; i++) {
+//        for (int i = 2000001; i <= 5000000; i++) {
 //            Log log = new Log();
 //            log.setId("" + i);
 //            log.setModel("model-" + i);
 //            log.setMethodName("methodName-" + i);
 //            log.setArguments("Arguments" + i);
 //            log.setSuccess(true);
+//            log.setCreateDate(new Date());
+//            log.setUpdateDate(new Date());
+//            log.setDeleted(false);
+//            log.setVersion("1");
 //            logList.add(log);
 //            if(logList.size()>=5000){
 //                logService.createList(logList);
