@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ocean.project.ssm.dao.OracleDao">
+<mapper namespace="com.oceanleo.project.ssm.dao.OracleDao">
 
   <select id="test" resultType="java.lang.String">
     select code from fs_supervision_protocol where code ='201709280009'

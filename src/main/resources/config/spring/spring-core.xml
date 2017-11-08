@@ -15,8 +15,8 @@
             http://www.springframework.org/schema/context/spring-context.xsd">
 
   <!--配置扫描的service,注入bean-->
-  <context:component-scan base-package="com.ocean" use-default-filters="false">
-    <context:include-filter expression="com.ocean..service..*ServiceImpl" type="aspectj"/>
+  <context:component-scan base-package="com.oceanleo" use-default-filters="false">
+    <context:include-filter expression="com.oceanleo..service..*ServiceImpl" type="aspectj"/>
     <context:include-filter expression="org.springframework.stereotype.Component" type="annotation"/>
   </context:component-scan>
 
@@ -29,7 +29,7 @@
   <aop:aspectj-autoproxy/>
 
   <!--调度配置-->
-  <bean id="domainTask" class="com.ocean.project.ssm.support.task.DomainTask"/>
+  <bean id="domainTask" class="com.oceanleo.project.ssm.support.task.DomainTask"/>
   <task:scheduled-tasks>
     <task:scheduled ref="domainTask" method="taskTest" cron="0 0/1 * 1/1 * ?"/>
   </task:scheduled-tasks>

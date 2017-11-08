@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ocean.project.ssm.dao.LogDao">
+<mapper namespace="com.oceanleo.project.ssm.dao.LogDao">
   <resultMap id="BaseResultMap" type="Log">
     <id property="id" column="id"/>
     <result column="model" property="model"/>
@@ -31,7 +31,7 @@
     </foreach>
   </insert>
 
-  <select id="selectAll" parameterType="com.ocean.project.ssm.support.orm.query.PageQuery" resultMap="BaseResultMap">
+  <select id="selectAll" parameterType="com.oceanleo.project.ssm.support.orm.query.PageQuery" resultMap="BaseResultMap">
     select
       id ,model ,method_name ,arguments ,is_success,create_date,update_date,delete_date,
       create_id,update_id,delete_id,deleted,version

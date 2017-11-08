@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ocean.project.ssm.dao.UserDao">
+<mapper namespace="com.oceanleo.project.ssm.dao.UserDao">
   <resultMap id="BaseResultMap" type="User">
     <id column="id" property="id"/>
     <result column="user_name" property="username"/>
@@ -43,7 +43,7 @@
     and deleted = 0
   </update>
 
-  <select id="selectAll" parameterType="com.ocean.project.ssm.query.UserQuery" resultMap="BaseResultMap">
+  <select id="selectAll" parameterType="com.oceanleo.project.ssm.query.UserQuery" resultMap="BaseResultMap">
     select id,user_name,password,age,name,sex,status,is_enabled from user where deleted=0
     <if test="id !=null and id !=''">
       and id = #{id}

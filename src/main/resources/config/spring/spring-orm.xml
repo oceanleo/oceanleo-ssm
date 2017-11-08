@@ -23,15 +23,15 @@
     <!--<property name="password" value="${mysql.password}"/>-->
   <!--</bean>-->
 
-  <!--<bean id="ssmDataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">-->
+  <!--<bean id="ssmDataSource" class="DataSourceFactory">-->
     <!--<property name="jndi" value="jdbc/ssm"/>-->
   <!--</bean>-->
 
-  <!--<bean id="ssm2DataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">-->
+  <!--<bean id="ssm2DataSource" class="DataSourceFactory">-->
     <!--<property name="jndi" value="jdbc/ssm2"/>-->
   <!--</bean>-->
 
-  <!--<bean id="tradingDataSource" class="com.ocean.project.ssm.support.orm.factory.DataSourceFactory">-->
+  <!--<bean id="tradingDataSource" class="DataSourceFactory">-->
     <!--<property name="jndi" value="jdbc/ds_trading"/>-->
   <!--</bean>-->
 
@@ -70,7 +70,7 @@
     <!--</property>-->
   <!--</bean>-->
 
-  <bean id="dataSource" class="com.ocean.project.ssm.support.orm.datasource.DynamicRoutingDataSource">
+  <bean id="dataSource" class="com.oceanleo.project.ssm.support.orm.datasource.DynamicRoutingDataSource">
     <property name="targetDataSources">
       <map key-type="java.lang.String">
         <entry key="ssmDataSource" value-ref="ssmDataSource"/>
@@ -81,11 +81,11 @@
     <property name="defaultTargetDataSource" ref="ssmDataSource"/>
   </bean>
 
-  <bean id="sqlSessionFactory" class="com.ocean.project.ssm.support.orm.factory.SqlSessionFactoryBean">
+  <bean id="sqlSessionFactory" class="com.oceanleo.project.ssm.support.orm.factory.SqlSessionFactoryBean">
     <!--引入数据源-->
     <property name="dataSource" ref="dataSource"/>
     <!--设置类的别名映射-->
-    <property name="typeAliasesPackage" value="com.ocean.**.**.domain"/>
+    <property name="typeAliasesPackage" value="com.oceanleo.**.**.domain"/>
     <!--设置本地xml文件映射-->
     <property name="mapperLocations" value="classpath*:config/dao/**/*Dao.xml"/>
     <!--本地核心配置文件-->
@@ -93,13 +93,13 @@
     <!--自动分页插件-->
     <property name="plugins">
       <array>
-        <bean class="com.ocean.project.ssm.support.orm.interceptor.PageInterceptor"/>
+        <bean class="com.oceanleo.project.ssm.support.orm.interceptor.PageInterceptor"/>
       </array>
     </property>
   </bean>
   <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <property name="basePackage" value="com.ocean.**.**.dao"/>
+    <property name="basePackage" value="com.oceanleo.**.**.dao"/>
     <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
   </bean>
 
@@ -110,12 +110,12 @@
 
   <!--aop切面-->
   <!--<aop:config>-->
-    <!--<aop:pointcut id="servicePointcut" expression="execution(* com.ocean..service..*ServiceImpl(..))"/>-->
+    <!--<aop:pointcut id="servicePointcut" expression="execution(* com.oceanleo..service..*ServiceImpl(..))"/>-->
     <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>-->
   <!--</aop:config>-->
 
   <aop:config>
-    <aop:pointcut id="servicePointcut" expression="within(com.ocean..service..*ServiceImpl)
+    <aop:pointcut id="servicePointcut" expression="within(com.oceanleo..service..*ServiceImpl)
         and not within(@org.springframework.transaction.annotation.Transactional *)"/>
     <aop:advisor advice-ref="txAdvice" order="1" pointcut-ref="servicePointcut"/>
   </aop:config>
