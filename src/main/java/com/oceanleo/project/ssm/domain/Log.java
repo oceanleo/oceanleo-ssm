@@ -10,14 +10,14 @@ import java.io.Serializable;
 public class Log extends Domain implements Serializable {
 
     private static final long serialVersionUID = -1228373527877362434L;
-    //模块
-    private String model;
-    //访问方法名
-    private String methodName;
-    //访问参数
-    private String arguments;
-    //是否访问成功
-    private Boolean success;
+
+    private String model;           //模块
+
+    private String methodName;      //方法名
+
+    private String arguments;       //参数
+
+    private Boolean success;        //是否访问成功
 
     public String getModel() {
         return model;

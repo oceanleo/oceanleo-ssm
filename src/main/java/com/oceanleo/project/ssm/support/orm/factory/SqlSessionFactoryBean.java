@@ -59,7 +59,7 @@ public class SqlSessionFactoryBean extends org.mybatis.spring.SqlSessionFactoryB
                 }
             }
             if (result.size() > 0) {
-                String packageString = StringUtils.join(result, StringUtils.SEPARATOR);
+                String packageString = StringUtils.join(result, StringUtils.COMMA);
                 System.out.println(DateUtils.formatCurrentTime()+" mybatis 类的别名映射,包名: "+packageString);
                 super.setTypeAliasesPackage(packageString);
             } else {

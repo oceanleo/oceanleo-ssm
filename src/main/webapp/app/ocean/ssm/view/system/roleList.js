@@ -60,7 +60,7 @@ Ext.define('app.ocean.ssm.view.system.roleList', {
                                 id: 'imagePreview', border: true, height: 300, width: 300, margin: '10 50 0 50',
                                 autoEl: {
                                     tag: 'img',
-                                    src: app.ocean.ssm.common.request.url('/file/preview')
+                                    src: app.ocean.ssm.common.request.url('/file/download')
                                 }
                             }],
                             buttons: [{
@@ -77,7 +77,7 @@ Ext.define('app.ocean.ssm.view.system.roleList', {
                                             waitMsg: '文件上传中，请稍等...',
                                             success: function (form, action) {
                                                 var data = action.result;
-                                                Ext.get('imagePreview').dom.src = app.ocean.ssm.common.request.url('/file/preview?filePath=' + data.filePath);
+                                                Ext.get('imagePreview').dom.src = app.ocean.ssm.common.request.url('/file/download?fileId=' + data.fileId);
                                                 Ext.Msg.alert('温馨提示', '上传成功!');
                                                 // formObj.up('window').close();
                                             },

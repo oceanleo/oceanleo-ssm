@@ -11,20 +11,9 @@ import java.util.List;
  */
 public interface MenuDao {
 
-    /**
-     * 新增菜单
-     */
     void insert(Menu menu);
 
-    /**
-     * 获取菜单列表
-     */
     List<MenuDto> selectPageList(PageQuery query);
 
-    /**
-     *
-     * @param userId
-     * @return
-     */
     List<MenuDto> selectByUserId(String userId);
 }

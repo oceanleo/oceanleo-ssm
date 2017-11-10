@@ -8,16 +8,16 @@ import java.io.Serializable;
 public class Menu extends Domain implements Serializable {
 
     private static final long serialVersionUID = 5089362992086561588L;
-    //菜单名称
-    private String name;
-    //菜单编码
-    private String code;
-    //菜单url
-    private String url;
-    //排序
-    private Integer sort;
-    //上级菜单id
-    private String parentId;
+
+    private String name;        //菜单名称
+
+    private String code;        //菜单编码
+
+    private String url;         //菜单url
+
+    private Integer sort;       //排序
+
+    private String parentId;    //上级菜单id
 
     public String getName() {
         return name;

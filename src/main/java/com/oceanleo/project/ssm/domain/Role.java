@@ -8,10 +8,10 @@ import java.io.Serializable;
 public class Role extends Domain implements Serializable {
 
     private static final long serialVersionUID = -5165868335479846915L;
-    //角色名称
-    private String roleName;
-    //角色编码
-    private String roleCode;
+
+    private String roleName;        //角色名称
+
+    private String roleCode;        //角色编码
 
     public String getRoleCode() {
         return roleCode;

@@ -31,8 +31,8 @@ public class DataSourceAspect {
             System.out.println(DateUtils.formatCurrentTime() + " 设置数据源:" + DataSourceContextHolder.DATA_SOURCE_TRADING);
             DataSourceContextHolder.setDataSourceType(DataSourceContextHolder.DATA_SOURCE_TRADING);
         } else if(className.contains("Log")){
-            System.out.println(DateUtils.formatCurrentTime() + " 设置数据源:" + DataSourceContextHolder.DATA_SOURCE_SSM2);
-            DataSourceContextHolder.setDataSourceType(DataSourceContextHolder.DATA_SOURCE_SSM2);
+            System.out.println(DateUtils.formatCurrentTime() + " 设置数据源:" + DataSourceContextHolder.DATA_SOURCE_SSM);
+            DataSourceContextHolder.setDataSourceType(DataSourceContextHolder.DATA_SOURCE_SSM);
         } else {
             System.out.println(DateUtils.formatCurrentTime() + " 设置数据源:" + DataSourceContextHolder.DATA_SOURCE_SSM);
             DataSourceContextHolder.setDataSourceType(DataSourceContextHolder.DATA_SOURCE_SSM);

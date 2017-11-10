@@ -8,10 +8,10 @@ import java.io.Serializable;
 public class MenuResource extends Domain implements Serializable {
 
     private static final long serialVersionUID = -8858332840490606429L;
-    //角色Id
-    private String menuId;
-    //资源id
-    private String resourceId;
+
+    private String menuId;          //菜单Id
+
+    private String resourceId;      //资源id
 
     public String getResourceId() {
         return resourceId;

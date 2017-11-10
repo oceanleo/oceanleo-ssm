@@ -7,18 +7,18 @@ import java.util.List;
  */
 public class MenuDto {
 
-    //菜单id
-    private String id;
-    //菜单名称
-    private String name;
-    //菜单url
-    private String url;
-    //菜单编码
-    private String code;
-    //排序
-    private Integer sort;
-    //上级菜单名称
-    private String parentName;
+
+    private String id;              //菜单id
+
+    private String name;            //菜单名称
+
+    private String url;             //菜单url
+
+    private String code;            //菜单编码
+
+    private Integer sort;           //排序
+
+    private String parentName;      //上级菜单名称
 
     private List<MenuDto> children;
 

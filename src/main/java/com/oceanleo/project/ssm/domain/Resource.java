@@ -8,12 +8,12 @@ import java.io.Serializable;
 public class Resource extends Domain implements Serializable {
 
     private static final long serialVersionUID = 8587256783646042277L;
-    //资源名称
-    private String resourceName;
-    //资源类型
-    private String resourceType;
-    //资源url
-    private String resourceString;
+
+    private String resourceName;        //资源名称
+
+    private String resourceType;        //资源类型
+
+    private String resourceString;      //资源url
 
     public String getResourceName() {
         return resourceName;

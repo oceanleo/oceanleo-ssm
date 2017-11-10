@@ -10,7 +10,9 @@ public abstract class StringUtils {
 
     public static final String EMPTY = "";
 
-    public static final String SEPARATOR = ",";
+    public static final String COMMA = ",";
+
+    public static final String DOT = ".";
 
     public static boolean hasText(String text) {
         return text != null && text.trim().length() > 0;

@@ -7,24 +7,24 @@ import java.util.Date;
  */
 public class Domain {
 
-    //主键id
-    private String id;
-    //创建时间
-    private Date createDate;
-    //创建人id
-    private String createId;
-    //上次修改时间
-    private Date updateDate;
-    //修改人id
-    private String updateId;
-    //删除时间
-    private Date deleteDate;
-    //删除人id
-    private String deleteId;
-    //是否删除
-    private Boolean deleted;
-    //版本号
-    private String version;
+
+    private String id;          //主键id
+
+    private Date createDate;    //创建时间
+
+    private String createId;    //创建人id
+
+    private Date updateDate;    //上次修改时间
+
+    private String updateId;    //修改人id
+
+    private Date deleteDate;    //删除时间
+
+    private String deleteId;    //删除人id
+
+    private Boolean deleted;    //是否删除
+
+    private String version;     //版本号
 
     public String getId() {
         return id;

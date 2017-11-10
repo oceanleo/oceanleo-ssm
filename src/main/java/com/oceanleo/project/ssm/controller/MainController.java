@@ -24,9 +24,6 @@ public class MainController extends BaseController {
     @Resource
     private UserService userService;
 
-    /**
-     * 应用程序入口
-     */
     @RequestMapping("/")
     public String main(Model model) {
         String userId = getUserId();
@@ -36,9 +33,6 @@ public class MainController extends BaseController {
         return viewName;
     }
 
-    /**
-     * 获取菜单
-     */
     @RequestMapping("/sys/menu")
     @ResponseBody
     public Object menu() {

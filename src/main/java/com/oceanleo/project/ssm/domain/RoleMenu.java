@@ -10,10 +10,10 @@ import java.io.Serializable;
 public class RoleMenu extends Domain implements Serializable {
 
     private static final long serialVersionUID = 3887038586093259874L;
-    //角色id
-    private String roleId;
-    //菜单id
-    private String menuId;
+
+    private String roleId;      //角色id
+
+    private String menuId;      //菜单id
 
     public String getRoleId() {
         return roleId;

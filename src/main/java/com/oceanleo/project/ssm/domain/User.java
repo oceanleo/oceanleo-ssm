@@ -10,22 +10,22 @@ import java.io.Serializable;
 public class User extends Domain implements Serializable {
 
     private static final long serialVersionUID = 3914969852374588468L;
-    //系统内置超级管理员账号
-    private static final String ROOT = "root";
-    //用户名
-    private String username;
-    //密码
-    private String password;
-    //年龄
-    private Integer age;
-    //性别
-    private Boolean sex;
-    //姓名
-    private String name;
-    //状态
-    private String status;
-    //是否启用
-    private Boolean enabled;
+
+    private static final String ROOT = "root";      //系统内置超级管理员账号
+
+    private String username;        //用户名
+
+    private String password;        //密码
+
+    private Integer age;            //年龄
+
+    private Boolean sex;            //性别
+
+    private String name;            //姓名
+
+    private String status;          //状态
+
+    private Boolean enabled;        //是否启用
 
     public Boolean getSex() {
         return sex;

@@ -28,10 +28,7 @@ public class UserController extends BaseController {
     @RequestMapping("/list")
     @ResponseBody
     public Object getAll(UserQuery query) {
-        System.out.println(DateUtils.format(new Date()) + " getAll before : " + Thread.currentThread().getName());
-        List<User> userList = userService.getAll(query);
-        System.out.println(DateUtils.format(new Date()) + " getAll after : " + Thread.currentThread().getName());
-        return userList;
+        return userService.getAll(query);
     }
 
     @RequestMapping("/update/password")

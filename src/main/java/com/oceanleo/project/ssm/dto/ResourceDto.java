@@ -5,10 +5,10 @@ package com.oceanleo.project.ssm.dto;
  */
 public class ResourceDto {
 
-    //角色编码
-    private String roleCode;
-    //权限url
-    private String resourceString;
+
+    private String roleCode;            //角色编码
+
+    private String resourceString;      //权限url
 
     public String getResourceString() {
         return resourceString;
