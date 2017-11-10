@@ -16,7 +16,9 @@ public interface MenuService {
     @AppLog("新增菜单")
     void create(Menu menu);
 
+    @AppLog("获取菜单列表")
     List<MenuDto> getPageList(PageQuery query);
 
+    @AppLog("通过用户id获取菜单")
     List<MenuDto> getByUserId(String userId);
 }

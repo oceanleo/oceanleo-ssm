@@ -13,6 +13,7 @@ import java.util.List;
 @AppLog("用户业务层")
 public interface UserService {
 
+    @AppLog("通过id获取用户")
     User getById(String id);
 
     @AppLog("批量修改用户信息")
@@ -21,6 +22,7 @@ public interface UserService {
     @AppLog("新增用户")
     void create(User user);
 
+    @AppLog("获取用户列表")
     List<User> getAll(UserQuery query);
 
     @AppLog("修改当前用户密码")

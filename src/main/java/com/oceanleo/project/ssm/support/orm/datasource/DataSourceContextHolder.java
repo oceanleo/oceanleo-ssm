@@ -21,7 +21,7 @@ public class DataSourceContextHolder {
         String dataSource = contextHolder.get();
         if (StringUtils.isEmpty(dataSource)) {
             return DATA_SOURCE_SSM;
-        }else {
+        } else {
             return dataSource;
         }
     }

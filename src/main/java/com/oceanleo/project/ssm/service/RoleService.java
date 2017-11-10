@@ -14,6 +14,7 @@ import java.util.List;
 @AppLog("角色业务层")
 public interface RoleService {
 
+    @AppLog("获取角色列表")
     List<Role> getPageList(PageQuery query);
 
     @AppLog("新增角色")
