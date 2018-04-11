@@ -26,17 +26,17 @@ public class DataSourceTest {
 
     @Test
     public void testGetBean() throws Exception {
-        DataSource dataSource = (DataSource) applicationContext.getBean("ssmDataSource");
-        if (dataSource != null) {
-            Connection connection = dataSource.getConnection();
-            String sql = "select 1 from dual";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                System.out.println(resultSet.getInt(1));
-            }
-            connection.close();
-        }
+//        DataSource dataSource = (DataSource) applicationContext.getBean("ssmDataSource");
+//        if (dataSource != null) {
+//            Connection connection = dataSource.getConnection();
+//            String sql = "select 1 from dual";
+//            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            if (resultSet.next()) {
+//                System.out.println(resultSet.getInt(1));
+//            }
+//            connection.close();
+//        }
     }
 
     @Test

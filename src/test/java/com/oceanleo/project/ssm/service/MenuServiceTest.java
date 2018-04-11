@@ -1,6 +1,7 @@
 package com.oceanleo.project.ssm.service;
 
 import com.oceanleo.project.ssm.dto.MenuDto;
+import com.oceanleo.project.ssm.support.orm.query.PageQuery;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,7 +22,7 @@ public class MenuServiceTest {
 
     @Test
     public void testGetMenu(){
-        List<MenuDto> menuDtoList = menuService.getByUserId("3");
+        List<MenuDto> menuDtoList = menuService.getPageList(new PageQuery());
         for (MenuDto menuDto:menuDtoList) {
             System.out.println(menuDto);
         }

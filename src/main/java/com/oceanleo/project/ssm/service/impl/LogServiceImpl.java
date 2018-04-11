@@ -18,16 +18,17 @@ public class LogServiceImpl implements LogService {
     
     @Override
     public void create(Log log) {
-        logDao.insert(log);
+//        logDao.insert(log);
     }
 
     @Override
     public List<Log> findAll(PageQuery query) {
-        return logDao.selectAll(query);
+//        return logDao.selectAll(query);
+        return null;
     }
 
     @Override
     public void createList(List<Log> logList) {
-        logDao.insertList(logList);
+//        logDao.insertList(logList);
     }
 }

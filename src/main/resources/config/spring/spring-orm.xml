@@ -35,26 +35,26 @@
     <!--<property name="jndi" value="jdbc/ds_trading"/>-->
   <!--</bean>-->
 
-  <bean id="ssmDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
     <property name="driverClassName" value="${mysql_driver}"/>
     <property name="url" value="${mysql_url}"/>
     <property name="username" value="${mysql_username}"/>
     <property name="password" value="${mysql_password}"/>
   </bean>
 
-  <bean id="ssm2DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-    <property name="driverClassName" value="${mysql_driver2}"/>
-    <property name="url" value="${mysql_url2}"/>
-    <property name="username" value="${mysql_username2}"/>
-    <property name="password" value="${mysql_password2}"/>
-  </bean>
+  <!--<bean id="ssm2DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
+    <!--<property name="driverClassName" value="${mysql_driver2}"/>-->
+    <!--<property name="url" value="${mysql_url2}"/>-->
+    <!--<property name="username" value="${mysql_username2}"/>-->
+    <!--<property name="password" value="${mysql_password2}"/>-->
+  <!--</bean>-->
 
-  <bean id="tradingDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-    <property name="driverClassName" value="${oracle_driver}"/>
-    <property name="url" value="${oracle_url}"/>
-    <property name="username" value="${oracle_username}"/>
-    <property name="password" value="${oracle_password}"/>
-  </bean>
+  <!--<bean id="tradingDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
+    <!--<property name="driverClassName" value="${oracle_driver}"/>-->
+    <!--<property name="url" value="${oracle_url}"/>-->
+    <!--<property name="username" value="${oracle_username}"/>-->
+    <!--<property name="password" value="${oracle_password}"/>-->
+  <!--</bean>-->
 
 
   <!--多数据源配置-->
@@ -70,16 +70,16 @@
     <!--</property>-->
   <!--</bean>-->
 
-  <bean id="dataSource" class="com.oceanleo.project.ssm.support.orm.datasource.DynamicRoutingDataSource">
-    <property name="targetDataSources">
-      <map key-type="java.lang.String">
-        <entry key="ssmDataSource" value-ref="ssmDataSource"/>
-        <entry key="ssm2DataSource" value-ref="ssm2DataSource"/>
-        <entry key="tradingDataSource" value-ref="tradingDataSource"/>
-      </map>
-    </property>
-    <property name="defaultTargetDataSource" ref="ssmDataSource"/>
-  </bean>
+  <!--<bean id="dataSource" class="com.oceanleo.project.ssm.support.orm.datasource.DynamicRoutingDataSource">-->
+    <!--<property name="targetDataSources">-->
+      <!--<map key-type="java.lang.String">-->
+        <!--<entry key="ssmDataSource" value-ref="ssmDataSource"/>-->
+        <!--<entry key="ssm2DataSource" value-ref="ssm2DataSource"/>-->
+        <!--&lt;!&ndash;<entry key="tradingDataSource" value-ref="tradingDataSource"/>&ndash;&gt;-->
+      <!--</map>-->
+    <!--</property>-->
+    <!--<property name="defaultTargetDataSource" ref="ssmDataSource"/>-->
+  <!--</bean>-->
 
   <bean id="sqlSessionFactory" class="com.oceanleo.project.ssm.support.orm.factory.SqlSessionFactoryBean">
     <!--引入数据源-->

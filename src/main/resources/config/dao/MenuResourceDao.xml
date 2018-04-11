@@ -9,8 +9,8 @@
   </resultMap>
 
   <insert id="insert" parameterType="MenuResource">
-    insert into menu_resource(
-      id,menu_id,resource_id,create_date,update_date,delete_date,
+    insert into menu_resources(
+      id,menu_id,resources_id,create_date,update_date,delete_date,
       create_id,update_id,delete_id,deleted,version)
     values(
       #{id},#{menuId},#{resourceId},#{createDate},#{updateDate},#{deleteDate},
@@ -18,6 +18,6 @@
   </insert>
 
   <select id="selectAll" resultMap="BaseResultMap">
-    select id,menu_id,resource_id from menu_resource where deleted=0
+    select id,menu_id,resources_id from menu_resources where deleted=0
   </select>
 </mapper>
